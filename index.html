@@ -70,10 +70,217 @@
     <!-- Begin page content -->
     <div class="container">
       <div class="page-header">
-        <h1>Sticky footer with fixed navbar</h1>
-      </div>
-      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body > .container</code>.</p>
-      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+        
+<div id="phsl4005-introduction-to-biostatistics" class="section level1">
+<h1>PHSL4005: Introduction to biostatistics</h1>
+<p>An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language <a href="//www.r-project.org"><em>R</em></a>.</p>
+<div id="license" class="section level2">
+<h2>License</h2>
+<p><a rel="license" href="//creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">PHSL4005: Introduction to biostatistics</span> by <a xmlns:cc="//creativecommons.org/ns#" href="https://github.com/kamermanpr/stats-bsc-honours.git" property="cc:attributionName" rel="cc:attributionURL">Peter Kamerman</a> is licensed under a <a rel="license" href="//creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</div>
+<div id="table-of-contents" class="section level2">
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#getting-started">Getting started</a></li>
+<li><a href="#course-assessment">Course assessment</a></li>
+<li><a href="#slides">Slides</a></li>
+<li><a href="#assignments">Assignments</a></li>
+<li>Resources
+<ul>
+<li><a href="./resources/campus-proxy-hack.md">Campus proxy hack</a></li>
+<li><a href="#software-downloads">Software downloads</a></li>
+<li><a href="#free-courses">Free courses</a>
+<ul>
+<li><a href="#r-online"><em>R</em> online</a></li>
+<li><a href="#learning-r-with-the-swirl-package">Learn R with the <em>swirl</em> package</a></li>
+<li><a href="#git-online"><em>git</em> online</a></li>
+<li><a href="#other">Other</a></li>
+</ul></li>
+<li><a href="#cheat-sheets">Cheat-sheets</a>
+<ul>
+<li><a href="#r"><em>R</em></a></li>
+<li><a href="#git"><em>git</em></a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<div id="getting-started" class="section level2">
+<h2>Getting started</h2>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<p>The aims of the course are to introduce the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme <a href="//www.r-project.org/"><em>R</em></a> in the <a href="//www.rstudio.com"><em>Rstudio</em></a> integrated development environment (IDE), and <a href="https://git-scm.com/"><em>git</em></a> (with the <a href="//github.com/"><em>GitHub</em></a> web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting (<a href="#free-courses">see examples below</a>).</p>
+</div>
+<div id="course-assessment" class="section level2">
+<h2>Course assessment</h2>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<p><em><strong>[To be added as course progresses]</strong></em></p>
+</div>
+<div id="slides" class="section level2">
+<h2>Slides</h2>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">#</th>
+<th align="left">Tutorial</th>
+<th align="left">Content</th>
+<th align="left">Slides (RPubs)</th>
+<th align="left">Download slides (html)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0.</td>
+<td align="left">Introduction</td>
+<td align="left">Course overview</td>
+<td align="left"><a href="//rpubs.com/kamermanpr/PHSL4005-biostats-introduction"><em>RPubs</em> link</a></td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/tutorials/introduction.html?dl=1">Standalone slides</a></td>
+</tr>
+<tr class="even">
+<td align="left">1.</td>
+<td align="left">Tutorial 1</td>
+<td align="left">Basic concepts and tools for reproducible research</td>
+<td align="left"><a href="//rpubs.com/kamermanpr/PHSL4005-biostats-tutorial-1"><em>RPubs</em> link</a></td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/tutorials/tutorial_1.html?dl=1">Standalone slides</a></td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>[More to be added as course progresses]</strong></em></p>
+</div>
+<div id="assignments" class="section level2">
+<h2>Assignments</h2>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Assignment</th>
+<th align="left">Files</th>
+<th align="left">Due date</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Tutorial 1: <a href="./resources/assignment-1.md">[instructions]</a></td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment_1.md?dl=1">[download file]</a></td>
+<td align="left">17:00, 29 March 2016</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>[To be added as course progresses]</strong></em></p>
+</div>
+<div id="resources" class="section level2">
+<h2>Resources</h2>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<div id="software-downloads" class="section level3">
+<h3>Software downloads</h3>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<p><em><strong>Please note:</strong> For students attending the tutorials, you will be given a memory stick with the lastest portable versions of R, RStudio, and Git installed. However, if you have a personal laptop or desktop, I recommend you install the software onto those devices.</em></p>
+<ul>
+<li><a href="//cran.r-project.org"><em>R</em></a> (available for: Windows, Mac, and Linux)</li>
+<li><a href="//www.rstudio.com/products/rstudio/download/"><em>RStudio Desktop</em></a> (available for: Windows, Mac, and Linux. Only install after you have installed <em>R</em>)</li>
+<li><a href="//git-scm.com/downloads"><em>git</em></a> (available for: Windows, Mac, and Linux)</li>
+<li><a href="//desktop.github.com"><em>Github desktop client</em></a> (available for: Windows and Mac only)</li>
+</ul>
+<p>Once you have downloaded and installed <em>R</em> and <em>RStudio</em>, I recommend that you install the following <em>R</em> packages (you may need others during the course, but these will get you going):</p>
+<ul>
+<li><em>knitr</em>, <em>rmarkdown</em>, <em>dplyr</em>, <em>tidyr</em>, <em>lubridate</em>, <em>readr</em>, <em>ggplot2</em>, <em>swirl</em></li>
+</ul>
+<p>You can install the packages directly from the <em>R</em> console:</p>
+<pre class="r"><code>install.packages(c(&#39;knitr&#39;, &#39;rmarkdown&#39;, &#39;dplyr&#39;,
+                   &#39;tidyr&#39;, &#39;lubridate&#39;, &#39;readr&#39;, 
+                   &#39;swirl&#39;))</code></pre>
+<p><img src="resources/install-packages-1.gif" alt="r-console-1" /></p>
+<p>…or using <em>RStudio</em>:</p>
+<p><img src="resources/install-packages-2.gif" alt="r-console-2" /></p>
+</div>
+<div id="free-courses" class="section level3">
+<h3>Free courses</h3>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<div id="r-online" class="section level5">
+<h5>R online</h5>
+<ul>
+<li><a href="//www.datacamp.com/courses/free-introduction-to-r">Introduction to <em>R</em></a> by datacamp.com<br /></li>
+<li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com</li>
+</ul>
+</div>
+<div id="learning-r-with-the-swirl-package" class="section level5">
+<h5>Learning R with the swirl package</h5>
+<p>The <a href="//swirlstats.com"><em>swirl</em></a> package by the Swirl Development Team brings a suite of ste-by-step interactive training courses on <em>R</em>, which are aimed primarily for the novice <em>R</em> user.</p>
+<pre class="r"><code># Script to install and use &#39;swirl&#39;
+# If you haven&#39;t already installed swirl
+install.packages(&#39;swirl&#39;)
+
+# Load the &#39;swirl&#39; package
+library(swirl)
+
+# Launch a &#39;swirl&#39; session and follow the prompts
+swirl()</code></pre>
+<p>To install additional <em>swirl</em> courses:</p>
+<pre class="r"><code># Load the &#39;swirl&#39; package
+library(swirl)
+
+# Download a course from the &#39;swirl&#39; github repository
+install_from_swirl(&#39;Course Name Here&#39;)
+
+# Luanch a &#39;swirl&#39; session
+swirl()</code></pre>
+<p>Courses include (but are not limited to):</p>
+<ul>
+<li>‘R Programming’</li>
+<li>‘Getting and Cleaning Data’</li>
+<li>‘Exploratory Data Analysis’</li>
+<li>‘Data Analysis’</li>
+<li>‘Regression Models’</li>
+</ul>
+</div>
+<div id="git-online" class="section level5">
+<h5>git online</h5>
+<ul>
+<li><a href="//www.codeschool.com/courses/try-git">Try <em>git</em></a> by codeschool.com<br /></li>
+<li><a href="//www.codecademy.com/learn/learn-git">Learn <em>git</em></a> by codecademy.com</li>
+</ul>
+</div>
+<div id="other" class="section level5">
+<h5>Other</h5>
+<ul>
+<li><a href="//www.codecademy.com/learn/learn-the-command-line">Learn the <em>Command Line</em></a> by codecademy.com</li>
+</ul>
+</div>
+</div>
+<div id="cheat-sheets" class="section level3">
+<h3>Cheat-sheets</h3>
+<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<p>Remembering commands can be difficult, especially when you are a new user or you are out of practice. So here are links to some useful cheat-sheets:</p>
+<div id="r" class="section level5">
+<h5>R</h5>
+<ul>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> from rstudio.com<br /></li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf"><em>RMarkdown</em></a> from rstudio.com</li>
+</ul>
+</div>
+<div id="git" class="section level5">
+<h5>git</h5>
+<ul>
+<li><a href="//www.git-tower.com/blog/git-cheat-sheet/"><em>git</em></a> from git-tower.com<br /></li>
+<li><a href="//training.github.com/kit/downloads/github-git-cheat-sheet.pdf"><em>git</em></a> from github.com</li>
+<li><a href="//rogerdudler.github.io/git-guide/"><em>git</em> the simple guide</a> (interactive)</li>
+<li><a href="//www.git-tower.com/blog/workflow-of-version-control/"><em>git</em> workflow overview</a> from git-tower.com</li>
+</ul>
+</div>
+<div id="miscellaneous" class="section level5">
+<h5>Miscellaneous</h5>
+<ul>
+<li><a href="//www.git-tower.com/blog/command-line-cheat-sheet/"><em>Command line</em></a> from git-tower.com</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
     </div>
 
     <footer class="footer">
