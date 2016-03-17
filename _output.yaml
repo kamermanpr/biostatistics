@@ -1,0 +1,7 @@
+html_document:
+  self_contained: false
+  lib_dir: assets
+  highlight: pygments
+  includes:
+      in_header: _header.html
+      after_body: _footer.html

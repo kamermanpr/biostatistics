@@ -1,0 +1,155 @@
+---
+output: html_document
+---
+# PHSL4005: Introduction to biostatistics
+An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language [_R_](//www.r-project.org).
+
+## License
+<a rel="license" href="//creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">PHSL4005: Introduction to biostatistics</span> by <a xmlns:cc="//creativecommons.org/ns#" href="https://github.com/kamermanpr/stats-bsc-honours.git" property="cc:attributionName" rel="cc:attributionURL">Peter Kamerman</a> is licensed under a <a rel="license" href="//creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+## Table of contents
+* [Getting started](#getting-started)
+* [Course assessment](#course-assessment)
+* [Slides](#slides)
+* [Assignments](#assignments)
+* Resources
+    - [Campus proxy hack](./resources/campus-proxy-hack.md)
+    - [Software downloads](#software-downloads)
+    - [Free courses](#free-courses)
+        - [_R_ online](#r-online)
+        - [Learn R with the _swirl_ package](#learning-r-with-the-swirl-package)
+        - [_git_ online](#git-online)
+        - [Other](#other)
+    - [Cheat-sheets](#cheat-sheets)
+        - [_R_](#r)
+        - [_git_](#git)
+        - [Miscellaneous](#miscellaneous)
+
+## Getting started
+[(back to: TOC)](#table-of-contents)
+
+The aims of the course are to introduce the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_Rstudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](https://git-scm.com/) (with the [_GitHub_](//github.com/) web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting ([see examples below](#free-courses)).
+
+## Course assessment
+[(back to: TOC)](#table-of-contents)
+
+
+_**[To be added as course progresses]**_
+
+
+## Slides
+[(back to: TOC)](#table-of-contents)
+
+|#  |Tutorial       |Content                                |Slides (RPubs)                                                           |Download slides (html) |
+|:--|:--------------|:--------------------------------------|:------------------------------------------------------------------------|:---------------------|
+|0. |Introduction   |Course overview                        |[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-introduction)|[Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/tutorials/introduction.html?dl=1)|
+|1. |Tutorial 1 |Basic concepts and tools for reproducible research|[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-tutorial-1)  | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/tutorials/tutorial_1.html?dl=1)|
+
+_**[More to be added as course progresses]**_
+
+## Assignments
+[(back to: TOC)](#table-of-contents)
+
+|Assignment |Files  |Due date |
+|:----------|:------|:--------|
+|Tutorial 1: [[instructions]](./resources/assignment-1.md) |[[download file]](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment_1.md?dl=1) |17:00, 29 March 2016|
+
+_**[To be added as course progresses]**_
+
+## Resources
+[(back to: TOC)](#table-of-contents)
+
+### Software downloads
+[(back to: TOC)](#table-of-contents)
+
+_**Please note:** For students attending the tutorials, you will be given a memory stick with the lastest portable versions of R, RStudio, and Git installed. However, if you have a personal laptop or desktop, I recommend you install the software onto those devices._
+
+* [_R_](//cran.r-project.org) (available for: Windows, Mac, and Linux)
+* [_RStudio Desktop_](//www.rstudio.com/products/rstudio/download/) (available for: Windows, Mac, and Linux. Only install after you have installed _R_)
+* [_git_](//git-scm.com/downloads) (available for: Windows, Mac, and Linux)
+* [_Github desktop client_](//desktop.github.com) (available for: Windows and Mac only)
+
+Once you have downloaded and installed _R_ and _RStudio_, I recommend that you install the following _R_ packages (you may need others during the course, but these will get you going):
+
+* _knitr_, _rmarkdown_, _dplyr_, _tidyr_, _lubridate_, _readr_, _ggplot2_, _swirl_
+
+You can install the packages directly from the _R_ console:
+
+```{r eval=FALSE}
+install.packages(c('knitr', 'rmarkdown', 'dplyr',
+                   'tidyr', 'lubridate', 'readr',
+                   'swirl'))
+```
+
+![r-console-1](./resources/install-packages-1.gif)
+
+...or using _RStudio_:
+
+![r-console-2](./resources/install-packages-2.gif)
+
+### Free courses
+[(back to: TOC)](#table-of-contents)
+
+##### R online
+* [Introduction to _R_](//www.datacamp.com/courses/free-introduction-to-r) by datacamp.com  
+* [_R_ Programming](//www.codeschool.com/courses/try-r) by codeschool.com  
+
+##### Learning R with the swirl package
+The [_swirl_](//swirlstats.com) package by the Swirl Development Team brings a suite of ste-by-step interactive training courses on _R_, which are aimed primarily for the novice _R_ user.
+
+```{r swirl, eval=FALSE}
+# Script to install and use 'swirl'
+# If you haven't already installed swirl
+install.packages('swirl')
+
+# Load the 'swirl' package
+library(swirl)
+
+# Launch a 'swirl' session and follow the prompts
+swirl()
+```
+
+To install additional _swirl_ courses:
+```{r swirl_courses, eval=FALSE}
+# Load the 'swirl' package
+library(swirl)
+
+# Download a course from the 'swirl' github repository
+install_from_swirl('Course Name Here')
+
+# Luanch a 'swirl' session
+swirl()
+```
+
+Courses include (but are not limited to):
+
+* 'R Programming'
+* 'Getting and Cleaning Data'
+* 'Exploratory Data Analysis'
+* 'Data Analysis'
+* 'Regression Models'
+
+##### git online
+* [Try _git_](//www.codeschool.com/courses/try-git) by codeschool.com  
+* [Learn _git_](//www.codecademy.com/learn/learn-git) by codecademy.com
+
+##### Other
+* [Learn the _Command Line_](//www.codecademy.com/learn/learn-the-command-line) by codecademy.com  
+
+### Cheat-sheets
+[(back to: TOC)](#table-of-contents)
+
+Remembering commands can be difficult, especially when you are a new user or you are out of practice. So here are links to some useful cheat-sheets:  
+
+##### R
+* [Data wrangling](//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) with _dplyr_ and _tidyr_ from rstudio.com   
+- [_RMarkdown_](//www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) from rstudio.com  
+
+##### git
+* [_git_](//www.git-tower.com/blog/git-cheat-sheet/) from git-tower.com  
+* [_git_](//training.github.com/kit/downloads/github-git-cheat-sheet.pdf) from github.com
+* [_git_ the simple guide](//rogerdudler.github.io/git-guide/) (interactive)
+* [_git_ workflow overview](//www.git-tower.com/blog/workflow-of-version-control/) from git-tower.com  
+
+##### Miscellaneous
+* [_Command line_](//www.git-tower.com/blog/command-line-cheat-sheet/) from git-tower.com 
