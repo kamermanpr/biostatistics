@@ -1,14 +1,14 @@
 ---
 output: html_document
 ---
+<br>
+
 # PHSL4005: Introduction to biostatistics
 An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language [_R_](//www.r-project.org).
 
-## License
-<a rel="license" href="//creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">PHSL4005: Introduction to biostatistics</span> by <a xmlns:cc="//creativecommons.org/ns#" href="https://github.com/kamermanpr/stats-bsc-honours.git" property="cc:attributionName" rel="cc:attributionURL">Peter Kamerman</a> is licensed under a <a rel="license" href="//creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_Rstudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](https://git-scm.com/) (with the [_GitHub_](//github.com/) web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting ([see examples below](#free-courses)).
 
 ## Table of contents
-* [Getting started](#getting-started)
 * [Course assessment](#course-assessment)
 * [Slides](#slides)
 * [Assignments](#assignments)
@@ -24,11 +24,6 @@ An introductory course on data handling and biostatistics for students studying 
         - [_R_](#r)
         - [_git_](#git)
         - [Miscellaneous](#miscellaneous)
-
-## Getting started
-[(back to: TOC)](#table-of-contents)
-
-The aims of the course are to introduce the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_Rstudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](https://git-scm.com/) (with the [_GitHub_](//github.com/) web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting ([see examples below](#free-courses)).
 
 ## Course assessment
 [(back to: TOC)](#table-of-contents)
@@ -152,4 +147,4 @@ Remembering commands can be difficult, especially when you are a new user or you
 * [_git_ workflow overview](//www.git-tower.com/blog/workflow-of-version-control/) from git-tower.com  
 
 ##### Miscellaneous
-* [_Command line_](//www.git-tower.com/blog/command-line-cheat-sheet/) from git-tower.com 
+* [_Command line_](//www.git-tower.com/blog/command-line-cheat-sheet/) from git-tower.com
