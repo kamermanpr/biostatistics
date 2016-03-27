@@ -1,7 +1,11 @@
 html_document:
+  toc: true
+  toc_depth: 5
+  toc_float:
+    collapsed: false
+  theme: paper
   self_contained: false
   lib_dir: assets
   highlight: pygments
   includes:
-      in_header: _header.html
       after_body: _footer.html

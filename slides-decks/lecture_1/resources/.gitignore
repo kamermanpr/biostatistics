@@ -1,0 +1,30 @@
+# R/RStudio files
+#################
+.Rhistory
+.Rapp.history
+.Rproj.user
+.Rproj.user/
+*-Ex.R 
+vignettes/*.html
+vignettes/*.pdf
+
+# Office
+########
+*.gddoc
+*.gdoc
+*.docx
+*.doc
+*.gdsheet
+*.gsheet
+*.xlsx
+*.xls
+*.gdslides
+*.gslides
+*.pptx
+*.ppt
+
+# Other
+#######
+*.log
+*.bak
+

@@ -14,54 +14,14 @@
 <title></title>
 
 <script src="assets/jquery-1.11.3/jquery.min.js"></script>
+<script src="assets/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="assets/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="assets/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="assets/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="assets/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
 <script src="assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="assets/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="assets/bootstrap-3.3.5/shim/respond.min.js"></script>
-
-<meta charset="utf-8">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="generator" content="pandoc" />
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Biostats</title>
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-<!-- Latest maxdcn font-awesome and academicons -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
-
-<!-- Custom styles for this template -->
-<link href="assets/footer.css" rel="stylesheet">
-
-<style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-	  href="assets/highlight/default.css"
-	  type="text/css" />
-<script src="assets/highlight/highlight.js"></script>
-<style type="text/css">
-  pre:not([class]) {
-	background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-	  hljs.initHighlighting();
-   }, 0);
-}
-</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -142,34 +102,34 @@ button.code-folding-btn:focus {
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
-  padding-top: 51px;
+  padding-top: 64px;
   padding-bottom: 40px;
 }
 /* offset scroll position for anchor links (for fixed navbar)  */
 .section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 69px;
+  margin-top: -69px;
 }
 
 .section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 69px;
+  margin-top: -69px;
 }
 .section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 69px;
+  margin-top: -69px;
 }
 .section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 69px;
+  margin-top: -69px;
 }
 .section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 69px;
+  margin-top: -69px;
 }
 .section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
+  padding-top: 69px;
+  margin-top: -69px;
 }
 </style>
 
@@ -207,6 +167,100 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4,h5",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: "h1.title, .toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+  padding-left: 10px;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <!-- Fixed navbar -->
@@ -220,7 +274,7 @@ $(document).ready(function () {
         	<span class="icon-bar"></span>
       	</button>
 	  <span><a href="//painblogr.org/"><img src="capsaicin.png" alt="capsaicin", style="max-height:50px;padding-top:5px;"></a></span>
-	  <span class="site-title"><a href="//painblogr.org/" style="color:#000000;font-size:200%;vertical-align:middle;">painblogR</a></span>
+	  <span class="site-title"><a href="//painblogr.org/" style="color:#000000;font-size:250%;vertical-align:middle;">painblogR</a></span>
 	</div>
 	<!-- no need for the dropdown window
 	<div id="navbar" class="collapse navbar-collapse">
@@ -253,68 +307,44 @@ $(document).ready(function () {
 
 
 <p><br></p>
-<div id="phsl4005-introduction-to-biostatistics" class="section level1">
-<h1>PHSL4005: Introduction to biostatistics</h1>
+<div id="introduction-to-biostatistics" class="section level1">
+<h1>Introduction to Biostatistics</h1>
 <p>An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language <a href="//www.r-project.org"><em>R</em></a>.</p>
-<p>The aims of the course are to introduce the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme <a href="//www.r-project.org/"><em>R</em></a> in the <a href="//www.rstudio.com"><em>Rstudio</em></a> integrated development environment (IDE), and <a href="https://git-scm.com/"><em>git</em></a> (with the <a href="//github.com/"><em>GitHub</em></a> web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting (<a href="#free-courses">see examples below</a>).</p>
-<div id="table-of-contents" class="section level2">
-<h2>Table of contents</h2>
-<ul>
-<li><a href="#course-assessment">Course assessment</a></li>
-<li><a href="#slides">Slides</a></li>
-<li><a href="#assignments">Assignments</a></li>
-<li>Resources
-<ul>
-<li><a href="./resources/campus-proxy-hack.md">Campus proxy hack</a></li>
-<li><a href="#software-downloads">Software downloads</a></li>
-<li><a href="#free-courses">Free courses</a>
-<ul>
-<li><a href="#r-online"><em>R</em> online</a></li>
-<li><a href="#learning-r-with-the-swirl-package">Learn R with the <em>swirl</em> package</a></li>
-<li><a href="#git-online"><em>git</em> online</a></li>
-<li><a href="#other">Other</a></li>
-</ul></li>
-<li><a href="#cheat-sheets">Cheat-sheets</a>
-<ul>
-<li><a href="#r"><em>R</em></a></li>
-<li><a href="#git"><em>git</em></a></li>
-<li><a href="#miscellaneous">Miscellaneous</a></li>
-</ul></li>
-</ul></li>
-</ul>
-</div>
+<p>The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme <a href="//www.r-project.org/"><em>R</em></a> in the <a href="//www.rstudio.com"><em>Rstudio</em></a> integrated development environment (IDE), and <a href="//git-scm.com/"><em>git</em></a> (with the <a href="//github.com/"><em>GitHub</em></a> web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting (<a href="#free-courses">see examples below</a>).</p>
 <div id="course-assessment" class="section level2">
 <h2>Course assessment</h2>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
-<p><em><strong>[To be added as course progresses]</strong></em></p>
+<p>There will be one project that will constitute the <em>year mark</em> for the course. You <strong>may not work</strong> on the project in groups. Details on the project will be posted at a later date.</p>
+<p>The biostatistics component of your mid-year exams will count 60% of the final biostatistics mark (the project will count 40%).</p>
 </div>
-<div id="slides" class="section level2">
-<h2>Slides</h2>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<div id="lectures" class="section level2">
+<h2>Lectures</h2>
 <table>
 <thead>
 <tr class="header">
-<th align="left">#</th>
-<th align="left">Tutorial</th>
+<th align="left">Lecture</th>
 <th align="left">Content</th>
 <th align="left">Slides (RPubs)</th>
-<th align="left">Download slides (html)</th>
+<th align="left">Download slides</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">0.</td>
 <td align="left">Introduction</td>
 <td align="left">Course overview</td>
 <td align="left"><a href="//rpubs.com/kamermanpr/PHSL4005-biostats-introduction"><em>RPubs</em> link</a></td>
-<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/tutorials/introduction.html?dl=1">Standalone slides</a></td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html?dl=1">Standalone slides</a></td>
 </tr>
 <tr class="even">
-<td align="left">1.</td>
-<td align="left">Tutorial 1</td>
+<td align="left">Lecture 1</td>
 <td align="left">Basic concepts and tools for reproducible research</td>
-<td align="left"><a href="//rpubs.com/kamermanpr/PHSL4005-biostats-tutorial-1"><em>RPubs</em> link</a></td>
-<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/tutorials/tutorial_1.html?dl=1">Standalone slides</a></td>
+<td align="left"><a href="//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-1"><em>RPubs</em> link</a></td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html?dl=1">Standalone slides</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Lecture 2</td>
+<td align="left">Basic concepts and tools for reproducible research</td>
+<td align="left"><a href="//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-2"><em>RPubs</em> link</a></td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html?dl=1">Standalone slides</a></td>
 </tr>
 </tbody>
 </table>
@@ -322,32 +352,43 @@ $(document).ready(function () {
 </div>
 <div id="assignments" class="section level2">
 <h2>Assignments</h2>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
+<p>The assignments are your chance to get hands-on experience using the information you learned in the lectures. The assignments will completed with the instructor in the computer laboratory immediately after the relevant lecture has been finished. You may work alone or in groups.</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Assignment</th>
-<th align="left">Files</th>
-<th align="left">Due date</th>
+<th align="left">Tutorial</th>
+<th align="left">files</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Tutorial 1: <a href="./resources/assignment-1.md">[instructions]</a></td>
-<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment_1.md?dl=1">[download file]</a></td>
-<td align="left">17:00, 29 March 2016</td>
+<td align="left">Assignment 1 (lecture 1)</td>
+<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment_1.md?dl=1">[download]</a> the file, and follow the instructions</td>
+</tr>
+<tr class="even">
+<td align="left">Assignment 2 (lecture 2)</td>
+<td align="left">Complete the <em>swirl</em> course: <strong>‘Getting and Cleaning Data’</strong></td>
 </tr>
 </tbody>
 </table>
-<p><em><strong>[To be added as course progresses]</strong></em></p>
+<p><em><strong>[More to be added as course progresses]</strong></em></p>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
 <div id="software-downloads" class="section level3">
 <h3>Software downloads</h3>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
 <p><em><strong>Please note:</strong> For students attending the tutorials, you will be given a memory stick with the lastest portable versions of R, RStudio, and Git installed. However, if you have a personal laptop or desktop, I recommend you install the software onto those devices.</em></p>
+<p>_If you are using the computer lab computers, the computers may not have the software installed, or it may have old versions installed. If so, please install/update the software. In the case of computer laboratory computers, which have multiple users, please note the following:</p>
+<p><em>When using git, do not use:</em></p>
+<pre><code>$ git config --global user.name &quot;YOUR NAME&quot;
+$ git config --global user.email &quot;YOUR EMAIL&quot;
+
+$ git init &lt;path/to/directory&gt;</code></pre>
+<p><em>Rather set the configurations for the directory you want to initialize with git only:</em></p>
+<pre><code>$ git config --local user.name &quot;YOUR NAME&quot;
+$ git config --local user.email &quot;YOUR EMAIL&quot;
+
+$ git init &lt;path/to/directory&gt;</code></pre>
 <ul>
 <li><a href="//cran.r-project.org"><em>R</em></a> (available for: Windows, Mac, and Linux)</li>
 <li><a href="//www.rstudio.com/products/rstudio/download/"><em>RStudio Desktop</em></a> (available for: Windows, Mac, and Linux. Only install after you have installed <em>R</em>)</li>
@@ -362,22 +403,27 @@ $(document).ready(function () {
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
                    <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;lubridate&#39;</span>, <span class="st">&#39;readr&#39;</span>,
                    <span class="st">&#39;swirl&#39;</span>))</code></pre>
-<p><img src="resources/install-packages-1.gif" alt="r-console-1" /></p>
+<p style="text-align:center">
+<img src="images/install-packages-1.gif" style="max-width:80%;height:auto;">
+</p>
+<p><br></p>
 <p>…or using <em>RStudio</em>:</p>
-<p><img src="resources/install-packages-2.gif" alt="r-console-2" /></p>
+<p><br></p>
+<p style="text-align:center">
+<img src="images/install-packages-2.gif" style="max-width:80%;height:auto;">
+</p>
 </div>
 <div id="free-courses" class="section level3">
 <h3>Free courses</h3>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
 <div id="r-online" class="section level5">
-<h5>R online</h5>
+<h5><em>R</em> online</h5>
 <ul>
 <li><a href="//www.datacamp.com/courses/free-introduction-to-r">Introduction to <em>R</em></a> by datacamp.com<br /></li>
 <li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com</li>
 </ul>
 </div>
-<div id="learning-r-with-the-swirl-package" class="section level5">
-<h5>Learning R with the swirl package</h5>
+<div id="learning-r-with-swirl" class="section level5">
+<h5>Learning <em>R</em> with <em>swirl</em></h5>
 <p>The <a href="//swirlstats.com"><em>swirl</em></a> package by the Swirl Development Team brings a suite of ste-by-step interactive training courses on <em>R</em>, which are aimed primarily for the novice <em>R</em> user.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
 <span class="co"># If you haven&#39;t already installed swirl</span>
@@ -388,7 +434,7 @@ $(document).ready(function () {
 
 <span class="co"># Launch a &#39;swirl&#39; session and follow the prompts</span>
 <span class="kw">swirl</span>()</code></pre>
-<p>To install additional <em>swirl</em> courses:</p>
+<p>To install <em>swirl</em> courses:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
 <span class="kw">library</span>(swirl)
 
@@ -407,7 +453,7 @@ $(document).ready(function () {
 </ul>
 </div>
 <div id="git-online" class="section level5">
-<h5>git online</h5>
+<h5><em>git</em> online</h5>
 <ul>
 <li><a href="//www.codeschool.com/courses/try-git">Try <em>git</em></a> by codeschool.com<br /></li>
 <li><a href="//www.codecademy.com/learn/learn-git">Learn <em>git</em></a> by codecademy.com</li>
@@ -422,17 +468,16 @@ $(document).ready(function () {
 </div>
 <div id="cheat-sheets" class="section level3">
 <h3>Cheat-sheets</h3>
-<p><a href="#table-of-contents">(back to: TOC)</a></p>
 <p>Remembering commands can be difficult, especially when you are a new user or you are out of practice. So here are links to some useful cheat-sheets:</p>
 <div id="r" class="section level5">
-<h5>R</h5>
+<h5><em>R</em></h5>
 <ul>
 <li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> from rstudio.com<br /></li>
 <li><a href="//www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf"><em>RMarkdown</em></a> from rstudio.com</li>
 </ul>
 </div>
 <div id="git" class="section level5">
-<h5>git</h5>
+<h5><em>git</em></h5>
 <ul>
 <li><a href="//www.git-tower.com/blog/git-cheat-sheet/"><em>git</em></a> from git-tower.com<br /></li>
 <li><a href="//training.github.com/kit/downloads/github-git-cheat-sheet.pdf"><em>git</em></a> from github.com</li>
@@ -451,23 +496,22 @@ $(document).ready(function () {
 </div>
 
 
-	<!-- must be outside of previous container to be full width -->
-	</div>
+
 	<!-- sticky footer -->
 	<footer class="footer">
-	    <div class="container-fluid" style="background:#FFFFFF;color:#000000;border-top: 1px solid #e5e5e5;">
+	    <div class="container-fluid" style="background:#FFFFFF;color:#000000;box-shadow: 0 -2px 2px -2px #666666;">
 
-			<div class="row">
+			<div class="row" style="border:1px #FFFFFF;">
 				<div class="col-sm-12">
-					<h3 style="padding-left:30px;"><a href="{{ site.baseurl }}/" style="color:#000000;font-size:100%;vertical-align:middle;">PHSL4005: Introduction to Biostatistics</a></h3>
-					<p style="display:inline-block"><span style="font-style:italic;padding-left:30px;">by Peter Kamerman</span>&nbsp&nbsp
-					<a href="//painblogr.org" target="_blank" title="painblogR blog"><i style="color:#000000;" class="fa fa-external-link-square"></i></a> 
+					<h2><a href="//painblogr.org" target="_blank" style="color:#000000;">painblogR</a></h2>
+					<p style="display:inline-block"><span style="font-style:italic;">by Peter Kamerman</span>&nbsp&nbsp
+					<a href="//painblogr.org" target="_blank" title="painblogR blog"><i style="color:#000000;" class="fa fa-external-link-square"></i></a>
 					<a href="mailto:peter.kamerman@wits.ac.za" title="Email me" target="_blank"><i style="color:#000000;" class="fa fa-envelope"></i></a>
 					<a href="//twitter.com/painblogR" target="_blank" title="Follow me"><i style="color:#000000;" class="fa fa-twitter"></i></a></p>
 				</div>
 			</div>
 
-	        <div class="row" style="padding-left:30px;">
+	        <div class="row">
 	            <div class="col-sm-6">
 	                <p>Hosted by: <a href="//github.com">GitHub</a><br>Framework by: <a href="//www.getbootstrap.com">Bootstrap</a><br>Fork/clone from: <a href="//github.com/kamermanpr/biostatistics.git">GitHub</a></p>
 	            </div>
@@ -497,7 +541,12 @@ $(document).ready(function () {
 	  })();
 	</script>
 
+	<!-- Latest maxdcn font-awesome and academicons -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 
+
+</div>
+</div>
 
 </div>
 

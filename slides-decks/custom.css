@@ -1,0 +1,169 @@
+/*-- all --*/
+.reveal h3 {
+    color: #000066;
+}
+
+.reveal p {
+    color: #404040;
+}
+
+.reveal img {
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
+    -moz-box-shadow: 0px 0px 0px transparent !important;
+    -webkit-box-shadow: 0px 0px 0px transparent !important;
+    box-shadow: 0px 0px 0px transparent !important;
+}
+
+/*--- tables ---*/
+
+.reveal section th,
+.reveal section td {
+    text-align: left;
+    padding: 8px
+    vertical-align: middle;
+    border: 1px solid #ddd;
+}
+
+.reveal section th {
+    font-weight: bold;
+    background-color: #25659E;
+    color: #FFFFFF;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2}
+
+/*--- title slide ---*/
+.section .reveal h3,
+.section .reveal h4,
+.section .reveal p,
+.section .reveal li {
+    color: #FFFFFF;
+}
+
+.section .reveal .footer {
+    color: #FFFFFF;
+    position: absolute;
+    top: 80%;
+    text-align:left;
+}
+
+/*-- slides --*/
+.reveal section .vcenter {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.reveal section .hcenter {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.reveal section .center {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.reveal section .footer {
+    position: fixed;
+    bottom:1em;
+}
+
+/*-- aside layout --*/
+
+.aside .reveal .state-background {
+    background: #595959;
+}
+
+.aside .reveal p {
+    color: #FFFFFF;
+    font-variant: italic;
+    font-size: 150%;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/*-- two-column layout --*/
+
+.twocol .reveal body {
+    width:100%;
+}
+
+.twocol .reveal section .column1 {
+    position: absolute;
+    margin-top:0.1em;
+    margin-bottom:0.2em;
+    float: left;
+    width: 48%;
+}
+
+.twocol .reveal section .column2 {
+    position: absolute;
+    margin-top:0.1em;
+    margin-bottom:0.2em;
+    float: right;
+    width: 48%;
+}
+
+/*-- two-column + footer (must be placed first)--*/
+
+.twocol_footer .reveal body {
+    width:100%;
+}
+
+.twocol_footer .reveal section .column1 {
+    position: absolute;
+    margin-top:0.1em;
+    margin-bottom:6em;
+    float: left;
+    width: 48%;
+}
+
+.twocol_footer .reveal section .column2 {
+    position: absolute;
+    margin-top:0.1em;
+    margin-bottom:6em;
+    float: right;
+    width: 48%;
+}
+
+.twocol_footer .reveal section .footer {
+    color: #000000;
+    top: 75%;
+}
+
+/*-- tutorial layout --*/
+.tutorial .reveal .state-background {
+    background: #595959;
+}
+
+.tutorial .reveal p,
+.tutorial .reveal li {
+    color: #FFFFFF;
+}
+
+.tutorial .reveal strong {
+    font-weight: bold;
+    color: #94c9ff;
+}
+
+.tutorial .reveal a {
+    color: #0080ff;
+}
+
+.tutorial .reveal h2,
+.tutorial .reveal h3,
+.tutorial .reveal h4 {
+    color: #FFFFFF;
+}
