@@ -20,7 +20,7 @@ The biostatistics component of your mid-year exams will count 60% of the final b
 |:--------------|:--------------------------------------|:------------------------------------------------------------------------|:---------------------|
 |Introduction   |Course overview                        |[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-introduction)|[Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html?dl=1)|
 |Lecture 1 |Basic concepts and tools for reproducible research|[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-1)  | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html?dl=1)|
-|Lecture 2 |Basic concepts and tools for reproducible research|[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-2)  | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html?dl=1)|
+|Lecture 2 |Data munging|[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-2)  | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html?dl=1)|
 
 _**[More to be added as course progresses]**_
 
@@ -37,11 +37,9 @@ _**[More to be added as course progresses]**_
 
 ## Resources
 
-### Software downloads
-
 _**Please note:** For students attending the tutorials, you will be given a memory stick with the lastest portable versions of R, RStudio, and Git installed. However, if you have a personal laptop or desktop, I recommend you install the software onto those devices._
 
-_If you are using the computer lab computers, the computers may not have the software installed, or it may have old versions installed. If so, please install/update the software. In the case of computer laboratory computers, which have multiple users, please note the following:
+_If you are using the computer lab computers, the computers may not have the software installed, or it may have old versions installed. If so, please install/update the software. In the case of computer laboratory computers, which have multiple users, please note the following:_
 
 _When using git, do not use:_
 
@@ -52,7 +50,7 @@ $ git config --global user.email "YOUR EMAIL"
 $ git init <path/to/directory>
 ```
 
-_Rather set the configurations for the directory you want to initialize with git only:_ 
+_Rather set the configurations only for the directory you want to initialize with git:_ 
 
 ```
 $ git config --local user.name "YOUR NAME"
@@ -60,6 +58,8 @@ $ git config --local user.email "YOUR EMAIL"
 
 $ git init <path/to/directory>
 ```
+
+### Software downloads
 
 * [_R_](//cran.r-project.org) (available for: Windows, Mac, and Linux)
 * [_RStudio Desktop_](//www.rstudio.com/products/rstudio/download/) (available for: Windows, Mac, and Linux. Only install after you have installed _R_)
