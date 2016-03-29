@@ -407,7 +407,7 @@ type: twocol
 ```
 The time is `r format(Sys.time(), '%H:%M')`, and I had better be getting to work.
 ```
-The time is 15:51, and I had better be getting to work.
+The time is 08:08, and I had better be getting to work.
 
 ****
 

@@ -6,7 +6,7 @@ output: html_document
 # Introduction to Biostatistics
 An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language [_R_](//www.r-project.org).
 
-The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_Rstudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](//git-scm.com/) (with the [_GitHub_](//github.com/) web-based Git repository hosting service) for version control. The reason for choosing these apps is that they are free (as in beer and as in speech), and have well-established and active user and developer communities. You will need to a basic working knowledge of the command line, R and Git to complete the course. So, if you are not familiar with these apps I suggest that you prepare yourself by completing some free online courses before starting ([see examples below](#free-courses)).
+The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_Rstudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](//git-scm.com/) (with the [_GitHub_](//github.com/) web-based _git_ repository hosting service) for version control. The reason for choosing these apps is that they are free _(as in beer and as in speech)_, and have well-established and active user and developer communities. You need a basic working knowledge of the _command line_, _R_ and _git_ to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting ([see examples below](#free-courses)).
 
 ## Course assessment
 
@@ -26,11 +26,11 @@ _**[More to be added as course progresses]**_
 
 ## Assignments
 
-The assignments are your chance to get hands-on experience using the information you learned in the lectures. The assignments will completed with the instructor in the computer laboratory immediately after the relevant lecture has been finished. You may work alone or in groups.
+The assignments are your chance to get hands-on experience applying what you learned in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.
 
 |Tutorial                   |files                                |
 |:--------------------------|:------------------------------------|
-|Assignment 1 (lecture 1)   |[[download]](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment_1.md?dl=1) the file, and follow the instructions |
+|Assignment 1 (lecture 1)   |[[download]](//https://dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1) the file, and follow the instructions |
 |Assignment 2 (lecture 2)   |Complete the _swirl_ course: **'Getting and Cleaning Data'** |
 
 _**[More to be added as course progresses]**_
@@ -39,9 +39,9 @@ _**[More to be added as course progresses]**_
 
 _**Please note:** For students attending the tutorials, you will be given a memory stick with the lastest portable versions of R, RStudio, and Git installed. However, if you have a personal laptop or desktop, I recommend you install the software onto those devices._
 
-_If you are using the computer lab computers, the computers may not have the software installed, or it may have old versions installed. If so, please install/update the software. In the case of computer laboratory computers, which have multiple users, please note the following:_
+_If you are using computers in the School of Physiology computer lab, the computers may not have the software installed, or some/all the software may be outdated. If so, please install/update the software. Because computers in the computer laboratory have multiple users, please note the following:_
 
-_When using git, do not use:_
+_Do not set the user configuration using using the global switch before initializing a new git repository:_
 
 ```
 $ git config --global user.name "YOUR NAME"
@@ -50,7 +50,7 @@ $ git config --global user.email "YOUR EMAIL"
 $ git init <path/to/directory>
 ```
 
-_Rather set the configurations only for the directory you want to initialize with git:_ 
+_Rather set the configurations only for the local user:_ 
 
 ```
 $ git config --local user.name "YOUR NAME"
@@ -77,6 +77,7 @@ install.packages(c('knitr', 'rmarkdown', 'dplyr',
                    'tidyr', 'lubridate', 'readr',
                    'swirl'))
 ```
+
 <p style="text-align:center">
 <img src="./images/install-packages-1.gif" style="max-width:80%;height:auto;">
 </p>
@@ -98,7 +99,7 @@ install.packages(c('knitr', 'rmarkdown', 'dplyr',
 * [_R_ Programming](//www.codeschool.com/courses/try-r) by codeschool.com  
 
 ##### Learning _R_ with _swirl_
-The [_swirl_](//swirlstats.com) package by the Swirl Development Team brings a suite of ste-by-step interactive training courses on _R_, which are aimed primarily for the novice _R_ user.
+The [_swirl_](//swirlstats.com) package by the Swirl Development Team includes a suite of step-by-step interactive training courses on _R_, which are aimed primarily at the novice _R_ user.
 
 ```{r swirl, eval=FALSE}
 # Script to install and use 'swirl'
@@ -133,7 +134,7 @@ Courses include (but are not limited to):
 * 'Regression Models'
 
 ##### _git_ online
-* [Try _git_](//www.codeschool.com/courses/try-git) by codeschool.com  
+* [Try _git_](//www.codeschool.com/courses/try-git) by codeschool.com 
 * [Learn _git_](//www.codecademy.com/learn/learn-git) by codecademy.com
 
 ##### Other
