@@ -30,7 +30,7 @@ The assignments are your chance to get hands-on experience applying what you lea
 
 |Tutorial                   |files                                |
 |:--------------------------|:------------------------------------|
-|Assignment 1 (lecture 1)   |[[download]](//https://dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1) the file, and follow the instructions |
+|Assignment 1 (lecture 1)   |[[download]](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1) the file, and follow the instructions |
 |Assignment 2 (lecture 2)   |Complete the _swirl_ course: **'Getting and Cleaning Data'** |
 
 _**[More to be added as course progresses]**_
