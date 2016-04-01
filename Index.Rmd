@@ -16,11 +16,11 @@ The biostatistics component of your mid-year exams will count 60% of the final b
 
 ## Lectures
 
-|Lecture       |Content                                |Slides (RPubs)                                                           |Download slides        |
+|Lecture       |Content                                |Slides<br>_(may load slowly)_                                                          |Download slides        |
 |:--------------|:--------------------------------------|:------------------------------------------------------------------------|:---------------------|
-|Introduction   |Course overview                        |[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-introduction)|[Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html?dl=1)|
-|Lecture 1 |Basic concepts and tools for reproducible research|[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-1)  | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html?dl=1)|
-|Lecture 2 |Data munging|[_RPubs_ link](//rpubs.com/kamermanpr/PHSL4005-biostats-lecture-2)  | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html?dl=1)|
+|Introduction   |Course overview                        |<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html' target='_blank'>Slideshow</a> |[Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html?dl=1)|
+|Lecture 1 |Basic concepts and tools for reproducible research|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html' target='_blank'>Slideshow<a/> | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html?dl=1)|
+|Lecture 2 |Data munging|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html' target='_blank'>Slideshow</a> | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html?dl=1)|
 
 _**[More to be added as course progresses]**_
 
@@ -95,8 +95,9 @@ install.packages(c('knitr', 'rmarkdown', 'dplyr',
 ### Free courses
 
 ##### _R_ online
-* [Introduction to _R_](//www.datacamp.com/courses/free-introduction-to-r) by datacamp.com  
+* [Introduction to _R_](//www.datacamp.com/courses/free-introduction-to-r) by datacamp.com
 * [_R_ Programming](//www.codeschool.com/courses/try-r) by codeschool.com  
+* [_R_ for Data Science](//r4ds.had.co.nz) by Garrett Grolemund and Hadley Wickham
 
 ##### Learning _R_ with _swirl_
 The [_swirl_](//swirlstats.com) package by the Swirl Development Team includes a suite of step-by-step interactive training courses on _R_, which are aimed primarily at the novice _R_ user.
