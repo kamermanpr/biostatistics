@@ -407,7 +407,7 @@ type: twocol
 ```
 The time is `r format(Sys.time(), '%H:%M')`, and I had better be getting to work.
 ```
-The time is 08:08, and I had better be getting to work.
+The time is 11:42, and I had better be getting to work.
 
 ****
 
@@ -436,7 +436,7 @@ RMarkdown + knitr
 
 ## Setting global chunk options
 <div>
-    Example:
+    <p>Example:</p>
   <img class="hcenter" height="550, style="padding-top:0px;margin-top:0px;" src="./resources/knitr-options-2.jpg">
 </div>
 

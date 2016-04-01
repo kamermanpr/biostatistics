@@ -6,11 +6,11 @@ output: html_document
 # Introduction to Biostatistics
 An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language [_R_](//www.r-project.org).
 
-The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_Rstudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](//git-scm.com/) (with the [_GitHub_](//github.com/) web-based _git_ repository hosting service) for version control. The reason for choosing these apps is that they are free _(as in beer and as in speech)_, and have well-established and active user and developer communities. You need a basic working knowledge of the _command line_, _R_ and _git_ to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting ([see examples below](#free-courses)).
+The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_RStudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](//git-scm.com/) (with the [_GitHub_](//github.com/) web-based _git_ repository hosting service) for version control. The reason for choosing these apps is that they are free _(as in beer and as in speech)_, and have well-established and active user and developer communities. You need a basic working knowledge of the _command line_, _R_ and _git_ to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting ([see examples below](#free-courses)).
 
 ## Course assessment
 
-There will be one project that will constitute the _year mark_ for the course. You **may not work** on the project in groups. Details on the project will be posted at a later date.
+There will be one project that will constitute the _year mark_ for the course. You **may not work** on the project in groups. Details of the project will be posted at a later date.
 
 The biostatistics component of your mid-year exams will count 60% of the final biostatistics mark (the project will count 40%). 
 
