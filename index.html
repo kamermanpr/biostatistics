@@ -26,41 +26,23 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -349,13 +331,7 @@ div.tocify {
 </div>
 <div id="lectures" class="section level2">
 <h2>Lectures</h2>
-<table style="width:212%;">
-<colgroup>
-<col width="22%" />
-<col width="55%" />
-<col width="102%" />
-<col width="31%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th align="left">Lecture</th>
@@ -390,11 +366,7 @@ div.tocify {
 <div id="assignments" class="section level2">
 <h2>Assignments</h2>
 <p>The assignments are your chance to get hands-on experience applying what you learned in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.</p>
-<table style="width:92%;">
-<colgroup>
-<col width="38%" />
-<col width="52%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th align="left">Tutorial</th>
@@ -441,9 +413,9 @@ $ git init &lt;path/to/directory&gt;</code></pre>
 <li><em>knitr</em>, <em>rmarkdown</em>, <em>dplyr</em>, <em>tidyr</em>, <em>lubridate</em>, <em>readr</em>, <em>ggplot2</em>, <em>swirl</em></li>
 </ul>
 <p>You can install the packages directly from the <em>R</em> console:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
                    <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;lubridate&#39;</span>, <span class="st">&#39;readr&#39;</span>,
-                   <span class="st">&#39;swirl&#39;</span>))</code></pre></div>
+                   <span class="st">&#39;swirl&#39;</span>))</code></pre>
 <p style="text-align:center">
 <img src="images/install-packages-1.gif" style="max-width:80%;height:auto;">
 </p>
@@ -460,15 +432,14 @@ $ git init &lt;path/to/directory&gt;</code></pre>
 <h5><em>R</em> online</h5>
 <ul>
 <li><a href="//www.datacamp.com/courses/free-introduction-to-r">Introduction to <em>R</em></a> by datacamp.com</li>
-<li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com<br />
-</li>
+<li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com<br /></li>
 <li><a href="//r4ds.had.co.nz"><em>R</em> for Data Science</a> by Garrett Grolemund and Hadley Wickham</li>
 </ul>
 </div>
 <div id="learning-r-with-swirl" class="section level5">
 <h5>Learning <em>R</em> with <em>swirl</em></h5>
 <p>The <a href="//swirlstats.com"><em>swirl</em></a> package by the Swirl Development Team includes a suite of step-by-step interactive training courses on <em>R</em>, which are aimed primarily at the novice <em>R</em> user.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
 <span class="co"># If you haven&#39;t already installed swirl</span>
 <span class="kw">install.packages</span>(<span class="st">&#39;swirl&#39;</span>)
 
@@ -476,16 +447,16 @@ $ git init &lt;path/to/directory&gt;</code></pre>
 <span class="kw">library</span>(swirl)
 
 <span class="co"># Launch a &#39;swirl&#39; session and follow the prompts</span>
-<span class="kw">swirl</span>()</code></pre></div>
+<span class="kw">swirl</span>()</code></pre>
 <p>To install <em>swirl</em> courses:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
 <span class="kw">library</span>(swirl)
 
 <span class="co"># Download a course from the &#39;swirl&#39; github repository</span>
 <span class="kw">install_from_swirl</span>(<span class="st">&#39;Course Name Here&#39;</span>)
 
 <span class="co"># Luanch a &#39;swirl&#39; session</span>
-<span class="kw">swirl</span>()</code></pre></div>
+<span class="kw">swirl</span>()</code></pre>
 <p>Courses include (but are not limited to):</p>
 <ul>
 <li>‘R Programming’</li>
@@ -515,16 +486,14 @@ $ git init &lt;path/to/directory&gt;</code></pre>
 <div id="r" class="section level5">
 <h5><em>R</em></h5>
 <ul>
-<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> from rstudio.com<br />
-</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> from rstudio.com<br /></li>
 <li><a href="//www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf"><em>RMarkdown</em></a> from rstudio.com</li>
 </ul>
 </div>
 <div id="git" class="section level5">
 <h5><em>git</em></h5>
 <ul>
-<li><a href="//www.git-tower.com/blog/git-cheat-sheet/"><em>git</em></a> from git-tower.com<br />
-</li>
+<li><a href="//www.git-tower.com/blog/git-cheat-sheet/"><em>git</em></a> from git-tower.com<br /></li>
 <li><a href="//training.github.com/kit/downloads/github-git-cheat-sheet.pdf"><em>git</em></a> from github.com</li>
 <li><a href="//rogerdudler.github.io/git-guide/"><em>git</em> the simple guide</a> (interactive)</li>
 <li><a href="//www.git-tower.com/blog/workflow-of-version-control/"><em>git</em> workflow overview</a> from git-tower.com</li>
