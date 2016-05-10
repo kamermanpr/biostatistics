@@ -304,7 +304,6 @@ class: vcenter
 5. The probability that the result can be replicated.
 6. The strength of evidence in the data against the null hypothesis.
 
-
 Definition of a p-value
 =======================
 
