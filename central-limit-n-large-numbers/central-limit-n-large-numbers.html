@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Peter Kamerman" />
+
+<meta name="date" content="2016-05-17" />
+
+<title>Central Limit Theorem and the Law of Large Numbers: The gganimate package in action</title>
+
+<script src="assets/jquery-1.11.3/jquery.min.js"></script>
+<script src="assets/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="assets/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="assets/tocify-1.9.1/jquery.tocify.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="assets/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="assets/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="assets/bootstrap-3.3.5/shim/respond.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+div.sourceCode {
+  overflow-x: visible;
+}
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 64px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+
+.section h2 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h3 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h4 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h5 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+.section h6 {
+  padding-top: 69px;
+  margin-top: -69px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="assets/navigation-1.0/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<script src="assets/navigation-1.0/codefolding.js"></script>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-fixed-top" role="navigation", style="background-color:#FFFFFF;border-bottom-color:#e5e5e5;">
+  <div class="container-fluid" id="navfluid">
+    <div class="navbar-header">
+      	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar-collapse" aria-expanded="false">
+        	<span class="sr-only">Toggle navigation</span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+        	<span class="icon-bar"></span>
+      	</button>
+	  	<img src="capsaicin.png" alt="capsaicin", style="max-height:60px;padding-top:5px;">
+		<span class="site-title"><a href="//painblogr.org/" style="color:#000000;font-size:250%;vertical-align:middle;">painblogR</a></span>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+      <ul class="nav navbar-nav" style="display:table-row;padding-top:7px">
+        <li style="display:table-cell;float:none;vertical-align: middle;"><a href="//painblogr.org/">Home</a></li>
+		<li class="dropdown" style="display:table-cell;float:none;vertical-align: middle;">
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Archive<span class="caret"></span></a>
+          		<ul class="dropdown-menu">
+            		<li><a href="//painblogr.org/archive">Sorted by date</a></li>
+					<li role="separator" class="divider"></li>
+            		<li><a href="//painblogr.org/tags">Sorted by tag</a></li>
+				</ul>
+		</li>
+		<li class="dropdown" style="display:table-cell;float:none;vertical-align: middle;">
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">About<span class="caret"></span></a>
+          		<ul class="dropdown-menu">
+            		<li><a href="//painblogr.org/bio/">About me</a></li>
+					<li role="separator" class="divider"></li>
+            		<li><a href="//painblogr.org/publications/">Publications & Reprints </a></li>
+					<!-- remove when page added
+					<li role="separator" class="divider"></li>
+					<li><a href="/presentations">Presentations</a></li>
+					<li role="separator" class="divider"></li>
+            		<li><a href="{{ site.baseurl }}/data">Data & Code</a></li>-->
+				</ul>
+		</li>
+		<li class="dropdown" style="display:table-cell;float:none;vertical-align: middle;">
+        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teaching<span class="caret"></span></a>
+          		<ul class="dropdown-menu">
+            		<li><a href="//painblogr.org/biostatistics/">Introduction to Biostatistics</a></li>
+					<li><a href="//painblogr.org/biostatistics/central-limit-n-large-numbers/">Central Limit Theorem and the Law of Large Numbers</a></li>
+				</ul>
+		</li>
+      </ul>
+    </div> <!-- /. nav-collapse -->
+  </div> <!-- /. container-fluid -->
+</nav>
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All</a></li>
+</ul>
+</div>
+
+
+<h1 class="title toc-ignore">Central Limit Theorem and the Law of Large Numbers: The gganimate package in action</h1>
+<h4 class="author"><em>Peter Kamerman</em></h4>
+<h4 class="date"><em>17 May 2016</em></h4>
+
+</div>
+
+
+<hr />
+<div id="system-setup" class="section level4">
+<h4>System setup</h4>
+<p><em>Click <strong>‘code’</strong> on the left to view the <a href="//cran.r-project.org/">R</a> setup.</em></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load packages</span>
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyr)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(gganimate)
+<span class="kw">library</span>(knitr)
+
+<span class="co"># set seed</span>
+<span class="kw">set.seed</span>(<span class="dv">123</span>)
+
+<span class="co"># knitr chunk options</span>
+opts_chunk$<span class="kw">set</span>(<span class="dt">echo =</span> <span class="ot">TRUE</span>,
+               <span class="dt">eval =</span> <span class="ot">TRUE</span>,
+               <span class="dt">include =</span> <span class="ot">TRUE</span>,
+               <span class="dt">warning =</span> <span class="ot">FALSE</span>,
+               <span class="dt">message =</span> <span class="ot">FALSE</span>,
+               <span class="dt">cache =</span> <span class="ot">TRUE</span>,
+               <span class="dt">cache.extra =</span> rand_seed,
+               <span class="dt">fig.width =</span> <span class="dv">7</span>,
+               <span class="dt">fig.height =</span> <span class="dv">7</span>,
+               <span class="dt">tidy =</span> <span class="ot">FALSE</span>)</code></pre>
+<hr />
+</div>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p><em>Click <strong>‘code’</strong> on the left to show the code used to generate the figures in this section.</em></p>
+<p>I have wanted to try David Robinson’s (<span class="citation">@drob</span>) <a href="//github.com/dgrtwo/gganimate">gganimate</a> package since I came across it a few months ago. The package extends Hadley Wickham’s (<span class="citation">@hadleywickham</span>) <a href="//github.com/hadley/ggplot2">ggplot2</a> package by adding a <em>‘frame’</em> aesthetic that provides a time factor to geoms, allowing them to be animated.</p>
+<p>Recently, the opportunity for me to put the package through its paces came while I was preparing materials for an <a href="//painblogr.org/biostatistics/">introductory biostatistics</a> tutorial for undergrad students. I wanted to demonstrate the <em>Central Limit Theorem</em> and <em>Law of Large Numbers</em>, and thought that animations would help deliver the message.</p>
+<p>The Central Limit Theorem provides a shortcut to knowing the sampling distribution, which is the probability distribution of a statistic (e.g., mean, proportion) for all possible samples from a population. The theorem is one of the cornerstones of probability theory because it allows you to make statements about the sampling distribution for a particular statistic without having to sample the entire population. As such, it forms the basis of statistical inference.</p>
+<p>The Central Limit Theorem states that the sampling distribution of an independent, random variable is normal or near-normal if a sufficiently large number of (equal-sized) samples are taken. If the sampling distribution for a statistic follows a normal or near-normal distribution we can make probability statements about the range of values in which the statistic lies. For example, there is a 68% probability that the sample statistic is within 1 standard deviation of the population value, and a 95% probability that it lies within about 2 standard deviations (see figure below). In the case of the sampling distribution, the standard deviation of the distribution is also called the <em>standard error</em>.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate formal distribution of mean = 0, sd = 1</span>
+norm.df &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">200000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>) %&gt;%
+<span class="st">    </span><span class="kw">data_frame</span>(<span class="dt">values =</span> .)
+
+<span class="co"># Calculate density from norm.df</span>
+norm.dens &lt;-<span class="st"> </span><span class="kw">density</span>(norm.df$values)
+norm.dens &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">x =</span> norm.dens$x, <span class="dt">y =</span> norm.dens$y)
+
+<span class="co"># Calculate quantiles from norm.df</span>
+q2<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(norm.df$values, <span class="fl">0.025</span>)
+q97<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw">quantile</span>(norm.df$values, <span class="fl">0.975</span>)
+q16 &lt;-<span class="st"> </span><span class="kw">quantile</span>(norm.df$values, <span class="fl">0.16</span>)
+q84 &lt;-<span class="st"> </span><span class="kw">quantile</span>(norm.df$values, <span class="fl">0.84</span>)
+
+<span class="co"># Use quantiles to filter data for geom_ribbon</span>
+dens_95 &lt;-<span class="st"> </span>norm.dens %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(x &gt;<span class="st"> </span>q2<span class="fl">.5</span> &amp;<span class="st"> </span>x &lt;<span class="st"> </span>q97<span class="fl">.5</span>) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">quant =</span> <span class="kw">rep</span>(<span class="st">&#39;2SD&#39;</span>, <span class="kw">length</span>(x)))
+dens_68 &lt;-<span class="st"> </span>norm.dens %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(x &gt;<span class="st"> </span>q16 &amp;<span class="st"> </span>x &lt;<span class="st"> </span>q84) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">quant =</span> <span class="kw">rep</span>(<span class="st">&#39;1SD&#39;</span>, <span class="kw">length</span>(x)))
+ribbon &lt;-<span class="st"> </span><span class="kw">do.call</span>(rbind, <span class="kw">list</span>(dens_95, dens_68))
+
+<span class="co"># Plots</span>
+norm.plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>() +
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">data =</span> norm.df, <span class="kw">aes</span>(<span class="dt">x =</span> values),
+                 <span class="dt">fill =</span> <span class="st">&#39;#FFFFFF&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_ribbon</span>(<span class="dt">data =</span> ribbon[ribbon$quant ==<span class="st"> &#39;2SD&#39;</span>, ],
+                              <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">ymax =</span> y, <span class="dt">ymin =</span> <span class="dv">0</span>), 
+                <span class="dt">fill =</span> <span class="st">&#39;#00517f&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_ribbon</span>(<span class="dt">data =</span> ribbon[ribbon$quant ==<span class="st"> &#39;1SD&#39;</span>, ],
+                              <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">ymax =</span> y, <span class="dt">ymin =</span> <span class="dv">0</span>),
+                <span class="dt">fill =</span> <span class="st">&#39;#0072B2&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">data =</span> norm.df, <span class="kw">aes</span>(<span class="dt">x =</span> values),
+                 <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> -<span class="dv">1</span>, <span class="dt">xend =</span> <span class="dv">1</span>,
+                     <span class="dt">y =</span> <span class="fl">0.22</span>, <span class="dt">yend =</span> <span class="fl">0.22</span>), 
+               <span class="dt">colour =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) +
+<span class="st">    </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="st">&#39;1 SD: 68%&#39;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">0.22</span>), 
+              <span class="dt">colour =</span> <span class="st">&#39;gray10&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;#FFFFFF&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> -<span class="fl">1.96</span>, <span class="dt">xend =</span> <span class="fl">1.96</span>,
+                     <span class="dt">y =</span> <span class="fl">0.05</span>, <span class="dt">yend =</span> <span class="fl">0.05</span>), 
+               <span class="dt">colour =</span> <span class="st">&quot;#FFFFFF&quot;</span>, <span class="dt">size =</span> <span class="fl">1.5</span>) +
+<span class="st">    </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="st">&#39;2 SD: 95%&#39;</span>, <span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="fl">0.05</span>), 
+              <span class="dt">colour =</span> <span class="st">&#39;gray10&#39;</span>, <span class="dt">fill =</span> <span class="st">&#39;#FFFFFF&#39;</span>) +
+<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> -<span class="dv">4</span>, <span class="dt">to =</span> <span class="dv">4</span>, <span class="dt">by =</span> <span class="dv">1</span>)) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Standard deviation (SD)&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Density</span><span class="ch">\n</span><span class="st">&#39;</span>) +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>), 
+          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>),
+          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>),
+          <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;gray80&#39;</span>, <span class="dt">size =</span> <span class="fl">0.3</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_blank</span>())
+<span class="co"># Save plot</span>
+<span class="kw">ggsave</span>(<span class="st">&#39;normal-distr.png&#39;</span>, norm.plot, <span class="dt">width =</span> <span class="dv">7</span>, <span class="dt">height =</span> <span class="dv">5</span>)</code></pre>
+<!-- Use html to allow control over plot dimensions (480 x 480px) -->
+<p><img src="normal-distr.png" style="height:343px;width:480px"></p>
+<p>The size of the standard error also allows us to gauge the precision of the sample statistic, and this <em>‘width’</em> of the sampling distribution is dependent on the size of the samples. From a technical point of view, the standard error of the sample statistic is equal to the standard deviation of the population divided by the square root of the sample size (<span class="math">\(se = \frac{\sigma}{\sqrt{n}}\)</span>). Basically, as the size of each sample increases the samples are more likely to be representative of the population, and therefore variability around the point estimate should decrease. The figure below shows the effect of increasing sample size on the precision of the standard error.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Generate data (6 samples from a normal distribution: mean = 0, sd = 1)</span>
+prec_data &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">200000</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)
+foo &lt;-<span class="st"> </span><span class="kw">list</span>() <span class="co"># empty list</span>
+bar &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">10</span>, <span class="dt">to =</span> <span class="dv">1000</span>, <span class="dt">by =</span> <span class="dv">20</span>) <span class="co"># sample sizes</span>
+for(i in <span class="dv">1</span>:<span class="dv">50</span>) {
+    foo[[i]] &lt;-<span class="st"> </span><span class="kw">sample</span>(prec_data, bar[i])
+    foo &lt;-<span class="st"> </span><span class="kw">lapply</span>(foo, data.frame)
+    df.name &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">10</span>, <span class="dt">to =</span> <span class="dv">1000</span>, <span class="dt">by =</span> <span class="dv">20</span>)
+    <span class="kw">names</span>(foo[[i]]) &lt;-<span class="st"> </span>df.name[i]
+    foo
+}
+
+<span class="co"># Clean-up data for plotting</span>
+baz &lt;-<span class="st"> </span>foo %&gt;%
+<span class="st">    </span><span class="kw">rbind_all</span>() %&gt;%
+<span class="st">    </span><span class="kw">gather</span>(key, value) %&gt;%
+<span class="st">    </span><span class="kw">filter</span>(!<span class="kw">is.na</span>(value)) %&gt;%
+<span class="st">    </span><span class="kw">group_by</span>(key) %&gt;%
+<span class="st">    </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">length</span>(value),
+              <span class="dt">sem =</span> <span class="kw">sd</span>(value) /<span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">sum</span>(<span class="dv">1</span>:<span class="kw">length</span>(key)))) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(n, sem) %&gt;%
+<span class="st">    </span><span class="kw">arrange</span>(n)
+
+<span class="co"># Plot data</span>
+prec.plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data =</span> baz, <span class="kw">aes</span>(<span class="dt">y =</span> sem, <span class="dt">x =</span> n, 
+                                    <span class="dt">frame =</span> n)) +
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">cumulative =</span> <span class="ot">TRUE</span>), 
+              <span class="dt">colour =</span> <span class="st">&#39;#0072B2&#39;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, 
+               <span class="dt">colour =</span> <span class="st">&quot;#E69F00&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Standard error of the mean as a function of sample size</span><span class="ch">\n</span><span class="st">for samples drawn from a normal distribution</span><span class="ch">\n</span><span class="st">(N = 200,000, mean = 0, sd = 1) n =&#39;</span>,
+         <span class="dt">x =</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Sample size&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Standard error of the mean (SEM)</span><span class="ch">\n</span><span class="st">&#39;</span>) +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>), 
+          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),
+          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">15</span>),
+          <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;gray80&#39;</span>, <span class="dt">size =</span> <span class="fl">0.3</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_blank</span>())
+
+<span class="co"># Save plot</span>
+<span class="kw">gg_animate</span>(prec.plot, <span class="dt">interval =</span> <span class="fl">0.2</span>, <span class="st">&#39;sem.gif&#39;</span>)</code></pre>
+<p><img src="sem.gif" alt="sem" /></p>
+<p>This leads us to the <em>Law of Large Numbers</em>. At a simplistic level, the Central Limit Theorem tells us about the shape of the sampling distribution, while the Law of Large Numbers tells us where the centre of the distribution lies. From the Law of Large Numbers we get that cumulatively, the result from a large number of trials tends towards the true value in the population. That is, the probability of an unusual outcome becomes smaller as the number of trials increases This convergence in probability is also called the <em>Weak Law of Large Numbers</em>.</p>
+</div>
+<div id="the-theories-in-action" class="section level2">
+<h2>The theories in action</h2>
+<p>In this section I use the <em>gg_animate</em> function from the <em>gganimate</em> package to put the two theories into action.</p>
+<hr />
+<div id="generating-the-data" class="section level4">
+<h4>Generating the data</h4>
+<p><em>Click <strong>‘code’</strong> on the left to show the code used to generate all data used in this section.</em></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create empty objects, counter, and right-skewed data</span>
+foo &lt;-<span class="st"> </span><span class="kw">rexp</span>(<span class="dv">200000</span>)
+bar &lt;-<span class="st"> </span><span class="kw">list</span>()
+cnt &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="dv">5000</span>
+
+<span class="co"># Take 5000 samples of n = 200 from &#39;data&#39; and make a list of sample means.</span>
+for(i in cnt){
+    bar[[i]] &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">sample</span>(foo, <span class="dt">size =</span> <span class="dv">200</span>))
+}
+
+#######################
+<span class="co"># Central limit theorem</span>
+
+<span class="co"># Unlist and round to reduce the number of bins for CLT</span>
+baz &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">unlist</span>(bar), <span class="dv">2</span>)
+
+<span class="co"># cross-tabulate the data</span>
+boo &lt;-<span class="st"> </span><span class="kw">xtabs</span>(~baz)
+
+<span class="co"># Extract the names (&#39;bins&#39;)</span>
+nam &lt;-<span class="st"> </span><span class="kw">names</span>(boo)
+
+<span class="co"># Make data.frame for plotting</span>
+bee &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">sample =</span> <span class="kw">c</span>(<span class="dv">1</span>:<span class="kw">length</span>(boo)),
+                  <span class="dt">mean =</span> <span class="kw">as.numeric</span>(nam),
+                  <span class="dt">freq =</span> <span class="kw">as.numeric</span>(boo))
+
+######################
+<span class="co"># Law of Large Numbers </span>
+
+<span class="co"># Unlist for LLN</span>
+baz_2 &lt;-<span class="st"> </span><span class="kw">unlist</span>(bar)
+
+<span class="co"># Calculate cummulative mean for plotting</span>
+zoot &lt;-<span class="st"> </span>baz_2 %&gt;%
+<span class="st">    </span><span class="kw">data_frame</span>(<span class="dt">mean =</span> .) %&gt;%
+<span class="st">    </span><span class="kw">mutate</span>(<span class="dt">cmean =</span> <span class="kw">round</span>(<span class="kw">cummean</span>(mean),<span class="dv">4</span>),
+           <span class="dt">count =</span> <span class="dv">1</span>:<span class="kw">length</span>(mean)) %&gt;%
+<span class="st">    </span><span class="kw">select</span>(count, mean, cmean)</code></pre>
+<hr />
+</div>
+<div id="original-right-skewed-distribution" class="section level3">
+<h3>Original right-skewed distribution</h3>
+<p><em>Click <strong>‘code’</strong> on the left to view the plot code.</em></p>
+<p>I stated above that the Central Limit Theorem held across different distributions, so to illustrate that point I have started with a population generated by taking a random sample (<em>N</em> = 200,000) from the exponential distribution (right-skewed) with rate 1. The density distribution of this dataset (with its mean) is shown in the figure below, and it served as the population from which samples were taken to demonstrate the Central Limit Theorem and the Law of Large Numbers.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Create df from original data for plotting</span>
+distr &lt;-<span class="st"> </span><span class="kw">data_frame</span>(<span class="dt">data =</span> foo)
+
+<span class="co"># Plot original distribution</span>
+distr.plot &lt;-<span class="st"> </span><span class="kw">ggplot</span>(distr, <span class="kw">aes</span>(data)) +
+<span class="st">    </span><span class="kw">geom_density</span>(<span class="dt">fill =</span> <span class="st">&#39;#0072B2&#39;</span>, <span class="dt">colour =</span> <span class="st">&#39;#0072B2&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(foo), <span class="dt">colour =</span> <span class="st">&quot;#E69F00&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">14</span>),
+                       <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">14</span>)) +
+<span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),
+                       <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="dv">1</span>)) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Value&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Probability</span><span class="ch">\n</span><span class="st">&#39;</span>) +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>), 
+          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>),
+          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">17</span>),
+          <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;gray80&#39;</span>, <span class="dt">size =</span> <span class="fl">0.3</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_blank</span>())
+
+<span class="co"># Save plot</span>
+<span class="kw">ggsave</span>(<span class="st">&#39;original-distr.png&#39;</span>, distr.plot)</code></pre>
+<!-- Use html to allow control over plot dimensions (480 x 480px) -->
+<p><img src="original-distr.png" style="height:480px;width:480px"></p>
+</div>
+<div id="the-central-limit-theorem-in-action" class="section level3">
+<h3>The Central Limit Theorem in action</h3>
+<p><em>Click <strong>‘code’</strong> on the left to view the code used to generate the plot.</em></p>
+<p>To demonstrate the Central Limit Theorem, I took 5000 samples (without replacement), each of 200 from the ‘population’ of 200,000, and calculated the mean for each sample (<em>find the code used to generate the data <a href="#generating-the-data">here</a></em>). I then tabulated the frequency at which sample means occurred across the 5000 samples, and used these data to plot a frequency histogram. However, in addition to the usual code I’d use to generate the ggplot2 plot, I added the gganimate aesthetic functions (<strong>‘frame’</strong> and <strong>‘cumulative’</strong>) to the geom_bar aesthetics. Adding these new aesthetics allowed the gg_animate function to take the ggplot2 object and to sequentially add the frequency bins of sample means as frames in an animation (‘frame’), and for each frame to built cumulatively on the previous one (‘cumulative = TRUE’).</p>
+<p>The output is shown in the next figure, and as you can see, despite the samples being obtained from a right-skewed distribution, the distribution of sample means is roughly normal, and centred around the mean of the population.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Plot CLT data</span>
+clt &lt;-<span class="st"> </span><span class="kw">ggplot</span>(bee, <span class="kw">aes</span>(<span class="dt">y =</span> freq, <span class="dt">x =</span> mean, <span class="dt">frame =</span> sample)) +
+<span class="st">    </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">cumulative =</span> <span class="ot">TRUE</span>), <span class="dt">stat =</span> <span class="st">&#39;identity&#39;</span>,
+             <span class="dt">fill =</span> <span class="st">&#39;#0072B2&#39;</span>, <span class="dt">colour =</span> <span class="st">&#39;#0072B2&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span> <span class="kw">mean</span>(foo), <span class="dt">colour =</span> <span class="st">&quot;#E69F00&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits =</span> <span class="kw">c</span>(<span class="fl">0.7</span>, <span class="fl">1.3</span>),
+                       <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dt">from =</span> <span class="fl">0.7</span>, <span class="dt">to =</span> <span class="fl">1.3</span>, <span class="dt">by =</span> <span class="fl">0.1</span>)) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;bin counter =&#39;</span>,
+         <span class="dt">x =</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Sample mean&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Frequency</span><span class="ch">\n</span><span class="st">&#39;</span>) +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;gray80&#39;</span>, <span class="dt">size =</span> <span class="fl">0.3</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_blank</span>())
+
+<span class="co"># Animate plots</span>
+<span class="kw">gg_animate</span>(clt, <span class="dt">interval =</span> <span class="fl">0.2</span>, <span class="st">&#39;central-limit.gif&#39;</span>)</code></pre>
+<p><img src="central-limit.gif" alt="CLT" /></p>
+</div>
+<div id="law-of-large-numbers-in-action" class="section level3">
+<h3>Law of Large Numbers in action</h3>
+<p><em>Click <strong>‘code’</strong> on the left to view the code used to generate the plot.</em></p>
+<p>To illustrate the Law of Large Numbers, I took the 5000 sample means I had generated and calculated a cumulative mean across the samples (<em>find the code used to generate the data <a href="#generating-the-data">here</a></em>). The cumulative mean was then plotted against the sample number in ggplot2, with the gganimate <strong>‘frame’</strong> and <strong>‘cumulative’</strong> aesthetics added to geom_line, which allowed gg_animate to depict the changing cumulative mean across increasing sample number as frames in the animation.</p>
+<p>The resulting figure is shown below, and shows the cumulative mean of sample means getting closer to the population mean as the number of samples increases.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Trim the data to roughly equal the number of frames in the CLT plot</span>
+bee_length &lt;-<span class="st"> </span><span class="kw">dim</span>(bee)[<span class="dv">1</span>]
+sample_freq &lt;-<span class="st"> </span><span class="kw">length</span>(zoot$count)/bee_length
+filter_foo &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="kw">length</span>(cnt), <span class="dt">by =</span> sample_freq)
+zoot_short &lt;-<span class="st"> </span>zoot[filter_foo, ]
+
+<span class="co"># Plot LLN data</span>
+lln &lt;-<span class="st"> </span><span class="kw">ggplot</span>(zoot_short, <span class="kw">aes</span>(<span class="dt">y =</span> cmean, <span class="dt">x =</span> count)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">frame =</span> count, <span class="dt">cumulative =</span> <span class="ot">TRUE</span>), 
+              <span class="dt">colour =</span> <span class="st">&#39;#0072B2&#39;</span>) +
+<span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(foo), <span class="dt">colour =</span> <span class="st">&quot;#E69F00&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) +
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Sample counter =&#39;</span>,
+         <span class="dt">x =</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">Sample number&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;Cumulative mean</span><span class="ch">\n</span><span class="st">&#39;</span>) +
+<span class="st">    </span><span class="kw">theme</span>(<span class="dt">plot.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.text =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">20</span>),
+          <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>(),
+          <span class="dt">panel.grid.major =</span> <span class="kw">element_line</span>(<span class="dt">colour =</span> <span class="st">&#39;gray80&#39;</span>, <span class="dt">size =</span> <span class="fl">0.3</span>),
+          <span class="dt">panel.background =</span> <span class="kw">element_blank</span>())
+
+<span class="co"># Animate plots</span>
+<span class="kw">gg_animate</span>(lln, <span class="dt">interval =</span> <span class="fl">0.2</span>, <span class="st">&#39;law-large-numbers.gif&#39;</span>)</code></pre>
+<p><img src="law-large-numbers.gif" alt="LLN" /></p>
+<p>So there you have it, the Central Limit Theorem and the Law of Large Numbers graphically illustrated using the awesome gganimate package in combination with ggplot2. Making the creation of animated ggplots simple.</p>
+<hr />
+</div>
+</div>
+<div id="extras" class="section level2">
+<h2>Extras</h2>
+<div id="github" class="section level4">
+<h4>GitHub</h4>
+<p>You can grab the full <em>R script</em> from <a href="https://github.com/kamermanpr/miscellaneous/central-limit-n-large-numbers">GitHub</a>. <br><br></p>
+</div>
+<div id="ggplot2-extensions" class="section level4">
+<h4>ggplot2 extensions</h4>
+<p>You can find more extensions for ggplot from <a href="//www.ggplot2-exts.org/index.html">ggplot2 extensions</a>. <br><br></p>
+</div>
+<div id="system-imformation" class="section level4">
+<h4>System imformation</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre>
+<pre><code>## R version 3.2.4 (2016-03-10)
+## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+## Running under: OS X 10.11.4 (El Capitan)
+## 
+## locale:
+## [1] en_GB.UTF-8/en_GB.UTF-8/en_GB.UTF-8/C/en_GB.UTF-8/en_GB.UTF-8
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] knitr_1.13    gganimate_0.1 ggplot2_2.1.0 tidyr_0.4.1   dplyr_0.4.3  
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.4      magrittr_1.5     munsell_0.4.3    colorspace_1.2-6
+##  [5] R6_2.1.2         stringr_1.0.0    plyr_1.8.3       tools_3.2.4     
+##  [9] parallel_3.2.4   grid_3.2.4       gtable_0.2.0     DBI_0.4         
+## [13] withr_1.0.1      htmltools_0.3.5  yaml_2.1.13      lazyeval_0.1.10 
+## [17] assertthat_0.1   digest_0.6.9     formatR_1.4      base64enc_0.1-3 
+## [21] codetools_0.2-14 evaluate_0.9     animation_2.4    rmarkdown_0.9.6 
+## [25] labeling_0.3     stringi_1.0-1    scales_0.4.0</code></pre>
+</div>
+</div>
+
+
+
+	<!-- sticky footer -->
+	<footer class="footer">
+	    <div class="container-fluid" style="background:#FFFFFF;color:#000000;box-shadow: 0 -2px 2px -2px #666666;">
+
+			<div class="row" style="border:1px #FFFFFF;">
+				<div class="col-sm-12">
+					<h2><a href="//painblogr.org" target="_blank" style="color:#000000;">painblogR</a></h2>
+					<p style="display:inline-block"><span style="font-style:italic;">by Peter Kamerman</span>&nbsp;&nbsp;
+					<a href="mailto:peter.kamerman@gmail.com" title="Email me" target="_blank"><i style="color:#000000;" class="fa fa-envelope"></i></a>&nbsp;&nbsp;
+				<a href="//twitter.com/painblogR" target="_blank" title="Follow me"><i style="color:#000000;" class="fa fa-twitter"></i></a>&nbsp;&nbsp;
+				<a href="//painblogr.org/atom.xml" title="Subscribe to atom feed"><i style="color:#000000;" class="fa fa-rss"></i></a></p>
+				</div>
+			</div>
+
+	        <div class="row">
+	            <div class="col-sm-6">
+	                <p>Hosted by: <a href="//github.com">GitHub</a><br>Framework by: <a href="//www.getbootstrap.com">Bootstrap</a><br>Fork/clone from: <a href="//github.com/kamermanpr/biostatistics.git">GitHub</a></p>
+	            </div>
+	            <div class="col-sm-6">
+	                <p>Software license: <a rel="license" href="/LICENSE_software.md">MIT</a><br>Content license: <a rel="license" href="/LICENSE_content.md">CC-BY 4.0</a><br>
+	            </div>
+	        </div>
+
+		</div>
+	</footer>
+
+
+	<!-- add bootstrap table styles to pandoc tables -->
+	<script>
+	$(document).ready(function () {
+	  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+	});
+	</script>
+
+	<!-- dynamically load mathjax for compatibility with self-contained -->
+	<script>
+	  (function () {
+	    var script = document.createElement("script");
+	    script.type = "text/javascript";
+	    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+	    document.getElementsByTagName("head")[0].appendChild(script);
+	  })();
+	</script>
+
+	<!-- Latest maxdcn font-awesome and academicons -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
