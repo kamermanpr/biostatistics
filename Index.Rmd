@@ -21,6 +21,7 @@ The biostatistics component of your mid-year exams will count 60% of the final b
 |Introduction   |Course overview                        |<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html' target='_blank'>Slideshow</a> |[Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html?dl=1)|
 |Lecture 1 |Basic concepts and tools for reproducible research|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html' target='_blank'>Slideshow<a/> | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html?dl=1)|
 |Lecture 2 |Data munging|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html' target='_blank'>Slideshow</a> | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_2.html?dl=1)|
+|Lecture 3 |Things to know before you start data analysis|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_3.html' target='_blank'>Slideshow</a> | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_3.html?dl=1) _(requires an internet connection for MathJax)_|
 
 _**[More to be added as course progresses]**_
 
