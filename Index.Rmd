@@ -16,7 +16,7 @@ The biostatistics component of your mid-year exams will count 60% of the final b
 
 ## Lectures
 
-|Lecture       |Content                                |Slides<br>_(may load slowly)_                                                          |Download slides        |
+|Lecture       |Content                                |Slides<br>_(may load slowly)_                                                          |Download standalone<br>slides        |
 |:--------------|:--------------------------------------|:------------------------------------------------------------------------|:---------------------|
 |Introduction   |Course overview                        |<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html' target='_blank'>Slideshow</a> |[Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/introduction.html?dl=1)|
 |Lecture 1 |Basic concepts and tools for reproducible research|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html' target='_blank'>Slideshow<a/> | [Standalone slides](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_1.html?dl=1)|
@@ -31,8 +31,10 @@ The assignments are your chance to get hands-on experience applying what you lea
 
 |Tutorial                   |files                                |
 |:--------------------------|:------------------------------------|
+|On your marks...Get set... |Complete the _swirl_ course: **'R Programming'** |
 |Assignment 1 (lecture 1)   |[[download]](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1) the file, and follow the instructions |
 |Assignment 2 (lecture 2)   |Complete the _swirl_ course: **'Getting and Cleaning Data'** |
+|Assignment 3 (lecture 3)   |Complete the _swirl_ course: **'Exploratory Data Analysis'**<br>_(sections: 2, 3, 5, 7, 8, 9, 10)_ |
 
 _**[More to be added as course progresses]**_
 
@@ -76,7 +78,7 @@ You can install the packages directly from the _R_ console:
 ```{r eval=FALSE}
 install.packages(c('knitr', 'rmarkdown', 'dplyr',
                    'tidyr', 'lubridate', 'readr',
-                   'swirl'))
+                   'ggplot2', 'swirl'))
 ```
 
 <p style="text-align:center">
@@ -146,15 +148,19 @@ Courses include (but are not limited to):
 
 Remembering commands can be difficult, especially when you are a new user or you are out of practice. So here are links to some useful cheat-sheets:  
 
-##### _R_
-* [Data wrangling](//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) with _dplyr_ and _tidyr_ from rstudio.com   
-- [_RMarkdown_](//www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) from rstudio.com  
+##### _R / RStudio_
+* [_Base R_](//www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf) (source: Mhairi McNeill via rstudio.com) 
+* [Data wrangling](//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) with _dplyr_ and _tidyr_ (source: rstudio.com)   
+* [_Data visualization_](//www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf) with _ggplot2_ (source: rstudio.com) 
+* [_RMarkdown cheatsheet_](//www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) (source: rstudio.com)   
+* [_RMarkdown reference guide_](//www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf) (source: rstudio.com)
+* [_RStudio IDE_](//www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf) (source: rstudio.com) 
 
 ##### _git_
-* [_git_](//www.git-tower.com/blog/git-cheat-sheet/) from git-tower.com  
-* [_git_](//training.github.com/kit/downloads/github-git-cheat-sheet.pdf) from github.com
+* [_git_](//www.git-tower.com/blog/git-cheat-sheet/) (source: git-tower.com) 
+* [_git_](//training.github.com/kit/downloads/github-git-cheat-sheet.pdf) (source: github.com)
 * [_git_ the simple guide](//rogerdudler.github.io/git-guide/) (interactive)
-* [_git_ workflow overview](//www.git-tower.com/blog/workflow-of-version-control/) from git-tower.com  
+* [_git_ workflow overview](//www.git-tower.com/blog/workflow-of-version-control/) (source: git-tower.com) 
 
 ##### Miscellaneous
-* [_Command line_](//www.git-tower.com/blog/command-line-cheat-sheet/) from git-tower.com
+* [_Command line_](//www.git-tower.com/blog/command-line-cheat-sheet/) (source: git-tower.com)
