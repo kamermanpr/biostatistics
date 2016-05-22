@@ -116,8 +116,8 @@ Measurement scales
 class: vcenter
 
 **Ordinal scales**
-- Allows ordering of measurement
-- Does not allow assesment of relative degree of difference between items
+- Allow ordering of measurement
+- Do not allow assesment of relative degree of difference between items
 
 <div>
     <img src='./resources/ordinal.jpg'>
@@ -128,8 +128,8 @@ Measurement scales
 
 **Interval scales**
 - No true _zero_
-- Allows assesment of relative degree of difference between items
-- Does not allow assessment of the ratio between items
+- Allow assesment of relative degree of difference between items
+- Do not allow assessment of the ratio between items
 
 <div>
     <img src='./resources/interval.png' style='max-width:50%'>
@@ -139,9 +139,9 @@ Measurement scales
 ==================
 
 **Ratio scales**
-- Has a _true zero_
-- Allows assesment of relative degree of difference between items
-- Allows the assessment of the ratio between items
+- Have a _true zero_
+- Allow assesment of relative degree of difference between items
+- Allow the assessment of the ratio between items
 
 <div>
     <img src='./resources/ratio.png' style='max-width:50%'>
@@ -513,7 +513,7 @@ Definition of a p-value
 
 <div>
     <p style="font-size:150%;font-style:italic;text-align:center;margin-top:60px;">
-    "The probability of observing a result as great as (or greater than) than you got if the null hypothesis is true."
+    "The probability of observing a result as great as (or greater than) you observed if the null hypothesis is true."
     </p>
     <br>
     <p style="text-align:center;">
