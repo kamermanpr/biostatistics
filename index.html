@@ -317,7 +317,6 @@ div.tocify {
         	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teaching<span class="caret"></span></a>
           		<ul class="dropdown-menu">
             		<li><a href="//painblogr.org/biostatistics/">Introduction to Biostatistics</a></li>
-					<li><a href="//painblogr.org/biostatistics/central-limit-n-large-numbers/">Central Limit Theorem and the Law of Large Numbers</a></li>
 				</ul>
 		</li>
       </ul>
@@ -351,7 +350,7 @@ div.tocify {
 <th align="left">Lecture</th>
 <th align="left">Content</th>
 <th align="left">Slides<br><em>(may load slowly)</em></th>
-<th align="left">Download slides</th>
+<th align="left">Download standalone<br>slides</th>
 </tr>
 </thead>
 <tbody>
@@ -395,12 +394,20 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">On your marks…Get set…</td>
+<td align="left">Complete the <em>swirl</em> course: <strong>‘R Programming’</strong></td>
+</tr>
+<tr class="even">
 <td align="left">Assignment 1 (lecture 1)</td>
 <td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1">[download]</a> the file, and follow the instructions</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Assignment 2 (lecture 2)</td>
 <td align="left">Complete the <em>swirl</em> course: <strong>‘Getting and Cleaning Data’</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Assignment 3 (lecture 3)</td>
+<td align="left">Complete the <em>swirl</em> course: <strong>‘Exploratory Data Analysis’</strong><br><em>(sections: 2, 3, 5, 7, 8, 9, 10)</em></td>
 </tr>
 </tbody>
 </table>
@@ -435,7 +442,7 @@ $ git init &lt;path/to/directory&gt;</code></pre>
 <p>You can install the packages directly from the <em>R</em> console:</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
                    <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;lubridate&#39;</span>, <span class="st">&#39;readr&#39;</span>,
-                   <span class="st">&#39;swirl&#39;</span>))</code></pre>
+                   <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;swirl&#39;</span>))</code></pre>
 <p style="text-align:center">
 <img src="images/install-packages-1.gif" style="max-width:80%;height:auto;">
 </p>
@@ -503,26 +510,30 @@ $ git init &lt;path/to/directory&gt;</code></pre>
 <div id="cheat-sheets" class="section level3">
 <h3>Cheat-sheets</h3>
 <p>Remembering commands can be difficult, especially when you are a new user or you are out of practice. So here are links to some useful cheat-sheets:</p>
-<div id="r" class="section level5">
-<h5><em>R</em></h5>
+<div id="r-rstudio" class="section level5">
+<h5><em>R / RStudio</em></h5>
 <ul>
-<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> from rstudio.com<br /></li>
-<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf"><em>RMarkdown</em></a> from rstudio.com</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf"><em>Base R</em></a> (source: Mhairi McNeill via rstudio.com)</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> (source: rstudio.com)<br /></li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf"><em>Data visualization</em></a> with <em>ggplot2</em> (source: rstudio.com)</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf"><em>RMarkdown cheatsheet</em></a> (source: rstudio.com)<br /></li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf"><em>RMarkdown reference guide</em></a> (source: rstudio.com)</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf"><em>RStudio IDE</em></a> (source: rstudio.com)</li>
 </ul>
 </div>
 <div id="git" class="section level5">
 <h5><em>git</em></h5>
 <ul>
-<li><a href="//www.git-tower.com/blog/git-cheat-sheet/"><em>git</em></a> from git-tower.com<br /></li>
-<li><a href="//training.github.com/kit/downloads/github-git-cheat-sheet.pdf"><em>git</em></a> from github.com</li>
+<li><a href="//www.git-tower.com/blog/git-cheat-sheet/"><em>git</em></a> (source: git-tower.com)</li>
+<li><a href="//training.github.com/kit/downloads/github-git-cheat-sheet.pdf"><em>git</em></a> (source: github.com)</li>
 <li><a href="//rogerdudler.github.io/git-guide/"><em>git</em> the simple guide</a> (interactive)</li>
-<li><a href="//www.git-tower.com/blog/workflow-of-version-control/"><em>git</em> workflow overview</a> from git-tower.com</li>
+<li><a href="//www.git-tower.com/blog/workflow-of-version-control/"><em>git</em> workflow overview</a> (source: git-tower.com)</li>
 </ul>
 </div>
 <div id="miscellaneous" class="section level5">
 <h5>Miscellaneous</h5>
 <ul>
-<li><a href="//www.git-tower.com/blog/command-line-cheat-sheet/"><em>Command line</em></a> from git-tower.com</li>
+<li><a href="//www.git-tower.com/blog/command-line-cheat-sheet/"><em>Command line</em></a> (source: git-tower.com)</li>
 </ul>
 </div>
 </div>
