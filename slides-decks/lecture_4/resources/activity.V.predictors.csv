@@ -1,0 +1,69 @@
+ ID,median_activity,pain,age,sex,education,bmi,employed,rs_score,eq5d_vas,money,family,food,health
+9,9,Pain,34,Male,Completed grade 7,26.6,Unemployed,166,60,Nearly all the time,Nearly all the time,Sometimes,Sometimes
+10,6,No pain,49,Female,Completed grade 7,28.3,Employed,173,100,Sometimes,Nearly all the time,Often,Sometimes
+11,7,No pain,32,Female,Completed grade 7,25.5,Employed,151,70,Sometimes,Not at all,Not at all,Not at all
+13,5,No pain,51,Male,Completed grade 7,23.2,Employed,154,95,Sometimes,Often,Often,Not at all
+21,5,Pain,34,Female,Completed grade 12,30.1,Employed,143,70,Sometimes,Often,Sometimes,Often
+23,6,Pain,47,Male,Completed grade 12,16.0,Unemployed,167,50,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+24,4,No pain,53,Female,Completed grade 12,25.0,Employed,134,90,Sometimes,Nearly all the time,Not at all,Not at all
+28,4,No pain,37,Female,Completed grade 12,26.8,Employed,150,60,Nearly all the time,Not at all,Sometimes,Often
+32,3,No pain,40,Female,Tertiary education,19.3,Employed,166,100,Nearly all the time,Sometimes,Not at all,Sometimes
+33,4,No pain,40,Female,Tertiary education,22.2,Employed,148,70,Sometimes,Often,Rarely,Often
+37,10,No pain,32,Female,Completed grade 12,21.8,Employed,172,60,Not at all,Not at all,Often,Nearly all the time
+38,5,No pain,58,Female,Completed grade 7,37.2,Employed,170,100,Nearly all the time,Not at all,Sometimes,Not at all
+40,12,Pain,42,Female,Completed grade 7,21.7,Unemployed,137,40,Nearly all the time,Nearly all the time,Nearly all the time,Often
+45,4,No pain,37,Female,Completed grade 12,26.5,Employed,167,70,Sometimes,Nearly all the time,Sometimes,Nearly all the time
+46,8,No pain,40,Female,NA,17.2,Employed,171,90,Often,Often,Often,Often
+50,5,No pain,35,Male,Completed grade 12,29.7,Employed,150,70,Sometimes,Rarely,Not at all,Not at all
+53,5,No pain,56,Female,Completed grade 7,25.1,Employed,168,80,Not at all,Nearly all the time,Not at all,Rarely
+54,3,No pain,35,Female,Completed grade 12,23.4,Employed,159,90,Sometimes,Nearly all the time,Not at all,Not at all
+55,5,No pain,42,Female,Completed grade 12,43.2,Unemployed,163,90,Often,Nearly all the time,Not at all,Sometimes
+56,4,No pain,41,Female,NA,28.8,Unemployed,148,80,Nearly all the time,Nearly all the time,Not at all,Sometimes
+57,12,No pain,18,Female,Completed grade 7,22.1,Unemployed,152,90,Nearly all the time,Not at all,Nearly all the time,Rarely
+67,6,Pain,34,Female,Completed grade 12,26.1,Unemployed,164,80,Nearly all the time,Sometimes,Rarely,Sometimes
+69,4,Pain,48,Male,Completed grade 7,18.8,Employed,138,30,Often,Rarely,Often,Nearly all the time
+71,5,Pain,40,Female,Completed grade 12,26.5,Employed,135,60,Nearly all the time,Nearly all the time,Not at all,Nearly all the time
+72,6,Pain,48,Female,Completed grade 7,23.5,Unemployed,112,50,Nearly all the time,Not at all,Sometimes,Nearly all the time
+73,4,Pain,50,Female,Completed grade 12,30.9,Employed,161,50,Nearly all the time,Nearly all the time,Not at all,Sometimes
+74,3,Pain,41,Male,Completed grade 12,40.6,Unemployed,153,40,Nearly all the time,Sometimes,Sometimes,Sometimes
+75,4,Pain,41,Male,Completed grade 7,22.8,Employed,163,50,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+76,4,Pain,33,Female,Completed grade 7,21.5,Employed,153,80,Nearly all the time,Nearly all the time,Not at all,Not at all
+77,7,Pain,37,Male,Completed grade 7,20.2,Unemployed,143,40,Nearly all the time,Nearly all the time,Sometimes,Nearly all the time
+90,4,Pain,50,Female,No education,32.6,Employed,172,50,Nearly all the time,Sometimes,Nearly all the time,Sometimes
+91,4.5,No pain,44,Female,Completed grade 7,27.5,Unemployed,162,70,Nearly all the time,Sometimes,Nearly all the time,Not at all
+95,7,No pain,35,Female,Completed grade 12,21.6,Employed,155,80,Sometimes,Sometimes,Rarely,Sometimes
+98,6,Pain,42,Female,Completed grade 12,26.5,Unemployed,163,60,Nearly all the time,Nearly all the time,Not at all,Nearly all the time
+99,4,No pain,40,Male,Completed grade 12,22.9,Employed,172,70,Sometimes,Often,Not at all,Rarely
+101,4,No pain,36,Male,Completed grade 7,18.2,Employed,171,90,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+102,6,Pain,33,Female,Tertiary education,35.4,Employed,159,70,Nearly all the time,Nearly all the time,Sometimes,Not at all
+103,6,No pain,20,Male,Completed grade 12,18.1,Unemployed,136,70,Sometimes,Sometimes,Not at all,Not at all
+106,8,No pain,27,Female,Completed grade 7,17.6,Unemployed,159,70,Sometimes,Not at all,Not at all,Sometimes
+112,11,Pain,40,Male,Tertiary education,25.5,Employed,125,30,Often,Nearly all the time,Nearly all the time,Nearly all the time
+117,6,Pain,33,Female,Completed grade 7,21.2,Unemployed,157,70,Nearly all the time,Sometimes,Sometimes,Nearly all the time
+123,7,No pain,41,Male,Completed grade 7,31.1,Employed,143,90,Nearly all the time,Sometimes,Not at all,Sometimes
+124,4,Pain,33,Female,Completed grade 7,32.7,Unemployed,149,40,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+129,5,Pain,38,Female,Completed grade 7,27.2,Unemployed,141,40,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+130,8,Pain,44,Male,Completed grade 12,NA,Unemployed,145,30,Nearly all the time,Nearly all the time,Sometimes,Sometimes
+131,8,Pain,30,Female,Completed grade 12,23.7,Unemployed,140,60,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+133,4,Pain,58,Female,Completed grade 7,NA,Unemployed,169,70,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+134,5,Pain,44,Male,Completed grade 12,21.8,Employed,159,50,Sometimes,Nearly all the time,Not at all,Nearly all the time
+135,7,Pain,48,Female,Completed grade 12,30.9,Employed,158,80,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+136,9,Pain,45,Female,Tertiary education,30.8,Unemployed,128,60,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+137,6,No pain,51,Female,Completed grade 7,33.9,Unemployed,158,70,Nearly all the time,Nearly all the time,Not at all,Not at all
+138,5,No pain,34,Female,Completed grade 7,31.1,Employed,154,50,Nearly all the time,Nearly all the time,Sometimes,Often
+139,10,Pain,44,Female,Completed grade 12,33.5,Employed,136,50,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+141,5,Pain,35,Female,No education,29.8,Employed,127,30,Nearly all the time,Nearly all the time,Rarely,Nearly all the time
+142,7,No pain,47,Female,Completed grade 7,27.5,Unemployed,158,90,Nearly all the time,Nearly all the time,Sometimes,Not at all
+152,6,Pain,55,Male,Completed grade 12,31.6,Unemployed,143,70,Nearly all the time,Sometimes,Rarely,Often
+154,7,Pain,34,Female,Tertiary education,22.6,Employed,162,40,Nearly all the time,Nearly all the time,Sometimes,Sometimes
+159,4,Pain,49,Male,Completed grade 7,26.9,Unemployed,107,10,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+160,5,No pain,38,Female,Completed grade 7,22.8,Employed,163,95,Nearly all the time,Nearly all the time,Often,Not at all
+161,7,Pain,43,Male,Completed grade 7,41.4,Unemployed,161,30,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+163,4,Pain,51,Female,Completed grade 7,36.8,Unemployed,134,40,Nearly all the time,Sometimes,Nearly all the time,Nearly all the time
+164,3,Pain,50,Male,No education,30.7,Unemployed,166,60,Nearly all the time,Nearly all the time,Nearly all the time,Sometimes
+165,8,Pain,46,Female,Completed grade 12,36.4,Unemployed,156,50,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+167,6,Pain,42,Female,Completed grade 12,34.6,Employed,159,40,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+168,6,Pain,45,Female,Completed grade 7,28.6,Employed,159,70,Nearly all the time,Nearly all the time,Nearly all the time,Nearly all the time
+172,4,No pain,49,Female,Completed grade 12,26.1,Employed,145,80,Nearly all the time,Sometimes,Sometimes,Sometimes
+174,6,No pain,44,Female,Completed grade 12,24.5,Employed,151,60,Nearly all the time,Nearly all the time,Rarely,Sometimes
+176,6,No pain,44,Male,Completed grade 7,NA,Employed,137,70,Often,Nearly all the time,Nearly all the time,Sometimes
