@@ -1,0 +1,446 @@
+
+Lecture 5
+=========
+css: ../custom.css
+transition: none
+width: 960
+height: 720
+autosize: false
+
+```{r library_loads, include = FALSE}
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(grid)
+library(scales)
+library(DiagrammeR)
+library(pander)
+
+data("airquality")
+data("mtcars")
+
+knitr::opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               message = FALSE,
+               cache = FALSE,
+               fig.width = 10,
+               fig.height = 10)
+```
+
+## Cookbook of commonly used statistical tests
+
+- Comparing two groups
+- Comparing more than two groups
+
+<div style="position:fixed;bottom:10%">
+    <h3 style="margin:0;">
+        Introduction to Biostatistics
+    </h3>
+    <p style="font-style:italic;font-size:80%;margin-top:1%;margin-bottom:1%;">
+        By: Peter Kamerman &nbsp&nbsp (view at
+        <a href="//painblogr.org/biostatistics/" target="_blank">painblogR</a>)
+    </p>
+    <img src="./resources/cc-by.png" width="128" style="margin:0;"/>
+</div>
+
+Recap
+=====
+title: hide
+type: aside
+
+A quick recap on:<br>_p-values & hypothesis testing_
+
+Definition of a p-value
+=======================
+
+<div>
+    <p style="font-size:150%;font-style:italic;text-align:center;margin-top:60px;">
+    "The probability of observing a result as great as (or greater than) you observed if the null hypothesis is true."
+    </p>
+    <br>
+    <p style="text-align:center;">
+    If the data are unlikely under the null hypothesis (small p-value), then either we observed a low probability event, <strong>or</strong> it must be that the null hypothesis is not true.<br><br>...only one of these can be correct.
+  </p>
+</div>
+
+<div class="footer" style="font-size:60%;">
+    Source: <a href="http://bayesianbiologist.com/2011/08/21/p-value-fallacy-on-more-or-less/">Corey Chivers, bayesianbiologist</a>
+</div>
+
+Hypothesis testing
+==================
+
+**Jerzy Neyman and Egon Pearson:**
+- Works by setting a threshold $(\alpha)$ that the p-value must cross.
+
+- You state a _null hypothesis_ and an _alternative hypothesis_ and use the _threshold p-value_ as a decision rule.
+
+- The _p-value threshold_ is chosen to control false-positive inference (usually set at $\alpha$ = 0.05).
+
+- You have to abide by the statistical test's 'decision' if you wish to protect against false-positive errors.
+
+Which test?
+===========
+
+```{r cheatsheet_1, echo = FALSE, fig.align='center'}
+# Save output manually and then import
+grViz("
+digraph rmarkdown {
+# Initialization of node attributes
+  node [shape = box,
+        fontname = Helvetica,
+        color = blue]
+
+# Initialization of edge attributes
+  edge [color = black]
+
+# Nodes (using subsitution with footnotes)
+a [label = '@@1']
+b [label = '@@2-1']
+c [label = '@@2-2']
+d [label = '@@3-1']
+e [label = '@@3-2']
+f [label = '@@3-1']
+g [label = '@@3-2']
+h [label = '@@4']
+i [label = '@@5']
+j [label = '@@6']
+k [label = '@@7']
+
+# Connections
+a -> {b c}
+b -> {d e}
+c -> {f g}
+d -> h
+e -> i
+f -> j
+g -> k
+}
+
+[1]: '2 groups'
+[2]: c('paired', 'unpaired')
+[3]: c('parametric', 'non-parametric')
+[4]: 'paired\\nt-test'
+[5]: 'Wilcoxon\\nsigned-rank\\ntest'
+[6]: '(unpaired)\\nt-test'
+[7]: 'Wilcoxon\\nrank-sum\\ntest'
+", height = 600)
+```
+
+Which test?
+===========
+
+```{r cheatsheet_2, echo = FALSE, fig.align='center'}
+# Save output manually and then import
+grViz("
+digraph rmarkdown {
+# Initialization of node attributes
+  node [shape = box,
+        fontname = Helvetica,
+        color = blue]
+
+# Initialization of edge attributes
+  edge [color = black]
+
+# Nodes (using subsitution with footnotes)
+a [label = '@@1']
+b [label = '@@2-1']
+c [label = '@@2-2']
+d [label = '@@3-1']
+e [label = '@@3-2']
+f [label = '@@3-1']
+g [label = '@@3-2']
+h [label = '@@4']
+i [label = '@@5']
+j [label = '@@6']
+k [label = '@@7']
+
+# Connections
+a -> {b c}
+b -> {d e}
+c -> {f g}
+d -> h
+e -> i
+f -> j
+g -> k
+}
+
+[1]: '&ge;3 groups'
+[2]: c('paired', 'unpaired')
+[3]: c('parametric', 'non-parametric')
+[4]: 'repeated-measures\\nANOVA'
+[5]: 'Friedman\\ntest'
+[6]: 'ANOVA'
+[7]: 'Kruskal-Wallis\\ntest'
+", height = 600)
+```
+
+Parametric tests
+================
+
+**Experimental groups may differ for two reasons:**
+
+1. Real effect of intervention
+
+2. Random variation between samples drawn from the same population
+
+<h3 style="text-align:center;">You must decide whether:</h3>
+<p style="text-align:center;"><bold>[1]</bold> is large enough relative to <bold>[2]</bold> to conclude<br>that a treatment had an effect.</p>
+
+Parametric tests
+================
+
+**Calculate the ratio of variances**
+
+1. between-group variance $(\sigma^2_{bet})$
+
+2. within-group variance $(\sigma^2_{with})$
+
+<p style="text-align:center;">If samples are from the same population,<br>the variances will be similar, and...</p>
+
+<p style="text-align:center;">$\frac{\sigma^2_{bet}}{\sigma^2_{with}} \rightarrow 1$</p>
+
+<p style="text-align:center;">Degrees of Freedom <em>(df)</em> determine the critical value the ratio <em>(test statistic)</em> must reach for the null hypothesis to be rejected.</p>
+
+Assumptions for parametric tests
+=================================
+class: vcenter
+
+- The distribution of the data in the population is _Gaussian_
+
+- Equal variance across groups<br>_(the basis on which the test statistic is calculated)_
+
+- The errors are independent<br>_(the 'error' refers to the difference between each value and the mean)_
+
+- Data are unmatched _(for unpaired data)_ / matching is effective _(for repeated measures data)_
+
+Student's t-test
+================
+type: twocol
+
+First have a look at the data
+```{r t_test, echo = TRUE}
+data(sleep)
+head(sleep)
+```
+
+****
+<br>
+```{r t_test_2, echo = TRUE, fig.height = 6, fig.width = 6}
+boxplot(extra~group, data = sleep)
+```
+
+Student's t-test
+================
+Run _t-test_
+
+```{r t_test_3, echo = TRUE, eval = FALSE}
+# When you data are in long format:
+t.test(extra ~ group, # formula
+       data = sleep,  # data source
+       paired = TRUE) # paired or unpaired
+
+# If your data are in wide format,
+# you can use the default format:
+> t.test(x, y, ...)
+```
+
+Student's t-test
+================
+
+Output
+```{r t_test_4, echo = FALSE}
+stt <- t.test(extra ~ group,
+              data = sleep,
+              paired = TRUE)
+stt
+```
+
+One-way ANOVA
+=============
+Use when the grouping factor has $\geq$ 3 levels.
+
+**One-way ANOVA**
+```{r 1anova_test, echo = TRUE, eval = FALSE}
+foo <- aov(outcome ~ factor_1,
+           data = dataframe)
+summary(foo)
+```
+
+**One-way repeated-measures ANOVA**
+```{r 1anova_test_2, echo = TRUE, eval = FALSE}
+bar <- aov(outcome ~ factor_2 +
+               Error(subjectID), # rep measure
+           data = dataframe)
+summary(bar)
+```
+
+Two-way ANOVA
+=============
+
+**Two-way ANOVA**
+```{r 2anova_test, echo = TRUE, eval = FALSE}
+foo <- aov(outcome ~ factor_1 * factor_2,
+           data = dataframe)
+summary(foo)
+
+# For main effects only:
+> aov(outcome ~ factor_1 + factor_2,...)
+
+# For repeated measures:
+> aov(outcome ~ factor_1 + factor_2 +
+          Error(subjectID), ...)
+```
+
+**NB:** `aov` uses _Type I SS_, so order matters.<br>
+**Equivalent to Type III SS:** `drop1(foo, ~., test = 'F')`
+
+Example: One-way ANOVA
+======================
+type: twocol
+
+```{r anova_example, echo = TRUE}
+data("chickwts")
+head(chickwts)
+```
+
+****
+
+```{r anova_example_2, echo = TRUE, fig.align = 'center', fig.width = 6, fig.height = 6}
+boxplot(weight ~ feed,
+        data =
+            chickwts)
+```
+
+Example: One-way ANOVA
+======================
+
+```{r anova_example_3, echo = TRUE}
+# One-way ANOVA
+foo <- aov(weight ~ feed,
+           data = chickwts)
+summary(foo)
+```
+
+
+Post-hoc tests
+==============
+
+**NB:** Need to correct $(\alpha)$ for multiple comparisons<br>to avoid inflation of type I error.
+
+$Bonferroni = \frac{target~p-value}{number~of~comparisons~(n)}$<br><br>
+$Holm = \frac{target~p-value}{n - rank~number~in~terms~of ~degree~of~significance + 1}$
+
+```{r post_hoc, echo = TRUE, eval = FALSE}
+# Pairwise post-hoc tests
+pairwise.t.test(chickwts$weight, chickwts$feed,
+                p.adjust.method = 'holm',
+                paired = FALSE)
+
+# Several correction methods are available.
+```
+
+Post-hoc tests
+==============
+
+```{r post_hoc_2, echo = FALSE}
+# Pairwise post-hoc tests
+pairwise.t.test(chickwts$weight, chickwts$feed,
+                p.adjust.method = 'holm',
+                paired = FALSE)
+```
+
+
+Post-hoc tests...contd
+==============
+
+What if you don't need to compare all pairs?
+
+Pre-planned _(non-orthogonal)_ comparisons
+```{r post_hoc_3, echo = TRUE}
+# Make a vector of p-values from each of
+# the planned comparisons
+p <- c('[test 1]' = 0.001, '[test 2]' = 0.211,
+       '[test 3]' = 0.013)
+
+# Adjust the p-values accordingly
+p.adjust(p,
+         method = 'holm')
+```
+
+Non-parametric test
+===================
+Ranking methods
+
+```{r data_rank, echo = FALSE, fig.align = 'center', fig.width = 7, fig.height = 7}
+set.seed(1)
+foo <- data.frame(x = exp(rnorm(100, mean = 5)),
+                  y = rnorm(100))
+bar <- foo %>%
+    tbl_df() %>%
+    mutate(x_ranked = row_number(x)) %>%
+    arrange(x_ranked) %>%
+    gather(x_group, values, -y) %>%
+    select(x_group, values, y) %>%
+    group_by(x_group) %>%
+    arrange(values)
+ggplot(bar, aes(x = values, y = y, fill = x_group)) +
+    geom_point(size = 6, shape = 21, colour = '#FFFFFF',
+               alpha = 0.7) +
+    facet_grid(x_group ~ ., scales = 'free', space = 'free') +
+    theme_bw() +
+    theme(legend.position = 'none',
+          axis.text = element_text(size = 22),
+          axis.title = element_text(size = 22),
+          strip.text = element_text(size = 22))
+```
+
+Non-parametric tests
+====================
+
+**Comparing two groups**
+```{r non_para, eval = FALSE, echo = TRUE}
+# Wilcoxon signed-rank tests (paired t-test)
+# Wilcoxon rank-sum test (unpaired t-test)
+wilcox.test(value ~ group,
+            data = dataframe,
+            paired = TRUE)
+```
+
+Non-parametric tests
+====================
+
+**Comparing more than two groups**
+```{r non_para_2, eval = FALSE, echo = TRUE}
+# Kruskal-Wallis rank sum test (One-way ANOVA)
+kruskal.test(value ~ group,
+            data = dataframe)
+
+# Friedman test (Repeated measures ANOVA)
+friedman.test(value ~ group | subjectID,
+              data = dataframe)
+```
+
+Web resources
+=============
+class: vcenter
+
+_**Basic statistics**_
+- Quick-R: [basic statistics](http://www.statmethods.net/stats/index.html), by Robert Kabacoff.
+
+- r-statistics.co: [statistical tests](http://r-statistics.co/Statistical-Tests-in-R.html), by Selva Prabhakaran
+
+
+tl;dr
+===================================
+
+<div class="center", style="width:80%;">
+    <p style="font-size:150%;font-style:italic;text-align:center;margin-top:60px;">
+    "But the shocking discovery was that 50% were below the median age."
+    </p>
+    <p style="text-align:center">
+     Dogbert<br>
+        <span style="font-style:italic;font-size:80%;">(megalomaniac alter ego of Dilbert, by Scott Adams)</span>
+    </p>
+</div>
