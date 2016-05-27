@@ -1,4 +1,4 @@
-Lecture 4
+Lecture 5
 =========
 css: ../custom.css
 transition: none
@@ -6,27 +6,9 @@ width: 960
 height: 720
 autosize: false
 
-```{r library_loads, include = FALSE}
-library(dplyr)
-library(tidyr)
-library(readr)
-library(ggplot2)
-library(grid)
-library(scales)
 
-data("airquality")
-data("mtcars")
 
-knitr::opts_chunk$set(echo = FALSE,
-               warning = FALSE,
-               message = FALSE,
-               fig.width = 10,
-               fig.height = 10,
-               fig.path = './resources/',
-               dev = 'pdf')
-```
-
-## A (very brief) introduction to plotting in _R:_
+## Commonly used statistical tests
 
 - Base R graphics
 - The grammer of graphics and ggplot2
@@ -62,13 +44,7 @@ type: twocol
 **For exploratory analysis**
 * Getting to know your data
 * Rough and ready
-```{r rough, fig.height = 6, fig.width = 6, fig.align = 'center'}
-par(cex = 1.5, cex.axis = 1.1)
-age <- rnorm(100, mean = 30, sd = 10)
-data_1 <- data.frame(age = age,
-                     activity = ((jitter(age, amount = 20)) * -1) + 100)
-with(data_1, plot(age, activity))
-```
+<img src="./resources/rough-1.pdf" title="plot of chunk rough" alt="plot of chunk rough" style="display: block; margin: auto;" />
 
 ****
 
@@ -76,18 +52,7 @@ with(data_1, plot(age, activity))
 * Presenting your data to others
 * Tells a standalone story
 * Polished
-```{r polished, fig.height = 4.5, fig.width = 5.5, fig.align = 'center'}
-ggplot2::ggplot(data_1, aes(x = age, y = activity)) +
-    geom_smooth(colour = 'gray40', size = 1) +
-    geom_point(colour = 'blue', fill = 'blue', alpha = 0.5, size = 3) +
-    labs(x = '\nAge (years)', y = 'Median daily activity (counts)\n') +
-    theme(panel.background = element_blank(),
-          panel.grid.major = element_line(colour = 'gray90',
-                                          size  = 0.8),
-          axis.ticks = element_blank(),
-          axis.text = element_text(size = 16),
-          axis.title = element_text(size = 16))
-```
+<img src="./resources/polished-1.pdf" title="plot of chunk polished" alt="plot of chunk polished" style="display: block; margin: auto;" />
 
 Base graphics
 =============
@@ -113,7 +78,8 @@ Initializing a plot
 class: centre
 
 Common plotting function calls
-```{r eval = FALSE, echo = TRUE}
+
+```r
 # Scatter plots
 plot(x, y, ...)
 
@@ -135,45 +101,55 @@ Examples
 type: hcenter
 
 **Scatter plots**
-```{r echo = -1, fig.align = 'center', fig.width = 6, fig.height = 6}
-par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
+
+```r
 plot(x = airquality$Ozone,
      y = airquality$Temp)
 ```
 
+<img src="./resources/unnamed-chunk-2-1.pdf" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+
 Examples
 ========
 **Boxplots**
-```{r echo = -1, fig.align = 'center', fig.width = 7, fig.height = 7}
-par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
+
+```r
 boxplot(airquality$Ozone~airquality$Month)
 ```
+
+<img src="./resources/unnamed-chunk-3-1.pdf" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 Examples
 ========
 **Histograms**
-```{r echo = -2, fig.align = 'center', fig.width = 6, fig.height = 6}
+
+```r
 par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
-hist(airquality$Ozone)
 ```
+
+<img src="./resources/unnamed-chunk-4-1.pdf" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 Examples
 ========
 **Bar charts**
-```{r echo = -1, fig.align = 'center', fig.width = 6, fig.height = 6}
-par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
+
+```r
 foo <- table(mtcars$cyl)
 barplot(foo)
 ```
 
+<img src="./resources/unnamed-chunk-5-1.pdf" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+
 Examples
 ========
 **Mosaic plots**
-```{r echo = -1, fig.align = 'center', fig.width = 6.5, fig.height = 6.5}
-par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
+
+```r
 bar <- xtabs(~mtcars$cyl + mtcars$am)
 mosaicplot(bar)
 ```
+
+<img src="./resources/unnamed-chunk-6-1.pdf" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
 
 Improving your plot
 ===================
@@ -191,8 +167,8 @@ _(find more parameters with `?par`)_
 
 Examples
 ========
-```{r echo = -1, fig.align = 'center', fig.height = 5, fig.width = 5}
-par(cex.label = 1.2, cex = 1.2, cex.main = 1.1, mar = c(4,4,1,1))
+
+```r
 plot(x = airquality$Ozone,
      y = airquality$Temp,
      main = 'Look, blue traingles',
@@ -201,20 +177,15 @@ plot(x = airquality$Ozone,
      xlim = c(0, 200), ylim = c(50, 100))
 ```
 
+<img src="./resources/unnamed-chunk-7-1.pdf" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
 
 Adding to your plot
 ===================
 Once you have the plot, you can add to it.
 
 **Add an abline**
-```{r echo = FALSE, fig.height = 7, fig.width = 7, fig.align = 'center'}
-par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
-plot(x = airquality$Ozone, y = airquality$Temp,
-     main = 'Look, blue traingles',
-     xlab = 'Ozone', ylab = 'Temperature',
-     pch = 24, col = 'blue',
-     xlim = c(0, 200), ylim = c(50, 100))
-```
+<img src="./resources/unnamed-chunk-8-1.pdf" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
 
 Adding to your plot
 ===================
@@ -228,32 +199,7 @@ type: twocol
 
 ****
 
-```{r fancify}
-# set font size
-par(cex.label = 2, cex = 2, mar = c(4,4,1,1))
-plot(x = airquality$Ozone, y = airquality$Temp,
-     main = 'Look, blue traingles',
-     xlab = 'Ozone', ylab = 'Temperature',
-     pch = 24, col = 'blue',
-     xlim = c(0, 200), ylim = c(50, 100))
-# vertical line
-abline(v = 100, col = 'red', lty = 2, lwd = 3)
-# horizontal line
-abline(h = 70, col = 'gray30', lty = 5, lwd = 3)
-# regression line
-abline(lm(airquality$Ozone~airquality$Temp), col = 'blue', lwd = 3)
-# lowess smoother
-lines(lowess(airquality$Ozone, airquality$Temp, delta = 200*0.01),
-      col = 'purple', lwd = 3)
-# points
-points(x = 190, y = 55, cex = 10, col = 'orange', pch = 16)
-# text
-text(x = 160, y = 90, 'lowess smoother', col = 'purple')
-text(x = 160, y = 72, 'horizontal abline', col = 'gray30')
-text(x = 106, y = 57, 'vertical abline', srt = 90, col = 'red')
-text(x = 80, y = 60, 'linear regression abline', srt = 83, col = 'blue')
-text(x = 190, y = 62, 'point', col = 'orange')
-```
+![plot of chunk fancify](./resources/fancify-1.pdf)
 
 Saving your plot
 ================
@@ -269,7 +215,8 @@ Example
 =======
 class: vcenter
 
-```{r device, echo = TRUE, eval = FALSE}
+
+```r
 # Open the graphics device
 pdf('foo.pdf', paper = 'a4r')
 
@@ -385,7 +332,8 @@ class: vcenter
 
 Get hands-on practice with _base R graphics_ and _ggplot2_ by completing (at least) sections 5, 7, 8, 9, and 10 of the _swirl_ package course: _'Exploratory Data Analysis'_.
 
-```{r, echo = TRUE, eval = FALSE}
+
+```r
 # If you need to download the course
 library(swirl)
 install_from_swirl('Exploratory Data Analysis')
