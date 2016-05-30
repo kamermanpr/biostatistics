@@ -22,29 +22,24 @@ Use _git_ for version control, and push the completed assignment to your _GitHub
 ### Chicken weights
 An experiment was conducted to measure and compare the effectiveness of various feed supplements on the growth rate of chickens. Newly hatched chicks were randomly allocated into six groups, and each group was given a different feed supplement. Their weights in grams after six weeks are given along with feed types. The data from this experiment can be downloaded from [here](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/chick-weights.csv?dl=1).
 
-_Source_  
-Anonymous (1948) Biometrika, 35, 214.
-McNeil DR. (1977). Interactive Data Analysis. New York: Wiley.
+_Source:_ Anonymous (1948) Biometrika, 35, 214. McNeil DR. (1977). Interactive Data Analysis. New York: Wiley.
 
 ## Dataset 2
 ### Blood pressure measurement
 A BSc III project was undertaken to assess the agreement in systolic blood pressure (SBP) measurements between the conventional auscultatory method, assessed by a nursing sister with 15-year’s experience, and a new automated oscillometric blood pressure measuring device. Eighty-five (85) subjects had their blood pressures assessed, with three replicate measurements recorded by each of the two methods of measurement (nurse using auscultation, and oscillometric device). The data from this experiment can be downloaded from [here](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/blood-pressure.csv?dl=1). 
 
-_Source_
-Altman DG, Bland JM. (1991). The analysis of blood pressure data. In: O'Brien E, O'Malley K eds. Blood pressure measurement. Amsterdam: Elsevier.
+_Source:_ Altman DG, Bland JM. (1991). The analysis of blood pressure data. In: O'Brien E, O'Malley K eds. Blood pressure measurement. Amsterdam: Elsevier.
 
 ## Dataset 3
 ### The Hot Zone
 To investigate whether an outbreak of severe gastroenteritis in a samll town was caused by contaimination of the drinking water, investigators collected data on water consumption per day and the number of people who fell ill. The data from the study can be downloaded [here](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/gastroenteritis.csv?dl=1).
 
-_Source_
-O'Neil AE, Richen D, Lundrie P. (1985). A waterborne epidemic of acute infectious non-bacterial gastroenteritis in Alberta, Canada. Canadian Journal of Public Health 76: 199-203.
+_Source:_ O'Neil AE, Richen D, Lundrie P. (1985). A waterborne epidemic of acute infectious non-bacterial gastroenteritis in Alberta, Canada. Canadian Journal of Public Health 76: 199-203.
 
 ## Dataset 4
 ### Nausea
 Eight patients recieving emetogenic chemotherapy for breast cancer were asked to rate the intenisty of their nausea before and after receiving a 5HT~3~-receptor blocker. A numeric rating scale, anchored at 0 (no nausea) to 6 (severe nausea and vomiting) was used to rate nausea intensity. The data from the study can be downloaded [here](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/nausea.csv?dl=1).
 
-_Source_
-Unknown
+_Source:_ Unknown
 
 <a href="//painblogr.org/biostatistics#assignments">Back to assignments</a>
