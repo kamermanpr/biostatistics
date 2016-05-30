@@ -4,7 +4,7 @@ output: html_document
 <br>
 
 ## Assignment 4
-<a href="//painblogr.org/biostatistics#assignments" class="btn btn-default" role="button">Back to assignments</a>
+<a href="//painblogr.org/biostatistics#assignments">Back to assignments</a>
 
 ### Instructions
 Download the datasets, and for each dataset:  
@@ -47,4 +47,4 @@ Eight patients recieving emetogenic chemotherapy for breast cancer were asked to
 _Source_
 Unknown
 
-<a href="//painblogr.org/biostatistics#assignments" class="btn btn-default" role="button">Back to assignments</a>
+<a href="//painblogr.org/biostatistics#assignments">Back to assignments</a>
