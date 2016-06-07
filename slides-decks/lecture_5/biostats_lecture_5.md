@@ -1,6 +1,6 @@
 
-Lecture 5
-=========
+Lecture 5/6
+===========
 css: ../custom.css
 transition: none
 width: 960
@@ -336,6 +336,17 @@ Ranking methods
 
 <img src="biostats_lecture_5-figure/data_rank-1.png" title="plot of chunk data_rank" alt="plot of chunk data_rank" style="display: block; margin: auto;" />
 
+Assumptions for non-parametric tests
+====================================
+
+**Distribution free does not mean assumption free**
+
+- The errors are independent<br>_(the 'error' refers to the difference between each value and the median)_
+
+- Data are unmatched _(for unpaired data)_ / matching is effective _(for repeated measures data)_
+
+- Samples are drawn from populations with the _same shape distributions_.
+
 Non-parametric tests
 ====================
 
@@ -363,6 +374,394 @@ kruskal.test(value ~ group,
 friedman.test(value ~ group | subjectID,
               data = dataframe)
 ```
+
+Categorical data
+================
+
+**Contingency tables**
+
+The relationship between categorical variables can be examined by cross-tabulating the data into contingency tables.
+
+
+```r
+# Dummy dataset
+head(foo)
+```
+
+```
+  intervention outcome
+1    untreated    died
+2      treated    died
+3    untreated   lived
+4    untreated    died
+5    untreated    died
+6    untreated    died
+```
+
+Categorical data
+================
+class: center
+
+Cross-tabulate with `table`
+
+```r
+table(foo$intervention, foo$outcome)
+```
+
+```
+           
+            died lived
+  treated     57    43
+  untreated   63    37
+```
+
+Categorical data
+================
+class: center
+
+Cross-tabulate with `xtabs`
+
+```r
+xtabs(~intervention + outcome, data = foo)
+```
+
+```
+            outcome
+intervention died lived
+   treated     57    43
+   untreated   63    37
+```
+
+Categorical data
+================
+class: center
+
+**What if you already have totals?**
+
+
+```r
+print(bar)
+```
+
+```
+  Intervention Outcome Count
+1      treated   lived    43
+2    untreated   lived    37
+3      treated    died    57
+4    untreated    died    63
+```
+
+Categorical data
+================
+class: center
+
+**...Use `xtabs` with the 'count' on the left of the formula**
+
+
+```r
+xtabs(Count~Intervention + Outcome, data = bar)
+```
+
+```
+            Outcome
+Intervention died lived
+   treated     57    43
+   untreated   63    37
+```
+
+Categorical data
+================
+class: center
+
+## $\chi^2$ test
+
+Examines whether there is an association between the row variable and the column variable.
+
+_That is, is the distribution of individuals among categories of one variable independent of their distribution among the categories of the other variable?_
+
+Categorical data
+================
+class: center
+
+The $\chi^2$ test compares the *observed* and the *expected* _(assuming no association)_ frequencies across the row and column variables.
+
+$\chi^2 = \sum\frac{(Observed - Expected)^2}{Expected}$,
+
+where Expected cell frequency $~= \frac{Row~total ~*~Column~total}{Grand~total}$
+
+- If _Observed_ is close to _Expected_, then $\chi^2$ = small
+
+- If _Observed_ is far from _Expected_, then $\chi^2$ = large
+
+Test assumptions
+================
+class: vcenter
+
+- Random sampling
+
+- Observations are independent _(unpaired)_
+
+- Large sample, with adequate _expected_ cell counts
+    - 2 x 2 table: Expected $\geq$ 5 in all cells;
+    - $\geq$ 2 x 3 table: Expected $\geq$ 5 in 80% of cells;
+    - Expected $\neq$ 0 in any cell.
+
+- Assumes the discrete probability of observed frequencies in the table can be _approximated_ by the continuous $\chi^2$ distribution.
+
+Solutions
+=========
+class: vcenter
+
+- At low sample sizes, p-values are too low _(risk of type I error)_, so introduce a p-value correction: **Yates' Correction for Continuity**.
+
+- $\chi^2_{Yates} = \sum\frac{(|Observed - Expected|~- \frac{1}{2})^2}{Expected}$
+
+- ...but Yates' correction may overcorrect the p-value and increase risk of Type II errors
+
+Solutions
+=========
+class: vcenter
+
+- **Fisher's Exact Test**.
+
+- Doesn't use an approximation of the  $\chi^2$.
+
+- _Exact_ p-values are calculated.
+
+- Computationally intense, therefore traditionally limited to 2 x 2 tables.
+
+- _R_ provides mechanisms to larger tables.
+
+Examples
+========
+
+
+```
+            outcome
+intervention died lived
+   treated     57    43
+   untreated   63    37
+```
+
+```r
+chisq.test(baz, correct = FALSE)
+```
+
+```
+
+	Pearson's Chi-squared test
+
+data:  baz
+X-squared = 0.75, df = 1, p-value = 0.3865
+```
+
+```r
+# TRUE for Yates' correction
+```
+
+Examples
+========
+class: center
+
+
+```
+
+	Fisher's Exact Test for Count Data
+
+data:  baz
+p-value = 0.4706
+alternative hypothesis: true odds ratio is not equal to 1
+95 percent confidence interval:
+ 0.4243409 1.4267683
+sample estimates:
+odds ratio 
+  0.779501 
+```
+
+Examples
+========
+
+**What about bigger tables?**
+
+```
+        Blood_group
+Sex       A  B  O
+  Female 20 13 10
+  Male   15 30 20
+```
+
+```r
+fisher.test(fred)
+```
+
+```
+
+	Fisher's Exact Test for Count Data
+
+data:  fred
+p-value = 0.04334
+alternative hypothesis: two.sided
+```
+
+Examples
+========
+class: center
+
+**Divide and conquer bigger tables**
+
+```
+        Blood_group
+Sex       A  B
+  Female 20 13
+  Male   15 30
+```
+
+```r
+tidy(# broom::tidy results to save space
+    fisher.test(waldo) # A vs B blood group
+    )
+```
+
+```
+  estimate    p.value conf.low conf.high
+1 3.030327 0.02191256  1.09882  8.702412
+```
+
+Examples
+========
+class: center
+
+**Divide and conquer bigger tables**
+
+```
+        Blood_group
+Sex       A  O
+  Female 20 10
+  Male   15 20
+```
+
+```r
+tidy(
+    fisher.test(bar) # A vs O blood group
+    )
+```
+
+```
+  estimate    p.value conf.low conf.high
+1 2.625328 0.08076709 0.869242  8.336033
+```
+
+Examples
+========
+class: center
+
+**Divide and conquer bigger tables**
+
+```
+        Blood_group
+Sex       B  O
+  Female 13 10
+  Male   30 20
+```
+
+```r
+tidy(
+    fisher.test(qux) # A vs O blood group
+    )
+```
+
+```
+   estimate   p.value  conf.low conf.high
+1 0.8683794 0.8027563 0.2858022  2.681916
+```
+
+Examples
+========
+class: center
+
+**Multiple non-orthogonal tests, so need $\alpha$ correction**
+
+```r
+AB <- fisher.test(waldo)$p.value # A vs B
+AO <- fisher.test(bar)$p.value # A vs O
+BO <- fisher.test(qux)$p.value # B vs O
+
+p.adjust(c(AB, AO, BO), method = 'holm')
+```
+
+```
+[1] 0.06573767 0.16153418 0.80275628
+```
+
+Ordinal data
+============
+
+**Order has meaning, so use it**
+
+```
+       Disease_severity
+Outcome  I II III
+  Died  13 10  30
+  Lived 30 20   5
+```
+
+```r
+# install and load vcdExtra package
+```
+
+Ordinal data
+============
+
+**Order has meaning, so use it**
+
+```r
+# Run Cochran-Mantel-Haenszel Tests
+# Assign scores to the ordered rows (rscores)
+# or columns (cscores)
+CMHtest(qux,
+        types = 'cmeans', # compare columns
+        cscores = c(1, 2, 3)) # column scores
+```
+
+```
+Cochran-Mantel-Haenszel Statistics for Outcome by Disease_severity 
+
+                AltHypothesis  Chisq Df       Prob
+cmeans Col mean scores differ 27.626  2 1.0026e-06
+```
+
+What is my data are paired?
+==========================
+
+**Use the McNemar Test**
+
+```
+            2nd Survey
+1st Survey   Approve Disapprove
+  Approve        794        150
+  Disapprove      86        570
+```
+
+```r
+mcnemar.test(Performance)
+```
+
+```
+
+	McNemar's Chi-squared test with continuity correction
+
+data:  Performance
+McNemar's chi-squared = 16.818, df = 1, p-value = 4.115e-05
+```
+
+Assignment
+==========
+class: vcenter
+
+Practice applying the significance tests you learned about in this lecture by completing [assignment 4](https://painblogr.org/biostatistics#assignments).
+
+The assignment also gives you a chance to practice using skills acquired in earlier lessions (_rmarkdown_, _git_, _GitHub_, _data cleaning_, and _plotting_).
+
 
 Web resources
 =============

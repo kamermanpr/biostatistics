@@ -1,6 +1,6 @@
 
-Lecture 5
-=========
+Lecture 5/6
+===========
 css: ../custom.css
 transition: none
 width: 960
@@ -16,6 +16,7 @@ library(grid)
 library(scales)
 library(DiagrammeR)
 library(pander)
+library(broom)
 
 data("airquality")
 data("mtcars")
@@ -396,6 +397,17 @@ ggplot(bar, aes(x = values, y = y, fill = x_group)) +
           strip.text = element_text(size = 22))
 ```
 
+Assumptions for non-parametric tests
+====================================
+
+**Distribution free does not mean assumption free**
+
+- The errors are independent<br>_(the 'error' refers to the difference between each value and the median)_
+
+- Data are unmatched _(for unpaired data)_ / matching is effective _(for repeated measures data)_
+
+- Samples are drawn from populations with the _same shape distributions_.
+
 Non-parametric tests
 ====================
 
@@ -421,6 +433,272 @@ kruskal.test(value ~ group,
 friedman.test(value ~ group | subjectID,
               data = dataframe)
 ```
+
+Categorical data
+================
+
+**Contingency tables**
+
+The relationship between categorical variables can be examined by cross-tabulating the data into contingency tables.
+
+```{r chi, echo = -1}
+foo <- data.frame(intervention = sample(rep(c('treated', 'untreated'), each = 100)),
+                outcome = sample(c(rep('lived', 80), rep('died', 120))))
+# Dummy dataset
+head(foo)
+```
+
+Categorical data
+================
+class: center
+
+Cross-tabulate with `table`
+```{r chi_2, echo = TRUE}
+table(foo$intervention, foo$outcome)
+```
+
+Categorical data
+================
+class: center
+
+Cross-tabulate with `xtabs`
+```{r chi_3, echo = TRUE}
+xtabs(~intervention + outcome, data = foo)
+```
+
+Categorical data
+================
+class: center
+
+**What if you already have totals?**
+
+```{r chi_4, echo = -1}
+bar <- data.frame(Intervention =
+                        c('treated', 'untreated', 'treated', 'untreated'),
+                    Outcome =
+                        c('lived', 'lived', 'died', 'died'),
+                    Count = c(43, 37, 57, 63))
+print(bar)
+```
+
+Categorical data
+================
+class: center
+
+**...Use `xtabs` with the 'count' on the left of the formula**
+
+```{r chi_5, echo = TRUE}
+xtabs(Count~Intervention + Outcome, data = bar)
+```
+
+Categorical data
+================
+class: center
+
+## $\chi^2$ test
+
+Examines whether there is an association between the row variable and the column variable.
+
+_That is, is the distribution of individuals among categories of one variable independent of their distribution among the categories of the other variable?_
+
+Categorical data
+================
+class: center
+
+The $\chi^2$ test compares the *observed* and the *expected* _(assuming no association)_ frequencies across the row and column variables.
+
+$\chi^2 = \sum\frac{(Observed - Expected)^2}{Expected}$,
+
+where Expected cell frequency $~= \frac{Row~total ~*~Column~total}{Grand~total}$
+
+- If _Observed_ is close to _Expected_, then $\chi^2$ = small
+
+- If _Observed_ is far from _Expected_, then $\chi^2$ = large
+
+Test assumptions
+================
+class: vcenter
+
+- Random sampling
+
+- Observations are independent _(unpaired)_
+
+- Large sample, with adequate _expected_ cell counts
+    - 2 x 2 table: Expected $\geq$ 5 in all cells;
+    - $\geq$ 2 x 3 table: Expected $\geq$ 5 in 80% of cells;
+    - Expected $\neq$ 0 in any cell.
+
+- Assumes the discrete probability of observed frequencies in the table can be _approximated_ by the continuous $\chi^2$ distribution.
+
+Solutions
+=========
+class: vcenter
+
+- At low sample sizes, p-values are too low _(risk of type I error)_, so introduce a p-value correction: **Yates' Correction for Continuity**.
+
+- $\chi^2_{Yates} = \sum\frac{(|Observed - Expected|~- \frac{1}{2})^2}{Expected}$
+
+- ...but Yates' correction may overcorrect the p-value and increase risk of Type II errors
+
+Solutions
+=========
+class: vcenter
+
+- **Fisher's Exact Test**.
+
+- Doesn't use an approximation of the  $\chi^2$.
+
+- _Exact_ p-values are calculated.
+
+- Computationally intense, therefore traditionally limited to 2 x 2 tables.
+
+- _R_ provides mechanisms to larger tables.
+
+Examples
+========
+
+```{r chi_6, echo = 3:4}
+baz <- xtabs(~ intervention + outcome, data = foo)
+baz
+chisq.test(baz, correct = FALSE)
+# TRUE for Yates' correction
+```
+
+Examples
+========
+class: center
+
+```{r chi_7, echo = 3:4}
+baz <- xtabs(~ intervention + outcome, data = foo)
+fisher.test(baz)
+```
+
+Examples
+========
+
+**What about bigger tables?**
+```{r chi_8, echo = 4}
+qux <- data.frame(Sex = rep(c('Male', 'Female'), times = 3),
+                  Blood_group = c('A', 'A', 'B', 'B', 'O', 'O'),
+                  Count = c(15, 20, 30, 13, 20, 10))
+fred <- xtabs(Count ~ Sex + Blood_group, data = qux)
+fred
+fisher.test(fred)
+
+```
+
+Examples
+========
+class: center
+
+**Divide and conquer bigger tables**
+```{r chi_9, echo = 4}
+barney <- data.frame(Sex = rep(c('Male', 'Female'), times = 2),
+                  Blood_group = c('A', 'A', 'B', 'B'),
+                  Count = c(15, 20, 30, 13))
+waldo <- xtabs(Count ~ Sex + Blood_group, data = barney)
+waldo
+tidy(# broom::tidy results to save space
+    fisher.test(waldo) # A vs B blood group
+    )
+
+```
+
+Examples
+========
+class: center
+
+**Divide and conquer bigger tables**
+```{r chi_10, echo = 4}
+foo <- data.frame(Sex = rep(c('Male', 'Female'), times = 2),
+                  Blood_group = c('A', 'A', 'O', 'O'),
+                  Count = c(15, 20, 20, 10))
+bar <- xtabs(Count ~ Sex + Blood_group, data = foo)
+bar
+tidy(
+    fisher.test(bar) # A vs O blood group
+    )
+```
+
+Examples
+========
+class: center
+
+**Divide and conquer bigger tables**
+```{r chi_11, echo = 4}
+baz <- data.frame(Sex = rep(c('Male', 'Female'), times = 2),
+                  Blood_group = c('B', 'B', 'O', 'O'),
+                  Count = c(30, 13, 20, 10))
+qux <- xtabs(Count ~ Sex + Blood_group, data = baz)
+qux
+tidy(
+    fisher.test(qux) # A vs O blood group
+    )
+```
+
+Examples
+========
+class: center
+
+**Multiple non-orthogonal tests, so need $\alpha$ correction**
+```{r chi_12, echo = TRUE}
+AB <- fisher.test(waldo)$p.value # A vs B
+AO <- fisher.test(bar)$p.value # A vs O
+BO <- fisher.test(qux)$p.value # B vs O
+
+p.adjust(c(AB, AO, BO), method = 'holm')
+```
+
+Ordinal data
+============
+
+**Order has meaning, so use it**
+```{r chi_13, echo = 4}
+baz <- data.frame(Outcome = rep(c('Lived', 'Died'), times = 3),
+                  Disease_severity =
+                      c('I', 'I', 'II', 'II', 'III', 'III'),
+                  Count = c(30, 13, 20, 10, 5, 30))
+qux <- xtabs(Count ~ Outcome + Disease_severity, data = baz)
+qux
+# install and load vcdExtra package
+```
+
+Ordinal data
+============
+
+**Order has meaning, so use it**
+```{r chi_14, echo = 2:5}
+library(vcdExtra)
+# Run Cochran-Mantel-Haenszel Tests
+# Assign scores to the ordered rows (rscores)
+# or columns (cscores)
+CMHtest(qux,
+        types = 'cmeans', # compare columns
+        cscores = c(1, 2, 3)) # column scores
+```
+
+What is my data are paired?
+==========================
+
+**Use the McNemar Test**
+```{r chi_15, echo = -c(1:2)}
+Performance <- matrix(c(794, 86, 150, 570),
+                      nrow = 2,
+                      dimnames =
+                          list("1st Survey" = c("Approve", "Disapprove"),
+                               "2nd Survey" = c("Approve", "Disapprove")))
+Performance
+mcnemar.test(Performance)
+```
+
+Assignment
+==========
+class: vcenter
+
+Practice applying the significance tests you learned about in this lecture by completing [assignment 4](https://painblogr.org/biostatistics#assignments).
+
+The assignment also gives you a chance to practice using skills acquired in earlier lessions (_rmarkdown_, _git_, _GitHub_, _data cleaning_, and _plotting_).
+
 
 Web resources
 =============
