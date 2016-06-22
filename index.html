@@ -431,65 +431,65 @@ div.tocify {
 <h2>Resources</h2>
 <p>If you are using computers in the School of Physiology computer lab, the computers may not have the software installed, or some/all of the software may be outdated. If so, please install/update the software. Because computers in the computer laboratory have multiple users, please note the following:</p>
 <p><strong>Do not</strong> set the user configuration using the global switch before initializing a new git repository:</p>
-<pre><code>$ git config --global user.name &quot;YOUR NAME&quot;
-$ git config --global user.email &quot;YOUR EMAIL&quot;
+<pre><code>git config --global user.name &quot;YOUR NAME&quot;
+git config --global user.email &quot;YOUR EMAIL&quot;
 
-$ git init &lt;path/to/directory&gt;</code></pre>
+git init &lt;path/to/directory&gt;</code></pre>
 <p>Rather navigate to the folder you want to initiate as a git repositiory and set the configurations as a local user:</p>
-<pre><code>$ git config user.name &quot;YOUR NAME&quot;
-$ git config user.email &quot;YOUR EMAIL&quot;
+<pre><code>git config user.name &quot;YOUR NAME&quot;
+git config user.email &quot;YOUR EMAIL&quot;
 
-$ git init</code></pre>
+git init</code></pre>
 <div id="proxy-problems" class="section level3">
 <h3>Proxy problems</h3>
 <p>If you are working behind a corporate proxy, you may run into problems with pushing <em>git</em> commits to your <em>remote</em>, and installing packages in <em>R</em>. The following options should help solve the problem.</p>
 <div id="for-git" class="section level4">
 <h4>For git</h4>
 <p>Enter the follwing commands in the <em>terminal</em> (OSX or Linux) or <em>git bash</em> (Windows):</p>
-<pre><code>$ git config --global http.proxy http://proxyserver.com:8080/
-$ git config --global https.proxy https://proxy.server.com:8080/
+<pre><code>git config --global http.proxy http://proxyserver.com:8080/
+git config --global https.proxy https://proxy.server.com:8080/
 </code></pre>
 <ul>
-<li><p>Change <em>proxy.server.com</em> to the URL of your proxy server (e.g., <em>proxyad.wits.ac.za</em>, <em>proxyss.wits.ac.za</em>)</p></li>
+<li><p>Change <em>proxy.server.com</em> to the address of your proxy server (e.g., <em>proxyad.wits.ac.za</em>, <em>proxyss.wits.ac.za</em>)</p></li>
 <li><p>Change <em>8080</em> to the proxy port configured on your proxy server (e.g., <em>80</em>)</p></li>
 </ul>
 <p>Try the settings above, but if your proxy screams out for a username and password, add the following <em>(not a great option on a computer used by multiple users)</em>:</p>
-<pre><code>$ git config --global http.proxy
+<pre><code>git config --global http.proxy
 http://proxyusername:proxypassword@proxyserver.com:8080/
 
-$ git config --global https.proxy
+git config --global https.proxy
 https://proxyusername:proxypasswordproxy.server.com:8080/
 </code></pre>
 <ul>
 <li><p>Change <em>proxyusername</em> to your proxy username</p></li>
 <li><p>Change <em>proxypassword</em> to your proxy password</p></li>
 </ul>
-<p>If you want to clear your proxy settings (e.g., if you are working on a laptop that you use at home and at work), enter the following command in the <em>terminal</em> or <em>git bash</em>:</p>
-<pre><code>$ git config --global --unset http.proxy
-$ git config --global --unset https.proxy
+<p>If you want to clear your proxy settings (e.g., if you are working on a laptop that you use at home and at work), enter the following commands in the <em>terminal</em> or <em>git bash</em>:</p>
+<pre><code>git config --global --unset http.proxy
+git config --global --unset https.proxy
 </code></pre>
 </div>
 <div id="for-rrstudio" class="section level4">
 <h4>For R/RStudio</h4>
 <p>You need to add an <em>.Renviron</em> file to your <em>R</em> home directory. This file is read by <em>R</em> at startup, and needs to include proxy settings if you want to access the internet through <em>R/RStudio</em>.</p>
-<p>On OSX and Linux machines, the home directory is usually your user directory. On Windows machines, the home directory is usually the the users ‘Documents’ directory.</p>
+<p>On OSX and Linux machines the home directory is usually your ‘username’ directory. On Windows machines the home directory is usually the the users ‘Documents’ directory.</p>
 <p><strong>OSX and Linux R home directory (example):</strong></p>
 <pre><code>/User/username</code></pre>
 <p><strong>Windows R home directory (example):</strong></p>
 <pre><code>C:\Users\username\Documents</code></pre>
 <p>If you cannot locate your home directory, enter the following in <em>R</em>:</p>
 <pre><code>path.expand(&quot;~&quot;)</code></pre>
-<p>The <em>.Renviron</em> file should contain the proxy settings for your location. The file must be in your <em>R</em> home directory before you start <em>R/RStudio</em>, but remember that this is a hidden file, so you will have to have your file view set to show hidden files if you want to see the file <em>in situ</em>. The following is an example of the text that should be in the <em>.Renviron</em> file:</p>
+<p>The <em>.Renviron</em> file should contain the proxy settings specific to your location. The file must be in your <em>R</em> home directory before you start <em>R/RStudio</em>, but remember that it is a hidden file, so you will have to have your file view set to show hidden files if you want to see the file <em>in situ</em>. The following is an example of the text that should be in the <em>.Renviron</em> file:</p>
 <pre><code>http_proxy=http://proxyserver.com:8080
 http_proxy_user=ask
 https_proxy=https://proxyserver.com:80
 https_proxy_user=ask</code></pre>
-<p>Creating hidden <em>‘dot’</em> files like <em>.Renviron</em> can be a nightmare in Windows, so here are some on how to add the file from the command prompt (<strong>Note:</strong> You can also run these lines of code in your OSX or Linux terminal):</p>
+<p>Creating hidden <em>‘dot’</em> files like <em>.Renviron</em> can be a nightmare in Windows, so here are some instructions on how to add the file from the command prompt (<strong>Note:</strong> You can also run these lines of code in your OSX or Linux terminal):</p>
 <ol style="list-style-type: decimal">
 <li><p>Open Windows File Explorer;</p></li>
-<li><p>Navigate to your <em>R</em> home directory (e.g., C:);</p></li>
+<li><p>Navigate to your <em>R</em> home directory;</p></li>
 <li><p>Hold down the <em>‘Shift’</em> button and <em>‘Right-click’</em> on the folder. Choose <em>‘Open command window here’</em> from the context menu.</p></li>
-<li><p>Enter the following lines in the command prompt editor (remember to change the proxyserver and port to your settings):</p></li>
+<li><p>Enter the following lines one at a time in the command prompt editor (remember to change the proxyserver and port to your settings):</p></li>
 </ol>
 <pre><code>echo http_proxy=http://proxyserver.com:8080 &gt; .Renviron
 echo http_proxy_user=ask &gt;&gt; .Renviron

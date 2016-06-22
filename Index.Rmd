@@ -49,19 +49,19 @@ If you are using computers in the School of Physiology computer lab, the compute
 **Do not** set the user configuration using the global switch before initializing a new git repository:
 
 ```
-$ git config --global user.name "YOUR NAME"
-$ git config --global user.email "YOUR EMAIL"
+git config --global user.name "YOUR NAME"
+git config --global user.email "YOUR EMAIL"
 
-$ git init <path/to/directory>
+git init <path/to/directory>
 ```
 
 Rather navigate to the folder you want to initiate as a git repositiory and set the configurations as a local user: 
 
 ```
-$ git config user.name "YOUR NAME"
-$ git config user.email "YOUR EMAIL"
+git config user.name "YOUR NAME"
+git config user.email "YOUR EMAIL"
 
-$ git init
+git init
 ```
 
 ### Proxy problems
@@ -72,21 +72,21 @@ If you are working behind a corporate proxy, you may run into problems with push
 Enter the follwing commands in the _terminal_ (OSX or Linux) or _git bash_ (Windows):
 
 ```
-$ git config --global http.proxy http://proxyserver.com:8080/
-$ git config --global https.proxy https://proxy.server.com:8080/
+git config --global http.proxy http://proxyserver.com:8080/
+git config --global https.proxy https://proxy.server.com:8080/
 
 ```
-- Change _proxy.server.com_ to the URL of your proxy server (e.g., _proxyad.wits.ac.za_, _proxyss.wits.ac.za_)
+- Change _proxy.server.com_ to the address of your proxy server (e.g., _proxyad.wits.ac.za_, _proxyss.wits.ac.za_)
 
 - Change _8080_ to the proxy port configured on your proxy server (e.g., _80_)
 
 Try the settings above, but if your proxy screams out for a username and password, add the following _(not a great option on a computer used by multiple users)_:
 
 ```
-$ git config --global http.proxy
+git config --global http.proxy
 http://proxyusername:proxypassword@proxyserver.com:8080/
 
-$ git config --global https.proxy
+git config --global https.proxy
 https://proxyusername:proxypasswordproxy.server.com:8080/
 
 ```
@@ -94,11 +94,11 @@ https://proxyusername:proxypasswordproxy.server.com:8080/
 
 - Change _proxypassword_ to your proxy password
 
-If you want to clear your proxy settings (e.g., if you are working on a laptop that you use at home and at work), enter the following command in the _terminal_ or _git bash_:
+If you want to clear your proxy settings (e.g., if you are working on a laptop that you use at home and at work), enter the following commands in the _terminal_ or _git bash_:
 
 ```
-$ git config --global --unset http.proxy
-$ git config --global --unset https.proxy
+git config --global --unset http.proxy
+git config --global --unset https.proxy
 
 ```
 
@@ -106,7 +106,7 @@ $ git config --global --unset https.proxy
 
 You need to add an _.Renviron_ file to your _R_ home directory. This file is read by _R_ at startup, and needs to include proxy settings if you want to access the internet through _R/RStudio_. 
 
-On OSX and Linux machines, the home directory is usually your user directory. On Windows machines, the home directory is usually the the users 'Documents' directory.
+On OSX and Linux machines the home directory is usually your 'username' directory. On Windows machines the home directory is usually the the users 'Documents' directory.
 
 **OSX and Linux R home directory (example):**
 ```
@@ -123,7 +123,7 @@ If you cannot locate your home directory, enter the following in _R_:
 path.expand("~")
 ```
 
-The _.Renviron_ file should contain the proxy settings for your location. The file must be in your _R_ home directory before you start _R/RStudio_, but remember that this is a hidden file, so you will have to have your file view set to show hidden files if you want to see the file _in situ_. The following is an example of the text that should be in the _.Renviron_ file:
+The _.Renviron_ file should contain the proxy settings specific to your location. The file must be in your _R_ home directory before you start _R/RStudio_, but remember that it is a hidden file, so you will have to have your file view set to show hidden files if you want to see the file _in situ_. The following is an example of the text that should be in the _.Renviron_ file:
 
 ```
 http_proxy=http://proxyserver.com:8080
@@ -132,15 +132,15 @@ https_proxy=https://proxyserver.com:80
 https_proxy_user=ask
 ```
 
-Creating hidden _'dot'_ files like _.Renviron_ can be a nightmare in Windows, so here are some on how to add the file from the command prompt (**Note:** You can also run these lines of code in your OSX or Linux terminal):
+Creating hidden _'dot'_ files like _.Renviron_ can be a nightmare in Windows, so here are some instructions on how to add the file from the command prompt (**Note:** You can also run these lines of code in your OSX or Linux terminal):
 
 1. Open Windows File Explorer;
 
-2. Navigate to your _R_ home directory (e.g., C:\User\username\Documents);
+2. Navigate to your _R_ home directory;
 
 3. Hold down the _'Shift'_ button and _'Right-click'_ on the folder. Choose _'Open command window here'_ from the context menu.
 
-4. Enter the following lines in the command prompt editor (remember to change the proxyserver and port to your settings):
+4. Enter the following lines one at a time in the command prompt editor (remember to change the proxyserver and port to your settings):
 
 ```
 echo http_proxy=http://proxyserver.com:8080 > .Renviron
