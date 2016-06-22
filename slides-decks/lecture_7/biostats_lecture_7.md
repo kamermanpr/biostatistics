@@ -38,7 +38,7 @@ _- sampling distributions_
 Inference: the goal of statistic
 =================================
 
-![inference](./resources/inference.pdf)
+![inference](./resources/inference.png)
 
 Sampling distributions
 ======================
