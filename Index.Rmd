@@ -24,7 +24,7 @@ The biostatistics component of your mid-year exams will count 60% of the final b
 |Lecture 3 |Things to know before you start data analysis|<a href='//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/lectures/lecture_3.html' target='_blank'>Slideshow</a> |
 |Lecture 4 |A (very brief) introduction to plotting in R|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_4/biostats_lecture_4.html' target='_blank'>Slideshow</a> |
 |Lecture 5 and 6 |Cookbook of commonly used statistical tests|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_5/biostats_lecture_5.html' target='_blank'>Slideshow</a> |
-|Lecture 7 |Confidence intervals|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/biostats/biostats_lecture_7/biostats_lecture_7.html' target='_blank'>Slideshow</a> |
+|Lecture 7 |Confidence intervals|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_7/biostats_lecture_7.html' target='_blank'>Slideshow</a> |
 
 _**[More to be added as course progresses]**_
 
