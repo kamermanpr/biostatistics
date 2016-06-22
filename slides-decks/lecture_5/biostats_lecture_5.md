@@ -1,6 +1,6 @@
 
-Lecture 5/6
-===========
+Lecture 5 and 6
+===============
 css: ../custom.css
 transition: none
 width: 960
@@ -10,7 +10,6 @@ autosize: false
 
 
 ## Cookbook of commonly used statistical tests
-
 - Comparing two groups
 - Comparing more than two groups
 
