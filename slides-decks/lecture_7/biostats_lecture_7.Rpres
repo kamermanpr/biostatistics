@@ -1,0 +1,396 @@
+Lecture 7
+=========
+css: ../custom.css
+transition: none
+width: 960
+height: 720
+autosize: false
+
+```{r library_loads, include = FALSE}
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(grid)
+library(scales)
+library(gganimate)
+library(DiagrammeR)
+library(pander)
+library(broom)
+library(Rmisc) # calculate CI
+
+knitr::opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               message = FALSE,
+               cache = FALSE,
+               fig.align = 'center',
+               fig.width = 10,
+               fig.height = 10)
+```
+
+## Confidence intervals
+- Confidence interval of the mean
+- Confidence interval for the difference between two means
+- Confidence interval for ratios and proportions
+- Prediction (tolerance) intervals
+
+<div style="position:fixed;bottom:10%">
+    <h3 style="margin:0;">
+        Introduction to Biostatistics
+    </h3>
+    <p style="font-style:italic;font-size:80%;margin-top:1%;margin-bottom:1%;">
+    By: Peter Kamerman &nbsp&nbsp (view at
+    <a href="//painblogr.org/biostatistics/"target="_blank">painblogR</a>)
+    </p>
+    <img src="./resources/cc-by.png" width="128" style="margin:0;"/>
+</div>
+
+Recap
+=====
+title: hide
+type: aside
+
+A quick recap on: <br>
+_- inference;_<br>
+_- normal distribution;_<br>
+_- sampling distributions_
+
+Inference: the goal of statistic
+=================================
+
+![inference](./resources/inference.pdf)
+
+Sampling distributions
+======================
+type: twocol
+
+#### Starting distribution
+
+![skew](./resources/original-distr.png)
+
+****
+
+#### Sampling distribution
+
+![clt](./resources/central-limit.gif)
+
+$sd$ of sample means = $SEM$
+
+The normal distribution
+=======================
+
+![gaussian](./resources/normal-distr.png)
+
+SEM
+===
+title: hide
+type: aside
+
+$SEM$: The certainty (precision) with which the sample mean ($\bar{x}$) estimates the population mean ($\mu$).
+
+What is a confidence interval?
+==============================
+class: vcenter
+
+### Confidence interval
+
+The range of values within which you will find the true population mean with 95% certainty.
+
+**OR**
+
+If you took many samples from a population and calculated the 95% confidence interval for each sample, then 95% of those confidence intervals would contain the true population mean.
+
+Demonstration
+=============
+type: twocol
+
+```{r ci_demo, eval = FALSE}
+# set seed
+set.seed(1)
+# Generate data
+demo_sample <- rnorm(n = 20000, mean = 0, sd = 1)
+demo_df <- data.frame(sample = demo_sample)
+gg.1 <- ggplot(demo_df) +
+    aes(sample) +
+    geom_density(fill = '#0072B2') +
+    geom_vline(xintercept = 0, colour = '#E69F00',
+               size = 1) +
+    labs(x = '\n', y = '\n') +
+    theme(legend.position = 'none',
+          axis.text.x = element_text(size = 17),
+          axis.title.x = element_text(size = 17),
+          axis.title.y = element_blank(),
+          axis.text.y = element_blank(),
+          axis.ticks = element_blank(),
+          panel.grid.major = element_line(colour = 'gray80', size = 0.3),
+          panel.background = element_blank())
+ggsave('./resources/ci_sample.png', gg.1,
+       width = 6, height = 6, units = 'in')
+
+# Create dataset of samples
+foo <- list()
+namz <- c()
+sampler_ci <- function(data = demo_sample, size = 20, samples = 20){
+    for(i in 1:samples){
+        # Create a list of dataframes by sampling the demo dataset
+        foo[[i]] <- data_frame(sample =
+            sample(x = data, size = size, replace = FALSE))
+    }
+    # Create a vector of names for the dataframes
+    for(j in 1:samples){
+       namz[j] <- paste0('sample_', j)
+    }
+    # Bind the dataframes into one large (wide) dataframe and name each
+    foo <- do.call(cbind, foo)
+    names(foo) <- namz
+    gather(foo, key, value)
+    foo <- foo %>%
+        mutate(cnt = 1:size) %>%
+        gather(key, value, -cnt) %>%
+        select(key, value)
+    foo
+}
+# Run function with defaults
+sample_df <- sampler_ci()
+# Generate mean and CI using Rmsic::group.CI and recode ordering key
+sample_ci <- group.CI(value ~ key, data = sample_df) %>%
+    mutate(key = 1:length(.$value.mean)) %>%
+    mutate(colr = ifelse((.$value.upper < 0 | .$value.lower > 0),
+                         'black', 'red'))
+
+# Plot
+## Multiline title
+gg.2 <- ggplot(sample_ci, aes(x = key, y = value.mean, frame = key)) +
+    geom_hline(yintercept = 0, colour = '#E69F00',
+               size = 1) +
+    geom_pointrange(aes(ymin = value.lower, ymax = value.upper,
+                        colour = colr, cumulative = TRUE)) +
+    labs(y = 'Sample mean (95%CI)\n',
+         x = '\nSample number') +
+    scale_colour_manual(values = c('red', '#0072B2')) +
+    theme(legend.position = 'none',
+          plot.title = element_text(size = 17),
+          axis.text = element_text(size = 17),
+          axis.title = element_text(size = 17),
+          axis.ticks = element_blank(),
+          panel.grid.major = element_line(colour = 'gray80', size = 0.3),
+          panel.background = element_blank())
+gg_animate(gg.2, interval = 0.4, './resources/ci.gif')
+```
+
+### Population
+($~\mu$ = 0,$~\sigma$ = 1, n = 20,000)
+
+![sample_distr](./resources/ci_sample.png)
+
+****
+
+### Random samples
+(20 samples at n = 20 / sample)
+
+![ci](./resources/ci.gif)
+
+
+Confidence intervals
+====================
+class: vcenter
+
+**Are defined by confidence limits:**
+
+- (-100 to -20)
+
+**Report confidence intervals as:**
+
+- (12.3 to 32.5) _**or**_ (+12.3, +32.5)
+
+- _**not**_ (12.3 - 32.5)
+
+Why do you need CIs if you have SEMs?
+====================================
+class: vcenter
+
+
+CIs are more user-friendly than the SEMs
+
+### Example:
+
+
+> **Mean (SEM)**
+
+    10 (3.5) mm
+
+
+> **Mean (95% CI)**
+
+    10 (6.5 to 13.5) mm
+
+Confidence intervals
+====================
+type: twocol
+
+```{r ci_sample_size, eval = FALSE}
+# set seed
+set.seed(1234)
+# create list of mean ci for increasing size of sample
+foo <- list(s20 = CI(sample(demo_sample, 20)),
+             s40 = CI(sample(demo_sample, 40)),
+             s60 = CI(sample(demo_sample, 60)),
+             s80 = CI(sample(demo_sample, 80)))
+# Bind rows
+bar <- data.frame(do.call(rbind, foo))
+row.names(bar) <- NULL
+# Make marker column
+size <- c(20, 40, 60, 80)
+# Join dfs
+precision <- data.frame(cbind(size, bar)) %>%
+    # center around 0
+    mutate(mean_0 = mean + -1*(mean),
+           lower_0 = lower + -1*(mean),
+           upper_0 = upper + -1*(mean),
+           delta = upper_0 - lower_0) %>%
+    arrange(delta)
+# Plot
+gg.3 <- ggplot(data = precision) +
+    aes(x = size, y = mean_0, frame = size) +
+    geom_hline(yintercept = 0, colour = '#E69F00',
+               size = 1) +
+    geom_pointrange(aes(ymin = lower_0, ymax = upper_0,
+                        cumulative = TRUE),
+                    colour = '#0072B2', size = 1.2) +
+    labs(x = 'Sample size\n', y = '\nMean (95% CI)') +
+    coord_flip() +
+    theme(legend.position = 'none',
+          plot.title = element_text(size = 17),
+          axis.text = element_text(size = 17),
+          axis.title = element_text(size = 17),
+          axis.ticks = element_blank(),
+          panel.grid.major = element_line(colour = 'gray80', size = 0.3),
+          panel.background = element_blank())
+gg_animate(gg.3, interval = 0.6, './resources/ci_2.gif')
+```
+
+### Population
+($~\mu$ = 0,$~\sigma$ = 1, n = 20,000)
+
+![sample_distr](./resources/ci_sample.png)
+
+****
+
+### Random samples
+$\uparrow$ precision with $\uparrow$ sample size
+
+![ci_2](./resources/ci_2.gif)
+
+Confidence intervals
+====================
+class: vcenter
+
+### Hypothesis testing with CIs
+
+The confidence interval for the difference between two means specifies a range of values within which the difference between the means of two populations may lie.
+
+If we assume the **NULL** hypothesis is true, then that **interval should include zero**.
+
+Confidence intervals: hypothesis testing
+========================================
+type: twocol
+
+### Using p-values
+**Pros:**
+- Clear-cut yes or no answer
+<br>
+<br>
+
+**Cons:**
+- Arbitrary threshold (_p_< 0.05);
+- Does not provide information on the magnitude of the effect.
+
+****
+
+### Using CIs
+**Pros:**
+- Clear-cut yes or no answer;
+- Provides information on the magnitude of the effect.
+
+Confidence intervals: hypothesis testing
+========================================
+class: vcenter
+
+```{r bp_example, result = 'asis'}
+foo <- data.frame(trial = c(1,2,3,4,5),
+                  ci = c('(-9 to -1)', '(15 to 5)',
+                  '(-15 to -1)', '(-15 to -11)',
+                  '(-9 to 5)'),
+                  stat_p = c('Yes', 'No', 'Yes',
+                             'Yes', 'No'),
+                  clin_p = c('No', 'Uncertain',
+                             'Uncertain', 'Yes',
+                             'No'))
+knitr::kable(foo, align = 'l', format = 'html',
+      caption = 'Interpreting CI for the difference between two means',
+      col.names = c('Trial number', 'CI of reduction in blood pressure', 'p < 0.05', 'Clinically significant*'))
+
+```
+
+<div style="position:relative;bottom:-5%;">
+    <p>* Based on a decrease of 10mmHg relative to placebo</p>
+    <p style="font-size:70%;font-style:italic;">(Luus et al., 1989)</p>
+</div>
+
+Confidence intervals
+====================
+class: vcenter
+
+**Confidence intervals can be calculated for most estimates**
+
+_(e.g., medians, ratios, regression and correlation coefficients)_
+
+**Tip:**
+
+- Mean difference in the CI for ratios must exclude 1 to be significant.
+
+Assignment
+==========
+class: vcenter
+
+Practice applying the significance tests you learned about in this lecture by completing [assignment 4](https://painblogr.org/biostatistics#assignments).
+
+The assignment also gives you a chance to practice using skills acquired in earlier lessions (_rmarkdown_, _git_, _GitHub_, _data cleaning_, and _plotting_).
+
+Prediction intervals
+====================
+
+### Definition of a confidence interval:
+- Interval in which the true population mean will fall with a certain probability;
+
+- Confidence intervals are analogous to SEM:
+$95\% CI: \bar{x} - (1.96 \times SEM)~to~\bar{x} + (1.96 \times SEM)$
+
+### Definition of a prediction interval:
+- An interval in which another individual observation will fall with a certain probability;
+
+- Prediction intervals are analogous to SD:
+$95\% CI: \bar{x} - (1.96 \times SD)~to~\bar{x} + (1.96 \times SD)$
+
+Web resources
+=============
+class: vcenter
+
+_**Basics**_
+- Confidence intervals: [Statistics Glossry](http://www.stats.gla.ac.uk/steps/glossary/confidence_intervals.html), by Valerie J Easton & John H McColl.
+
+- What is a Confidence Interval?: [Stat Trek](http://stattrek.com/estimation/confidence-interval.aspx), by Harvey Berman
+
+
+tl;dr
+===================================
+
+<div class="hcenter" style="width:80%;">
+    <p style="font-size:150%;font-style:italic;text-align:center;margin-top:60px;">
+    "... a hypothesis test tells us whether the observed data are consistent with the null hypothesis, and a confidence interval tells us which hypotheses are consistent with the data."
+    </p>
+    <p style="text-align:center">
+     William C. Blackwelder<br>
+        <span style="font-style:italic;font-size:80%;">(Biostatistician, University of Maryland)</span>
+    </p>
+</div>
