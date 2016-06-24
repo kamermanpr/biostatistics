@@ -30,7 +30,7 @@ _**[More to be added as course progresses]**_
 
 ## Assignments
 
-The assignments are your chance to get hands-on experience applying what you learned in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.
+The assignments are your chance to get hands-on experience applying what you learn in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.
 
 |Tutorial                   |files                                |
 |:--------------------------|:------------------------------------|
@@ -44,81 +44,96 @@ _**[More to be added as course progresses]**_
 
 ## Resources
 
-If you are using computers in the School of Physiology computer lab, the computers may not have the software installed, or some/all of the software may be outdated. If so, please install/update the software. Because computers in the computer laboratory have multiple users, please note the following:
+### Getting started
 
-**Do not** set the user configuration using the global switch before initializing a new git repository:
+#### Configuring git
+**Global configuration**  
 
-```
-git config --global user.name "YOUR NAME"
-git config --global user.email "YOUR EMAIL"
-
-git init <path/to/directory>
-```
-
-Rather navigate to the folder you want to initiate as a git repositiory and set the configurations as a local user: 
+You need to configure _git_ after you first install it. If you are going to be the only one using the computer, then open _Terminal_ (OSX and Linux) or _Git Bash_ (Windows) and enter the following text _(substituting your username and email address as required)_:
 
 ```
-git config user.name "YOUR NAME"
-git config user.email "YOUR EMAIL"
+git config --global user.name "Your Name"
+git config --global user.email your@email.com
 
+```
+
+You are then ready to initiate your first _git_ repository:
+
+```
+git init <path/to/directory> 
+
+# NOTE: There is no need to add the path if you already 
+# are in the directory you want to initiate.
+```
+
+**Local project configuration**  
+
+If you configure your computer using the ```--global``` tag, you only have to enter this information once. Thereafter, _git_ will assume that any new repository initiations/changes are being made by you. As you may expect then, configuring your user details with the ```--global``` tag is not a good idea if the computer you use has multiple users working, for example, through a 'Guest Account'. In that situation, rather individually set the user configuration for each directory (project) you initiate as follows: 
+
+- Open _Terminal_ (OSX and Linux) or _Git Bash_ (Windows) and navigate to the directory you want to initiate as a repository;
+
+- Enter the following text _(substituting your username and email address as required)_:
+
+```
 git init
+git config user.name "Your Name"
+git config user.email your@email.com
 ```
+
+Your user information will only be associated with the repository you initiated. 
+
+### Pushing commits to a GitHub remote
+
+The GIF below demonstrates the process of initiating folder as a git repository, configuring it, adding a file, and _pushing_ the file to an empty GitHub repository. It also shows how to add files in GitHub and then _pull_ them locally. 
+
+When pushing to the remote, you will be asked for a username and password. Input the username and password for your _GitHub_ account. If you get this username/password request everytime you try push to the remote, and you are on your own computer, then instead of typing in your _GitHub_ account password, get a _personal access token_ and paste that in the password dialogue box. That should stop the username/password requests. Instructions on how to get a _personal access token_ can be found [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
+
+<p style="text-align:center">
+<img src="./images/git-push.gif" style="max-width:100%;height:auto;">
+</p>
 
 ### Proxy problems
+
 If you are working behind a corporate proxy, you may run into problems with pushing _git_ commits to your _remote_, and installing packages in _R_. The following options should help solve the problem.
 
 #### For git
 
-Enter the follwing commands in the _terminal_ (OSX or Linux) or _git bash_ (Windows):
+_(NOTE: All settings can be set specifically for the local project by omitting the ```--global``` tag.)_  
+
+Enter the follwing commands in the _Terminal_ (OSX or Linux) or _Git Bash_ (Windows) _(substituting your server details as required)_:
 
 ```
-git config --global http.proxy http://proxyserver.com:8080/
-git config --global https.proxy https://proxy.server.com:8080/
+git config --global http.proxy http://proxyserver.com:8080
+git config --global https.proxy https://proxy.server.com:8080
+```
+- Change _proxy.server.com_ to the address of your proxy server
+
+- Change _8080_ to the proxy port configured on your proxy server
+
+Try the settings above, but if your proxy protests that it needs a username and password ('407 Authentication Warning'), add the following **(not a great option on a computer used by multiple users)**:
 
 ```
-- Change _proxy.server.com_ to the address of your proxy server (e.g., _proxyad.wits.ac.za_, _proxyss.wits.ac.za_)
+git config --global http.proxy http://proxyusername:proxypassword@proxyserver.com:8080
 
-- Change _8080_ to the proxy port configured on your proxy server (e.g., _80_)
-
-Try the settings above, but if your proxy screams out for a username and password, add the following _(not a great option on a computer used by multiple users)_:
-
-```
-git config --global http.proxy
-http://proxyusername:proxypassword@proxyserver.com:8080/
-
-git config --global https.proxy
-https://proxyusername:proxypasswordproxy.server.com:8080/
-
+git config --global https.proxy https://proxyusername:proxypasswordproxy.server.com:8080
 ```
 - Change _proxyusername_ to your proxy username
 
 - Change _proxypassword_ to your proxy password
 
-If you want to clear your proxy settings (e.g., if you are working on a laptop that you use at home and at work), enter the following commands in the _terminal_ or _git bash_:
+If you want to clear your proxy settings (e.g., if you are working on a laptop that you use at home and at work), enter the following commands in _Terminal_ or _Git Bash_:
 
 ```
 git config --global --unset http.proxy
 git config --global --unset https.proxy
-
 ```
 
 #### For R/RStudio
 
 You need to add an _.Renviron_ file to your _R_ home directory. This file is read by _R_ at startup, and needs to include proxy settings if you want to access the internet through _R/RStudio_. 
 
-On OSX and Linux machines the home directory is usually your 'username' directory. On Windows machines the home directory is usually the the users 'Documents' directory.
+On OSX and Linux machines the home directory is usually your 'user.name' directory (```/User/user.name```). On Windows machines the home directory is usually the the users 'Documents' library (```C:\Users\user.name\Documents```). If you cannot locate your home directory, enter the following in _R_:
 
-**OSX and Linux R home directory (example):**
-```
-/User/username
-```
-
-**Windows R home directory (example):**
-```
-C:\Users\username\Documents
-```
-
-If you cannot locate your home directory, enter the following in _R_:
 ```
 path.expand("~")
 ```
@@ -132,26 +147,28 @@ https_proxy=https://proxyserver.com:80
 https_proxy_user=ask
 ```
 
-Creating hidden _'dot'_ files like _.Renviron_ can be a nightmare in Windows, so here are some instructions on how to add the file from the command prompt (**Note:** You can also run these lines of code in your OSX or Linux terminal):
+If you don't know how to create a hidden _'dot'_ file, here are some instructions on how to do so from _Terminal_ (OSX and Linux) or _Git Bash_ (Windows):
 
-1. Open Windows File Explorer;
+1. Open _Terminal_ or _Git Bash_.
 
-2. Navigate to your _R_ home directory;
+2. Navigate to your _R_ home directory.
 
-3. Hold down the _'Shift'_ button and _'Right-click'_ on the folder. Choose _'Open command window here'_ from the context menu.
-
-4. Enter the following lines one at a time in the command prompt editor (remember to change the proxyserver and port to your settings):
+3. Copy and paste the following text at the command prompt _(remember to change the proxyserver and port as required)_:
 
 ```
-echo http_proxy=http://proxyserver.com:8080 > .Renviron
-echo http_proxy_user=ask >> .Renviron
-echo https_proxy=https://proxyserver.com:8080 >> .Renviron
-echo https_proxy_user=ask >> .Renviron
+(echo http_proxy=http://proxyserver.com:8080
+echo http_proxy_user=ask
+echo https_proxy=https://proxyserver.com:8080
+echo https_proxy_user=ask) > .Renviron
 ```
 
-The first line creates a file called _.Renviron_ with _http_proxy=http://proxyserver.com:8080_ as the first line of text. The subsequent lines append additional text to the preceeding line of text.
+When you are outside of the work setting and can access the internet without a proxy, either rename the _.Renviron_ file, move the file to another directory, or delete the file before opening _R/RStudio_. 
 
-When you are outside of the work setting, either rename the _.Renviron_ file, move the file to another directory, or delete the file before opening _R/RStudio_. 
+In addition to adding the _.Renviron_ file, you also need to change some settings in _RStudio_. The GIF below shows you the steps on a Windows machine, but it is the same on OSX and Linux, expect there is no _'Use Internet Explorer library/proxy for HTTP'_ checkbox. 
+
+<p style="text-align:center">
+<img src="./images/proxy.gif" style="max-width:100%;height:auto;">
+</p>
 
 ### Software downloads
 
@@ -173,7 +190,7 @@ install.packages(c('knitr', 'rmarkdown', 'dplyr',
 ```
 
 <p style="text-align:center">
-<img src="./images/install-packages-1.gif" style="max-width:80%;height:auto;">
+<img src="./images/install-packages-1.gif" style="max-width:100%;height:auto;">
 </p>
 
 <br>
@@ -183,7 +200,7 @@ install.packages(c('knitr', 'rmarkdown', 'dplyr',
 <br>
 
 <p style="text-align:center">
-<img src="./images/install-packages-2.gif" style="max-width:80%;height:auto;">
+<img src="./images/install-packages-2.gif" style="max-width:100%;height:auto;">
 </p>
 
 ### Free courses

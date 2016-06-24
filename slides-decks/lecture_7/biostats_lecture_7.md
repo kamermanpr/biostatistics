@@ -35,7 +35,7 @@ _- inference;_<br>
 _- normal distribution;_<br>
 _- sampling distributions_
 
-Inference: the goal of statistic
+Inference: the goal of statistics
 =================================
 
 ![inference](./resources/inference.png)
@@ -80,8 +80,8 @@ The range of values within which you will find the true population mean with 95%
 
 If you took many samples from a population and calculated the 95% confidence interval for each sample, then 95% of those confidence intervals would contain the true population mean.
 
-Demonstration
-=============
+Demonstration: Mean (95% CI)
+============================
 type: twocol
 
 
@@ -103,7 +103,7 @@ Confidence intervals
 ====================
 class: vcenter
 
-**Are defined by confidence limits:**
+**Confidence intervals are defined by confidence limits:**
 
 - (-100 to -20)
 
@@ -111,7 +111,7 @@ class: vcenter
 
 - (12.3 to 32.5) _**or**_ (+12.3, +32.5)
 
-- _**not**_ (12.3 - 32.5)
+- _**not**_ (12.3 - 32.5)$\rightarrow$ Can be ambiguous when there are negative numbers (-32.5 - -12.3)
 
 Why do you need CIs if you have SEMs?
 ====================================
@@ -130,7 +130,9 @@ CIs are more user-friendly than the SEMs
 
 > **Mean (95% CI)**
 
-    10 (6.5 to 13.5) mm
+
+
+    10 (3.1 to 18.9) mm
 
 Confidence intervals
 ====================
@@ -204,7 +206,7 @@ class: vcenter
   </tr>
   <tr>
    <td style="text-align:left;"> 2 </td>
-   <td style="text-align:left;"> (15 to 5) </td>
+   <td style="text-align:left;"> (-15 to 5) </td>
    <td style="text-align:left;"> No </td>
    <td style="text-align:left;"> Uncertain </td>
   </tr>
@@ -246,16 +248,8 @@ _(e.g., medians, ratios, regression and correlation coefficients)_
 
 - Mean difference in the CI for ratios must exclude 1 to be significant.
 
-Assignment
-==========
-class: vcenter
-
-Practice applying the significance tests you learned about in this lecture by completing [assignment 4](https://painblogr.org/biostatistics#assignments).
-
-The assignment also gives you a chance to practice using skills acquired in earlier lessions (_rmarkdown_, _git_, _GitHub_, _data cleaning_, and _plotting_).
-
-Prediction intervals
-====================
+Prediction intervals vs CIs
+===========================
 
 ### Definition of a confidence interval:
 - Interval in which the true population mean will fall with a certain probability;
@@ -280,7 +274,7 @@ _**Basics**_
 
 
 tl;dr
-===================================
+=====
 
 <div class="hcenter" style="width:80%;">
     <p style="font-size:150%;font-style:italic;text-align:center;margin-top:60px;">
