@@ -1,4 +1,4 @@
-Lecture 5
+Lecture 4
 =========
 css: ../custom.css
 transition: none
@@ -8,8 +8,9 @@ autosize: false
 
 
 
-## Commonly used statistical tests
+## A (very brief) introduction to data presentation:
 
+- Style guide for presenting data in text, tables, and figures
 - Base R graphics
 - The grammer of graphics and ggplot2
 
@@ -24,11 +25,366 @@ autosize: false
     <img src="./resources/cc-by.png" width="128" style="margin:0;"/>
 </div>
 
+Base graphics
+=============
+title: hide
+type: aside
+
+Reporting data in text
+
+Significant figures
+===================
+
+**Accuracy vs Precision**
+
+<img class="center" style="height:500px;margin-top:40px" src="./resources/precision_accuracy.svg">
+
+<div class="footer" style="font-size:80%">
+     Mr Evans' Science Website:
+     <a href="//sites.google.com/a/apaches.k12.in.us/mr-evans-science-website/accuracy-vs-precision">Accuracy vs Precision</a>
+</div>
+
+Significant figures
+===================
+class: vcenter
+
+**Rules:**
+
+- The level of precision (number of significant figures) is determined by the precision of the instrument used.
+
+- The level of precision reported is determined by what level of precision conveys useful information to the reader.
+
+
+Significant figures
+===================
+class: vcenter
+
+### Reporting calculated values
+
+**Rules:**
+
+- The accuracy of the final calculated value is limited by the least accurate measurement in the calculation.
+
+    _NB: Never round-off intermediate values in a calculation_
+
+
+Significant figures
+===================
+type: twocol
+
+**Example**
+
+Participants' ages recorded to the nearest year
+
+
+|Participant ID | Age (years)|
+|:--------------|-----------:|
+|P01            |          24|
+|P02            |          32|
+|P03            |          29|
+|P04            |          18|
+|P05            |          25|
+|P06            |          31|
+|P07            |          24|
+
+****
+<p style="padding-bottom:50%;"> </p>
+
+$\bar{x}$ _(calculated):_ **26.14286** years
+
+$\bar{x}$ _(reported):_ **26** years
+
+Reporting statistics *
+====================
+type: twocol
+
+<div class="footer" style="font-size:80%">
+    * Principles apply to <em>non-parametric</em><br> statistics too.
+</div>
+
+### _p_-values
+- Report exact _p_-values to 2 or 3 decimal places.
+- Never report _p_ > 0.05 as **NS**
+
+Examples: <br>
+_p_ = 0.41 (large p-value) <br>
+_p_ = 0.021 (small p-value) <br>
+_p_ < 0.001 (very small p-value)
+
+****
+
+### ANOVA _(F)_
+- Report test statistic to 2 decimal places
+- Always report with:
+    1. degrees of freedom
+    2. _p_-value
+- For two-way ANOVA, report _F_-values for all **main effects** and **interaction** terms.
+
+Example: <br>
+_F_(2, 27) = 8.66, _p_ = 0.009
+
+Reporting statistics *
+====================
+type: twocol
+
+<div class="footer" style="font-size:80%">
+    * Principles apply to <em>non-parametric</em> statistics too.
+</div>
+
+### t-test _(t)_
+- Report test statistic to 2 decimal places
+- Always report with:
+    1. degrees of freedom
+    2. _p_-value
+
+Example: <br>
+_t_(33) = 2.10, _p_ = 0.034
+
+****
+
+### Chi-squared $(\chi^2)$
+- Report test statistic to 2 decimal places
+- Always report with:
+    1. degrees of freedom **and** sample size
+    2. _p_-value
+
+Example: <br>
+$\chi^2$(2, n = 170) = 14.14, _p_ = 0.01
+
+Reporting statistics *
+====================
+type: twocol
+
+<div class="footer" style="font-size:80%">
+    * Principles apply to <em>non-parametric</em> statistics too.
+</div>
+
+### Regression coefficients
+- Report coefficient to 2 decimal places.
+- Always report with:
+    1. test statistic with degrees of freedom
+    2. _p_-value
+
+Example: <br>
+$\beta$ = -0.34, _t_(225) = 6.53, _p_ < 0.001
+
+****
+
+### Regression R-squared
+- Report _R^2_ to 2 decimal places
+- Always report with:
+    1. test statistic with degrees of freedom
+    2. _p_-value
+
+Example: <br>
+_R^2_ = 0.12, _F_(1, 225) = 42.64, _p_ < 0.001
+
+General reporting
+=================
+class: vcenter
+
+- Never use a comma to split large numbers.<br>
+    _(e.g., 1000000 **not** 1,000,000)_
+
+- Do not use a comma instead of decimal point.<br>
+    _(e.g., 2.3 **not** 2,3)_
+
+- Always indicate how summative values are presented.<br>
+    _(e.g., mean and standard deviation, or mean and 95% confidence interval)_
+
+General reporting
+=================
+class: vcenter
+
+- Report mean and standard deviation in the	form:<br>
+    _37.2 $\unicode{x2103}$ (SD 2.1) or 37.2 $\unicode{x2103}$ (2.1), **not** 37.2 $\unicode{x2103}$ ($\pm$ 2.1)_
+
+- Report confidence intervals as:<br>
+    _12.3 to 32.5 or [+12.3, +32.5], **not** 12.3-32.5_
+
+- Always use SI units, unless there is a historical convention.<br>
+    _(e.g., mmHg for blood pressure)_
+
+
+
+General reporting
+=================
+class: vcenter
+
+- Report mean and standard deviation in the	form:<br>
+    _37.2 $\unicode{x2103}$ (SD 2.1) or 37.2 $\unicode{x2103}$ (2.1), **not** 37.2 $\unicode{x2103}$ ($\pm$ 2.1)_
+
+- Report confidence intervals as:<br>
+    _12.3 to 32.5 or [+12.3, +32.5], **not** 12.3-32.5_
+
+- Always use SI units, unless there is a historical convention.<br>
+    _(e.g., mmHg for blood pressure)_
+
+Scientific notation
+===================
+class: vcenter
+
+**Solidus notation vs Index notation**
+
+Example:
+
+$VO_{2~max}~=~~~~ml~/~min.kg$ (solidus notation)
+
+$~~~~~~~~~~~~~=~~~~ml.min^{-1}.kg^{-1}$ (index notation)
+
+$~~~~~~~~~~~~~=~~~~ml~/~min~/~kg$ (never use two _'/'_ marks in a unit)
+
+Tables
+======
+title: hide
+type: aside
+
+Reporting data in tables
+
+Tables
+======
+
+**Use a table when:**
+
+- The dataset contains relatively few numbers.
+    - It is hard a reader to assimilate and interpret many tabulated numbers
+    - In presentations the maximum size should be limited to: 3 x 3
+
+- The precise value is crucial to your argument and a graph would not convey the same level of precision.
+    - For example, when it is important that the reader knows that the result was -150.352 $^{\circ}C$ and not -150.4 $^{\circ}C$
+
+Table design
+============
+class: vcenter
+
+- Give an informative title (and number sequentially);
+
+- Arrange data you want to compare down columns;
+
+- Ensure row names and column headings are short, but informative, and include units of measurement, type of error value, and sample size;
+
+- Pay attention to significant figures, and align numbers down columns;
+
+Table design
+============
+class: vcenter
+
+**...contd**
+
+- Do not use vertical lines;
+
+- Use minimal horizontal lines;
+
+- Use footnotes to explain abbreviations and to provide additional context.
+
+Example
+=======
+class: center
+
+<div class="basic">
+    <h3>Bad table</h3>
+
+    <table>
+        <tr>
+            <th rowspan="2">Variable</th>
+            <th colspan="4">Group</th>
+        </tr>
+        <tr>
+            <td>Control</td>
+            <td>Test</td>
+            <td>Control</td>
+            <td>Test</td>
+        </tr>
+        <tr>
+            <td>Light</td>
+            <td>12</td>
+            <td>12</td>
+            <td>16</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>5 days</td>
+            <td>70.3</td>
+            <td>60.4</td>
+            <td>75</td>
+            <td>52.4</td>
+        </tr>
+        <tr>
+            <td>10 days</td>
+            <td>90</td>
+            <td>78</td>
+            <td>100</td>
+            <td>81</td>
+        </tr>
+    </table>
+</div>
+
+Example
+=======
+class: center
+
+<div class="betterbasic">
+    <h3>Good table</h3>
+
+    <table>
+      <caption style="font-size:110%;font-weight:bold;text-align:left;">Table 1. Exposure to high soil salinity reduces wheat growth </caption>
+      <tr style="border-top: 1px solid #000000;">
+        <th rowspan="2">Group<sup>&dagger;</sup></th>
+        <th rowspan="2">Light exposure<br>(hours/day)</th>
+        <th colspan="2" style="text-align: center;">
+            Height of plant (mm)<br>[mean (SD)]</th>
+      </tr>
+      <tr style="border-top: 1px solid #000000;">
+        <td style="font-weight: bold;">5 days after germination</td>
+        <td style="font-weight: bold;">10 days after germination</td>
+      </tr>
+      <tr style="border-top: 1px solid #000000;">
+        <td>Control</td>
+        <td>12</td>
+        <td>70.3 (13.2)</td>
+        <td>90.3 (15.1)</td>
+      </tr>
+      <tr>
+        <td>Saline</td>
+        <td>12</td>
+        <td>60.4 (5.1)*</td>
+        <td>78.3 (13.5)*</td>
+      </tr>
+      <tr>
+        <td>Control</td>
+        <td>16</td>
+        <td>75.0 (9.4)</td>
+        <td>100.5 (6.4)</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #000000;">
+        <td>Saline</td>
+        <td>16</td>
+        <td>52.4 (7.9)*</td>
+        <td>81.3 (12.2)*</td>
+      </tr>
+      <tfoot style="font-size:70%;line-height:120%;">
+        <tr>
+            <td colspan="4">* p < 0.05: corrected p-value for the comparison of saline vs control at a given light expsoure and growth duration. </td>
+        </tr>
+        <tr>
+            <td colspan="4">&dagger; Salinity measured as total amount of soluble salts in the soil, expressed in parts per million (Control soil < 13 ppm; Saline soil > 15 ppm).</td>
+        </tr>
+      </tfoot>
+    </table>
+</div>
+
+Plots
+=====
+title: hide
+type: aside
+
+Reporting data in plots
+
 Data visualization
 ==================
 
 <div class="center", style="width:80%;">
-    <p style="font-size:150%;font-style:italic;text-align:center;margin-top:60px;">
+    <p style="font-size:150%;font-style:italic;text-align:center;">
     "The greatest value of a picture is when it forces us to notice what we never expected to see."
     </p>
     <p style="text-align:center">
@@ -37,6 +393,36 @@ Data visualization
     </p>
 </div>
 
+Plots design
+============
+
+**Plots should:**
+
+- Tell a story..._so choose a plot type that complements the data._
+
+- Be clear and uncluttered
+    - Watch out for:
+        - over-crowding of axes
+        - plotting too many things on one plot (try faceting)
+        - unclear axis titles and absence of measurement units
+        - distorted axes (e.g., truncated)
+        - inappropriate use of colour (5-10% of people with Y chromosomes are colourblind)
+
+Plots design
+============
+
+**...contd**
+
+- In other words, plots must have:
+    - Clearly labeled axis titles
+    - Appropriate axis ranges, labeled at appropriate intervals
+    - A clear legend (placed below the plot)
+    - an appropriate colour palette
+
+- Avoid using pie-charts to compare proportions
+
+- Avoid using barplots _(rather use boxplots and/or scatterplots)_
+
 Types of graphical analysis
 ===========================
 type: twocol
@@ -44,7 +430,7 @@ type: twocol
 **For exploratory analysis**
 * Getting to know your data
 * Rough and ready
-<img src="./resources/rough-1.pdf" title="plot of chunk rough" alt="plot of chunk rough" style="display: block; margin: auto;" />
+<img src="./resources/rough-1.svg" title="plot of chunk rough" alt="plot of chunk rough" style="display: block; margin: auto;" />
 
 ****
 
@@ -52,7 +438,7 @@ type: twocol
 * Presenting your data to others
 * Tells a standalone story
 * Polished
-<img src="./resources/polished-1.pdf" title="plot of chunk polished" alt="plot of chunk polished" style="display: block; margin: auto;" />
+<img src="./resources/polished-1.svg" title="plot of chunk polished" alt="plot of chunk polished" style="display: block; margin: auto;" />
 
 Base graphics
 =============
@@ -107,27 +493,27 @@ plot(x = airquality$Ozone,
      y = airquality$Temp)
 ```
 
-<img src="./resources/unnamed-chunk-2-1.pdf" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="./resources/scatter_plot-1.svg" title="plot of chunk scatter_plot" alt="plot of chunk scatter_plot" style="display: block; margin: auto;" />
 
 Examples
 ========
 **Boxplots**
 
 ```r
-boxplot(airquality$Ozone~airquality$Month)
+boxplot(airquality$Ozone ~ airquality$Month)
 ```
 
-<img src="./resources/unnamed-chunk-3-1.pdf" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="./resources/boxplot-1.svg" title="plot of chunk boxplot" alt="plot of chunk boxplot" style="display: block; margin: auto;" />
 
 Examples
 ========
 **Histograms**
 
 ```r
-par(cex.label = 1.3, cex = 2, mar = c(4,4,1,1))
+hist(airquality$Ozone)
 ```
 
-<img src="./resources/unnamed-chunk-4-1.pdf" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="./resources/histogram-1.svg" title="plot of chunk histogram" alt="plot of chunk histogram" style="display: block; margin: auto;" />
 
 Examples
 ========
@@ -138,18 +524,18 @@ foo <- table(mtcars$cyl)
 barplot(foo)
 ```
 
-<img src="./resources/unnamed-chunk-5-1.pdf" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="./resources/bar_chart-1.svg" title="plot of chunk bar_chart" alt="plot of chunk bar_chart" style="display: block; margin: auto;" />
 
 Examples
 ========
 **Mosaic plots**
 
 ```r
-bar <- xtabs(~mtcars$cyl + mtcars$am)
+bar <- xtabs(~ mtcars$cyl + mtcars$am)
 mosaicplot(bar)
 ```
 
-<img src="./resources/unnamed-chunk-6-1.pdf" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" style="display: block; margin: auto;" />
+<img src="./resources/mosaic_plot-1.svg" title="plot of chunk mosaic_plot" alt="plot of chunk mosaic_plot" style="display: block; margin: auto;" />
 
 Improving your plot
 ===================
@@ -167,49 +553,157 @@ _(find more parameters with `?par`)_
 
 Examples
 ========
+type: twocol
+
 
 ```r
 plot(x = airquality$Ozone,
      y = airquality$Temp,
-     main = 'Look, blue traingles',
-     xlab = 'Ozone', ylab = 'Temperature',
-     pch = 24, col = 'blue',
-     xlim = c(0, 200), ylim = c(50, 100))
+     xlab = 'Ozone',       # x-axis label
+     ylab = 'Temperature', # y-axis label
+     pch = 24,             # open triangles
+     col = 'blue',         # colour
+     xlim = c(0, 200),     # x-axis limits
+     ylim = c(50, 100))    # y-axis limits
 ```
 
-<img src="./resources/unnamed-chunk-7-1.pdf" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
-
-Adding to your plot
-===================
-Once you have the plot, you can add to it.
-
-**Add an abline**
-<img src="./resources/unnamed-chunk-8-1.pdf" title="plot of chunk unnamed-chunk-8" alt="plot of chunk unnamed-chunk-8" style="display: block; margin: auto;" />
+<img src="./resources/scatter_prettify_2-1.svg" title="plot of chunk scatter_prettify_2" alt="plot of chunk scatter_prettify_2" style="display: block; margin: auto;" />
 
 Adding to your plot
 ===================
 type: twocol
 
-**For example, add:**
-- `abline()`
-- `lines()`
-- `points()`
-- `text()`
+Once you have the plot, you can add to it.
+
+**For example, first the main plot**
+
+    plot(x, y, ...)
+
+**...and then add**
+
+    abline()
+    lines()
+    points()
+    text()
 
 ****
 
-![plot of chunk fancify](./resources/fancify-1.pdf)
+![plot of chunk fancify](./resources/fancify-1.svg)
+
+Adding to your plot
+===================
+type: twocol
+
+**Add an abline**
+
+```r
+plot(...)
+
+# Add
+## Vertical line
+abline(v = 100)
+
+## Horizontal line
+abline(h = 70)
+
+## Regression line
+fit <- lm(airquality$Ozone ~ airquality$Temp)
+
+abline(fit)
+```
+
+****
+
+![plot of chunk ablines_2](./resources/ablines_2-1.svg)
+
+Adding to your plot
+===================
+type: twocol
+
+**Add lines**
+
+```r
+plot(...)
+
+# Add
+## Lowess smoother
+sm_fit <- lowess(airquality$Ozone,
+                 airquality$Temp,
+                 delta = 200*0.01)
+
+lines(sm_fit)
+```
+
+****
+
+![plot of chunk lowess_2](./resources/lowess_2-1.svg)
+
+Adding to your plot
+===================
+type: twocol
+
+**Add points**
+
+```r
+plot(...)
+
+# Add
+## points
+points(x = 190,
+       y = 55,
+       cex = 3,
+       pch = 19)
+```
+
+****
+
+![plot of chunk points_2](./resources/points_2-1.svg)
+
+Adding to your plot
+===================
+type: twocol
+
+**Add text**
+
+```r
+plot(...)
+
+# Add
+## text
+text(x = 160, y = 90,
+     'lowess')
+text(x = 160, y = 72,
+     'horizontal')
+text(x = 106, y = 57,
+     'vertical')
+text(x = 80, y = 60,
+     'regression')
+text(x = 190, y = 62,
+     'point')
+```
+
+****
+
+![plot of chunk text_2](./resources/text_2-1.svg)
 
 Saving your plot
 ================
-You can save your plot to file by specifying the graphics device before you start plotting the figure [e.g., `png()`, `pdf()`]. I like _pdf_ because the image is saved in vector format.
+Open a graphics device before starting the plot
 
-Remember to give a file name [e.g., `pdf('foo.pdf')`].
+    png('foo_chart.png')
 
-For _pdf_ outputs, you can also change the page orientation to landscape [e.g., `pdf('foo.pdf, paper = 'a4r')`].
+    # Remember to give the file a name
+    # The default path is the working directory
+    # Many options [e.g., bmp(), jpeg(), pdf()]
 
-If you open a device, remember to close it at the end [`dev.off()`], otherwise the file won't save. By default, the file will be saved to your working directory.
+Plot your figure
+
+    plot(x = foo$x, y = foo$y)
+
+And the close the graphics device at the end (**Important**)
+
+    dev.off()
 
 Example
 =======
@@ -219,6 +713,8 @@ class: vcenter
 ```r
 # Open the graphics device
 pdf('foo.pdf', paper = 'a4r')
+    # 'a4' = portrait (default)
+    # 'a4r' = landscape
 
 # Plot the figure
 plot(x = airquality$Ozone, y = airquality$Temp,
@@ -278,7 +774,7 @@ class: vcenter
 ggplot2
 =======
 Data and co-ordinatre system
-<img class="center" style="z-index:-1" src="./resources/ggplot-0.pdf">
+<img class="center" style="z-index:-1" src="./resources/ggplot-0.svg">
 
 <div class="footer" style="font-size:80%">
      Garret Grolemund.<a href="//cdn.oreillystatic.com/en/assets/1/event/120/ggvis_%20Interactive,%20intuitive%20graphics%20in%20R%20Presentation.pdf">
@@ -288,7 +784,7 @@ Data and co-ordinatre system
 ggplot2
 =======
 Mapping data to a geom
-<img class="center" style="z-index:-1" src="./resources/ggplot-1.pdf">
+<img class="center" style="z-index:-1" src="./resources/ggplot-1.svg">
 
 <div class="footer" style="font-size:80%">
      Garret Grolemund.<a href="//cdn.oreillystatic.com/en/assets/1/event/120/ggvis_%20Interactive,%20intuitive%20graphics%20in%20R%20Presentation.pdf">
@@ -298,7 +794,7 @@ Mapping data to a geom
 ggplot2
 =======
 Mapping data to an aesthetic (colour)
-<img class="center" style="z-index:-1" src="./resources/ggplot-2.pdf">
+<img class="center" style="z-index:-1" src="./resources/ggplot-2.svg">
 
 <div class="footer" style="font-size:80%">
      Garret Grolemund.<a href="//cdn.oreillystatic.com/en/assets/1/event/120/ggvis_%20Interactive,%20intuitive%20graphics%20in%20R%20Presentation.pdf">
@@ -308,7 +804,7 @@ Mapping data to an aesthetic (colour)
 ggplot2
 =======
 Mapping data to an aesthetic (shape)
-<img class="center" style="z-index:-1" src="./resources/ggplot-3.pdf">
+<img class="center" style="z-index:-1" src="./resources/ggplot-3.svg">
 
 <div class="footer" style="font-size:80%">
      Garret Grolemund.<a href="//cdn.oreillystatic.com/en/assets/1/event/120/ggvis_%20Interactive,%20intuitive%20graphics%20in%20R%20Presentation.pdf">
@@ -318,7 +814,7 @@ Mapping data to an aesthetic (shape)
 ggplot2
 =======
 Mapping data onto the co-ordinate system
-<img class="center" style="z-index:-1" src="./resources/ggplot-4.pdf">
+<img class="center" style="z-index:-1" src="./resources/ggplot-4.svg">
 
 <div class="footer" style="font-size:80%">
      Garret Grolemund.<a href="//cdn.oreillystatic.com/en/assets/1/event/120/ggvis_%20Interactive,%20intuitive%20graphics%20in%20R%20Presentation.pdf">

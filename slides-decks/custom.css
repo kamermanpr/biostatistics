@@ -38,6 +38,39 @@
 
 tr:nth-child(even) {background-color: #f2f2f2}
 
+.reveal .basic th,
+.reveal .basic td,
+.reveal .basic tr {
+    text-align: center;
+    padding: 8px
+    vertical-align: middle;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.reveal .basic th {
+    font-weight: bold;
+}
+
+.reveal .betterbasic table,
+.reveal .betterbasic th,
+.reveal .betterbasic td,
+.reveal .betterbasic tr {
+    text-align: left;
+    padding: 8px
+    vertical-align: middle;
+    border: none;
+    outline: none;
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.reveal .betterbasic th {
+    font-weight: bold;
+}
+
 /*--- title slide ---*/
 .section .reveal h3,
 .section .reveal h4,
@@ -56,24 +89,22 @@ tr:nth-child(even) {background-color: #f2f2f2}
 /*-- slides --*/
 .reveal section .vcenter {
     position: absolute;
-    width: 100%;
     top: 50%;
     transform: translateY(-50%);
 }
 
 .reveal section .hcenter {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%)
 }
 
 .reveal section .center {
     position: absolute;
-    width: 90%;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 80%;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%,-50%)
 }
 
 .reveal section .footer {

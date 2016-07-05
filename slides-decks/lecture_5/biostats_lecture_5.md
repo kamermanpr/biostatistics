@@ -1,6 +1,5 @@
-
-Lecture 5 and 6
-===============
+Lecture 5
+=========
 css: ../custom.css
 transition: none
 width: 960
@@ -399,7 +398,6 @@ head(foo)
 
 Categorical data
 ================
-class: center
 
 Cross-tabulate with `table`
 
@@ -416,7 +414,6 @@ table(foo$intervention, foo$outcome)
 
 Categorical data
 ================
-class: center
 
 Cross-tabulate with `xtabs`
 
@@ -433,7 +430,6 @@ intervention died lived
 
 Categorical data
 ================
-class: center
 
 **What if you already have totals?**
 
@@ -452,7 +448,6 @@ print(bar)
 
 Categorical data
 ================
-class: center
 
 **...Use `xtabs` with the 'count' on the left of the formula**
 
@@ -470,7 +465,6 @@ Intervention died lived
 
 Categorical data
 ================
-class: center
 
 ## $\chi^2$ test
 
@@ -480,7 +474,6 @@ _That is, is the distribution of individuals among categories of one variable in
 
 Categorical data
 ================
-class: center
 
 The $\chi^2$ test compares the *observed* and the *expected* _(assuming no association)_ frequencies across the row and column variables.
 
@@ -560,7 +553,6 @@ X-squared = 0.75, df = 1, p-value = 0.3865
 
 Examples
 ========
-class: center
 
 
 ```
@@ -604,7 +596,6 @@ alternative hypothesis: two.sided
 
 Examples
 ========
-class: center
 
 **Divide and conquer bigger tables**
 
@@ -617,18 +608,18 @@ Sex       A  B
 
 ```r
 tidy(# broom::tidy results to save space
-    fisher.test(waldo) # A vs B blood group
-    )
+    fisher.test(waldo)) # A vs B blood group
 ```
 
 ```
   estimate    p.value conf.low conf.high
 1 3.030327 0.02191256  1.09882  8.702412
+                              method alternative
+1 Fisher's Exact Test for Count Data   two.sided
 ```
 
 Examples
 ========
-class: center
 
 **Divide and conquer bigger tables**
 
@@ -641,18 +632,18 @@ Sex       A  O
 
 ```r
 tidy(
-    fisher.test(bar) # A vs O blood group
-    )
+    fisher.test(bar)) # A vs O blood group
 ```
 
 ```
   estimate    p.value conf.low conf.high
 1 2.625328 0.08076709 0.869242  8.336033
+                              method alternative
+1 Fisher's Exact Test for Count Data   two.sided
 ```
 
 Examples
 ========
-class: center
 
 **Divide and conquer bigger tables**
 
@@ -665,18 +656,18 @@ Sex       B  O
 
 ```r
 tidy(
-    fisher.test(qux) # A vs O blood group
-    )
+    fisher.test(qux)) # A vs O blood group
 ```
 
 ```
    estimate   p.value  conf.low conf.high
 1 0.8683794 0.8027563 0.2858022  2.681916
+                              method alternative
+1 Fisher's Exact Test for Count Data   two.sided
 ```
 
 Examples
 ========
-class: center
 
 **Multiple non-orthogonal tests, so need $\alpha$ correction**
 
