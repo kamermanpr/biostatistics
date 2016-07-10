@@ -136,7 +136,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="assets/navigation-1.0/tabsets.js"></script>
+<script src="assets/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -186,6 +186,7 @@ $(document).ready(function ()  {
   width: 100%;
 }
 }
+
 
 .toc-content {
   padding-left: 30px;
@@ -313,7 +314,11 @@ div.tocify {
 <p><a href="//painblogr.org/biostatistics#assignments">Back to assignments</a></p>
 <div id="instructions" class="section level3">
 <h3>Instructions</h3>
-<p>Download the datasets, and for each dataset:<br />- Tidy the data (if nessesary); - Explore the data with plots;<br />- State the <em>null</em> and <em>alternative</em> hypotheses;<br />- State the statistical test(s) you are going to use, and the assumptions that underlie the test(s);<br />- Provide the test statistic, degrees of freedom, p-value, and your interpretation of the outcome of the analysis.</p>
+<p>Download the datasets, and for each dataset:<br />
+- Tidy the data (if nessesary); - Explore the data with plots;<br />
+- State the <em>null</em> and <em>alternative</em> hypotheses;<br />
+- State the statistical test(s) you are going to use, and the assumptions that underlie the test(s);<br />
+- Provide the test statistic, degrees of freedom, p-value, and your interpretation of the outcome of the analysis.</p>
 <p>Use <em>git</em> for version control, and push the completed assignment to your <em>GitHub</em> repository. Send a link to the repository to <a href="mailto:peter.kamerman@gmail.com">Peter Kamerman</a>.</p>
 <hr />
 </div>
@@ -380,6 +385,13 @@ div.tocify {
 		</div>
 	</footer>
 
+	<!-- gifplayer js -->
+	<script src="./assets/gifplayer/dist/jquery.gifplayer.js"></script>
+	<script>
+		$(document).ready( function(){
+			$('.gif').gifplayer();
+		});
+	</script>
 
 	<!-- add bootstrap table styles to pandoc tables -->
 	<script>

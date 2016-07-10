@@ -88,9 +88,17 @@ The GIF below demonstrates the process of initiating folder as a git repository,
 
 When pushing to the remote, you will be asked for a username and password. Input the username and password for your _GitHub_ account. If you get this username/password request everytime you try push to the remote, and you are on your own computer, then instead of typing in your _GitHub_ account password, get a _personal access token_ and paste that in the password dialogue box. That should stop the username/password requests. Instructions on how to get a _personal access token_ can be found [here](https://help.github.com/articles/creating-an-access-token-for-command-line-use/).
 
+<img class="gif" data-gif="./images/git-push.gif" src="./images/git-push.png"/>
+
+<!--
+<script>
+    
+</script>
 <p style="text-align:center">
-<img src="./images/git-push.gif" style="max-width:100%;height:auto;">
-</p>
+    <img class="git-push" 
+    src="./images/git-push.png" style="max-width:100%;height:auto;"
+    data-label="play">
+</p> -->
 
 ### Proxy problems
 
