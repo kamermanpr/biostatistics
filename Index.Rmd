@@ -10,9 +10,18 @@ The aims of the course are to introduce you to the basics of data wrangling, and
 
 ## Course assessment
 
-There will be one project that will constitute the _year mark_ for the course. You **may not work** on the project in groups. Details of the project will be posted at a later date.
+The _year mark_ for the course will constitute 40% of the total course mark, and will be assessed by a series of 7 short assignments, each worth 10 marks. There will be one project that will constitute the _year mark_ for the course. The biostatistics examination will constitute the remaining 60% of the total mark for the course.
 
-The biostatistics component of your mid-year exams will count 60% of the final biostatistics mark (the project will count 40%). 
+The assignments must be submitted by 23:59 on the due date. No extensions will be granted, and 10% will be deducted from the assignment mark for each day the assignment is late. 
+
+The table below provides a link to the assignments and indicates the due date for each assignment. Currently the first four assignments are posted, the remaining three will be posted later. 
+
+| Assignment 	| Link            	| Submission deadline 	|
+|------------	|-----------------	|---------------------	|
+| 1          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-1.html) 	| 18 July 2016        	|
+| 2          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-2.html) 	| 22 July 2016        	|
+| 3          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-3.html) 	| 25 July 2016        	|
+| 4          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-4.html) 	| 29 July 2016        	|
 
 ## Lectures
 
