@@ -2,10 +2,11 @@ html_document:
   toc: true
   toc_depth: 5
   toc_float:
-    collapsed: false
+    collapsed: true
+  code_folding: hide
   theme: paper
   self_contained: false
-  lib_dir: assets
+  lib_dir: https://dl.dropboxusercontent.com/u/11805474/painblogr/html-head/
   highlight: pygments
   includes:
       after_body: _footer.html
