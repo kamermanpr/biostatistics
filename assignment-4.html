@@ -13,15 +13,15 @@
 
 <title></title>
 
-<script src="assets/jquery-1.11.3/jquery.min.js"></script>
-<script src="assets/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="assets/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="assets/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jquery-1.11.3/jquery.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="assets/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
-<script src="assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="assets/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="assets/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 
 
@@ -136,7 +136,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="assets/navigation-1.1/tabsets.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -144,6 +144,12 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/codefolding.js"></script>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 
@@ -167,7 +173,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = false;
+    options.showAndHide = true;
     options.smoothScroll = true;
 
     // tocify
@@ -229,13 +235,6 @@ div.tocify {
   border-radius: 0px;
 }
 
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-  padding-left: 10px;
-}
 
 </style>
 
@@ -302,6 +301,14 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 
@@ -314,11 +321,7 @@ div.tocify {
 <p><a href="//painblogr.org/biostatistics#assignments">Back to assignments</a></p>
 <div id="instructions" class="section level3">
 <h3>Instructions</h3>
-<p>Download the datasets, and for each dataset:<br />
-- Tidy the data (if nessesary); - Explore the data with plots;<br />
-- State the <em>null</em> and <em>alternative</em> hypotheses;<br />
-- State the statistical test(s) you are going to use, and the assumptions that underlie the test(s);<br />
-- Provide the test statistic, degrees of freedom, p-value, and your interpretation of the outcome of the analysis.</p>
+<p>Download the datasets, and for each dataset:<br />- Tidy the data (if nessesary); - Explore the data with plots;<br />- State the <em>null</em> and <em>alternative</em> hypotheses;<br />- State the statistical test(s) you are going to use, and the assumptions that underlie the test(s);<br />- Provide the test statistic, degrees of freedom, p-value, and your interpretation of the outcome of the analysis.</p>
 <p>Use <em>git</em> for version control, and push the completed assignment to your <em>GitHub</em> repository. Send a link to the repository to <a href="mailto:peter.kamerman@gmail.com">Peter Kamerman</a>.</p>
 <hr />
 </div>

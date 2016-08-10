@@ -8,56 +8,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
+
+
+
 <title></title>
 
-<script src="assets/jquery-1.11.3/jquery.min.js"></script>
-<script src="assets/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="assets/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="assets/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jquery-1.11.3/jquery.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="assets/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
-<script src="assets/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="assets/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="assets/bootstrap-3.3.5/shim/respond.min.js"></script>
+<link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/css/paper.min.css" rel="stylesheet" />
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/shim/respond.min.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+div.sourceCode {
+  overflow-x: visible;
+}
 </style>
 <style type="text/css">
   pre:not([class]) {
@@ -176,7 +164,7 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="assets/navigation-1.1/tabsets.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -184,6 +172,12 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/codefolding.js"></script>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
 
 
 
@@ -207,7 +201,7 @@ $(document).ready(function ()  {
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
     };
-    options.showAndHide = false;
+    options.showAndHide = true;
     options.smoothScroll = true;
 
     // tocify
@@ -269,13 +263,6 @@ div.tocify {
   border-radius: 0px;
 }
 
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-  padding-left: 10px;
-}
 
 </style>
 
@@ -342,6 +329,14 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
 
 
 
@@ -361,31 +356,31 @@ div.tocify {
 <table>
 <thead>
 <tr class="header">
-<th>Assignment</th>
-<th>Link</th>
-<th>Submission deadline</th>
+<th align="left">Assignment</th>
+<th align="left">Link</th>
+<th align="left">Submission deadline</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>1</td>
-<td><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-1.html">access link</a></td>
-<td>18 July 2016</td>
+<td align="left">1</td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-1.html">access link</a></td>
+<td align="left">18 July 2016</td>
 </tr>
 <tr class="even">
-<td>2</td>
-<td><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-2.html">access link</a></td>
-<td>22 July 2016</td>
+<td align="left">2</td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-2.html">access link</a></td>
+<td align="left">22 July 2016</td>
 </tr>
 <tr class="odd">
-<td>3</td>
-<td><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-3.html">access link</a></td>
-<td>25 July 2016</td>
+<td align="left">3</td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-3.html">access link</a></td>
+<td align="left">25 July 2016</td>
 </tr>
 <tr class="even">
-<td>4</td>
-<td><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-4.html">access link</a></td>
-<td>29 July 2016</td>
+<td align="left">4</td>
+<td align="left"><a href="https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-4.html">access link</a></td>
+<td align="left">29 July 2016</td>
 </tr>
 </tbody>
 </table>
@@ -443,11 +438,7 @@ div.tocify {
 <div id="assignments" class="section level2">
 <h2>Assignments</h2>
 <p>The assignments are your chance to get hands-on experience applying what you learn in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.</p>
-<table style="width:92%;">
-<colgroup>
-<col width="38%" />
-<col width="52%" />
-</colgroup>
+<table>
 <thead>
 <tr class="header">
 <th align="left">Tutorial</th>
@@ -491,9 +482,9 @@ div.tocify {
 git config --global user.email your@email.com
 </code></pre>
 <p>You are then ready to initiate your first <em>git</em> repository:</p>
-<pre><code>git init &lt;path/to/directory&gt;
+<pre><code>git init &lt;path/to/directory&gt; 
 
-# NOTE: There is no need to add the path if you already
+# NOTE: There is no need to add the path if you already 
 # are in the directory you want to initiate.</code></pre>
 <p><strong>Local project configuration</strong></p>
 <p>If you configure your computer using the <code>--global</code> tag, you only have to enter this information once. Thereafter, <em>git</em> will assume that any new repository initiations/changes are being made by you. As you may expect then, configuring your user details with the <code>--global</code> tag is not a good idea if the computer you use has multiple users working, for example, through a ‘Guest Account’. In that situation, rather individually set the user configuration for each directory (project) you initiate as follows:</p>
@@ -516,10 +507,10 @@ git config user.email your@email.com</code></pre>
 </p>
 <!--
 <script>
-
+    
 </script>
 <p style="text-align:center">
-    <img class="git-push"
+    <img class="git-push" 
     src="./images/git-push.png" style="max-width:100%;height:auto;"
     data-label="play">
 </p> -->
@@ -589,9 +580,9 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 <li><em>knitr</em>, <em>rmarkdown</em>, <em>dplyr</em>, <em>tidyr</em>, <em>lubridate</em>, <em>readr</em>, <em>ggplot2</em>, <em>swirl</em></li>
 </ul>
 <p>You can install the packages directly from the <em>R</em> console:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
                    <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;lubridate&#39;</span>, <span class="st">&#39;readr&#39;</span>,
-                   <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;swirl&#39;</span>))</code></pre></div>
+                   <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;swirl&#39;</span>))</code></pre>
 <p style="text-align:center">
 <img src="images/install-packages-1.gif" style="max-width:100%;height:auto;">
 </p>
@@ -608,15 +599,14 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 <h5><em>R</em> online</h5>
 <ul>
 <li><a href="//www.datacamp.com/courses/free-introduction-to-r">Introduction to <em>R</em></a> by datacamp.com</li>
-<li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com<br />
-</li>
+<li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com<br /></li>
 <li><a href="//r4ds.had.co.nz"><em>R</em> for Data Science</a> by Garrett Grolemund and Hadley Wickham</li>
 </ul>
 </div>
 <div id="learning-r-with-swirl" class="section level5">
 <h5>Learning <em>R</em> with <em>swirl</em></h5>
 <p>The <a href="//swirlstats.com"><em>swirl</em></a> package by the Swirl Development Team includes a suite of step-by-step interactive training courses on <em>R</em>, which are aimed primarily at the novice <em>R</em> user.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
 <span class="co"># If you haven&#39;t already installed swirl</span>
 <span class="kw">install.packages</span>(<span class="st">&#39;swirl&#39;</span>)
 
@@ -624,16 +614,16 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 <span class="kw">library</span>(swirl)
 
 <span class="co"># Launch a &#39;swirl&#39; session and follow the prompts</span>
-<span class="kw">swirl</span>()</code></pre></div>
+<span class="kw">swirl</span>()</code></pre>
 <p>To install <em>swirl</em> courses:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
 <span class="kw">library</span>(swirl)
 
 <span class="co"># Download a course from the &#39;swirl&#39; github repository</span>
 <span class="kw">install_from_swirl</span>(<span class="st">&#39;Course Name Here&#39;</span>)
 
 <span class="co"># Luanch a &#39;swirl&#39; session</span>
-<span class="kw">swirl</span>()</code></pre></div>
+<span class="kw">swirl</span>()</code></pre>
 <p>Courses include (but are not limited to):</p>
 <ul>
 <li>‘R Programming’</li>
@@ -664,11 +654,9 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 <h5><em>R / RStudio</em></h5>
 <ul>
 <li><a href="//www.rstudio.com/wp-content/uploads/2016/05/base-r.pdf"><em>Base R</em></a> (source: Mhairi McNeill via rstudio.com)</li>
-<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> (source: rstudio.com)<br />
-</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Data wrangling</a> with <em>dplyr</em> and <em>tidyr</em> (source: rstudio.com)<br /></li>
 <li><a href="//www.rstudio.com/wp-content/uploads/2015/12/ggplot2-cheatsheet-2.0.pdf"><em>Data visualization</em></a> with <em>ggplot2</em> (source: rstudio.com)</li>
-<li><a href="//www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf"><em>RMarkdown cheatsheet</em></a> (source: rstudio.com)<br />
-</li>
+<li><a href="//www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf"><em>RMarkdown cheatsheet</em></a> (source: rstudio.com)<br /></li>
 <li><a href="//www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf"><em>RMarkdown reference guide</em></a> (source: rstudio.com)</li>
 <li><a href="//www.rstudio.com/wp-content/uploads/2016/01/rstudio-IDE-cheatsheet.pdf"><em>RStudio IDE</em></a> (source: rstudio.com)</li>
 </ul>
