@@ -1,3 +1,13 @@
+
+/*-- pre & code --*/
+.reveal pre {
+    display: inline-block;
+    width:95%;
+    margin-left:2%;
+    font-family: monospace;
+    font-size: 0.4em;
+}
+
 /*-- all --*/
 .reveal h3 {
     color: #000066;
@@ -137,18 +147,18 @@ tr:nth-child(even) {background-color: #f2f2f2}
 
 .twocol .reveal section .column1 {
     position: absolute;
-    margin-top:0.1em;
+    margin-top:0.2em;
     margin-bottom:0.2em;
     float: left;
-    width: 48%;
+    width: 100%;
 }
 
 .twocol .reveal section .column2 {
     position: absolute;
-    margin-top:0.1em;
+    margin-top:0.2em;
     margin-bottom:0.2em;
     float: right;
-    width: 48%;
+    width: 100%;
 }
 
 /*-- two-column + footer (must be placed first)--*/

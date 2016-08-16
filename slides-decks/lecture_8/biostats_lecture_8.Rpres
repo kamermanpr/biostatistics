@@ -1,0 +1,658 @@
+Lecture 8
+=========
+css: ../custom.css
+transition: none
+width: 960
+height: 720
+autosize: false
+
+```{r library_loads, include = FALSE}
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(grid)
+library(scales)
+library(svglite)
+
+knitr::opts_chunk$set(echo = FALSE,
+               warning = FALSE,
+               message = FALSE,
+               cache = FALSE,
+               fig.align = 'center',
+               fig.width = 10,
+               fig.height = 10)
+```
+
+## Testing for trends
+- Correlation vs. regression
+- Association vs causality
+- Correlation
+- Regression
+
+<div style="position:fixed;bottom:10%">
+    <h3 style="margin:0;">
+        Introduction to Biostatistics
+    </h3>
+    <p style="font-style:italic;font-size:80%;margin-top:1%;margin-bottom:1%;">
+    By: Peter Kamerman &nbsp&nbsp (view at
+    <a href="//painblogr.org/biostatistics/"target="_blank">painblogR</a>)
+    </p>
+    <img src="./resources/cc-by.png" width="128" style="margin:0;"/>
+</div>
+
+
+Correlation vs regression
+==========================
+class: vcenter
+
+### Correlation
+
+Correlation assesses the linear association or strength of relationship
+between two variables.
+
+### Regression
+Regression describes the relationship between **x (independent)** and **y (dependent)** variables.
+
+Association does not imply causality
+====================================
+class: vcenter
+
+### "Bradford Hill" criteria for causality
+- Strength of association
+- Consistency
+- Specificity
+- Temporality
+- Biological gradient
+- Coherence (scientific reasoning)
+- Experiment (manipulate independent variable)
+- Analogy
+
+Correlation
+===========
+title: none
+
+<p class='vcenter' style='color:#FF0000;font-variant:italic;font-size:150%;'>Correlation</p>
+
+Correlation
+===========
+class: vcenter
+
+### Pearson’s product-moment correlation
+- Variables measured on **interval** or **ratio** scale
+- There needs to be a **linear relationship** between the variables
+- There are no **outliers**
+- Both variables should be approximately **normally distributed**
+
+### Spearman’s rank correlation
+- Variables measured on an **ordinal** or **interval** or **ratio** scale
+- There is a **monotonic relationship** between the variables
+
+Correlation...contd
+===================
+
+### Interpreting results of a correlation
+
+**$~r~$**
+- The strength and direction of relationship between variables. Values range from -1 _(perfect inverse linear relationship)_ to 1 _(perfect positive linear relationship)_.
+
+**$~p$**
+- Answers the question: what is the probability of obtaining a correlation coefficient $(r)$ as far from zero _(no linear relationship)_ as observed in your experiment assuming the null hypothesis is true?
+
+Correlation...contd
+===================
+
+### Always plot your data first
+
+```{r anscombe_1, fig.height = 6, fig.width = 10, dev = 'svg'}
+# Get Anscombe's quartet data
+foo <- anscombe
+# Correlate pairs
+cor1 <- cor.test(foo$x1, foo$y1, method = 'pearson')
+cor2 <- cor.test(foo$x2, foo$y2, method = 'pearson')
+cor3 <- cor.test(foo$x3, foo$y3, method = 'pearson')
+cor4 <- cor.test(foo$x4, foo$y4, method = 'pearson')
+# Concatenate values
+pairs <- c('x1_y1', 'x2_y2', 'x3_y3', 'x4_y4')
+r <- round(c(cor1$estimate, cor2$estimate, cor3$estimate, cor4$estimate), 3)
+p <- round(c(cor1$p.value, cor2$p.value, cor3$p.value, cor4$p.value), 3)
+# Make concatenated vectors into a dataframe
+cor_df <- data_frame(pairs = pairs, r = r, p = p) # exactly the same
+
+# Transform Anscombe's data
+bar <- foo %>%
+    select(x1:x4) %>%
+    gather(key = x, value = value_x)
+baz <- foo %>%
+    select(y1:y4) %>%
+    gather(key = y, value = value_y)
+cux <- bar %>%
+    bind_cols(baz) %>%
+    unite(pairs, x, y)
+
+# Plot
+gg_anscombe <- ggplot(data = cux,
+                      aes(x = value_x, y = value_y)) +
+    geom_point(size = 4, colour = '#FFFFFF') +
+    geom_point(size = 3) +
+    geom_smooth(method = 'lm', se = FALSE,
+                linetype = 2, size = 0.4, color = '#000000') +
+    labs(title = 'Anscombe\'s quartet', x = 'x values', y = 'y values') +
+    annotate(geom = 'text', x = 15, y = 2.5, size = 5,
+             label = paste0('r = ', 0.816)) +
+    annotate(geom = 'text', x = 15, y = 2, size = 5,
+             label = paste0('p = ', 0.002)) +
+    facet_grid(.~pairs) +
+    theme(plot.title = element_text(size = 18),
+          axis.title = element_text(size = 16),
+          axis.text = element_text(size = 14),
+          strip.text = element_text(size = 14))
+gg_anscombe
+```
+
+Correlation...contd
+===================
+type: tutorial
+
+### Performing correlations in R
+
+#### Pearson correlation
+
+```{r pearsons, echo = TRUE}
+# Data: USJudgeRatings
+# Lawyer ratings of US Supreme Court judges
+# FAMI: Familiarity with the law
+# WRIT: Sound written judgements
+foo <- USJudgeRatings[ , c('FAMI', 'WRIT')]
+head(foo, 4)
+```
+
+Correlation...contd
+===================
+type: tutorial
+
+#### Pearson correlation...plot the data
+
+```{r pearsons_2, echo = TRUE, fig.height = 4, fig.width = 4, dev = 'svg'}
+plot(foo$FAMI, foo$WRIT)
+```
+
+Correlation...contd
+===================
+type: tutorial
+
+#### Pearson correlation...perform the test
+
+```{r pearsons_3, echo = TRUE}
+cor.test(foo$FAMI, foo$WRIT,
+         method = 'pearson')
+```
+
+Correlation...contd
+===================
+type: tutorial
+
+#### Spearman correlation...plot the data
+
+```{r spearman_1, echo = TRUE, fig.height = 4, fig.width = 4, dev = 'svg'}
+# Extract 4th set of Anscombe's quartet
+anscombe_4 <- anscombe[ , c('x4', 'y4')]
+# Plot
+with(anscombe_4, plot(x = x4, y = y4))
+```
+
+Correlation...contd
+===================
+title: none
+type: tutorial
+class: twocol
+
+
+<br>
+&nbsp;&nbsp;&nbsp;**Pearson correlation**
+
+```{r spearman_2, echo = TRUE}
+with(anscombe_4,
+cor.test(x = x4, y = y4,
+    method = 'pearson'))
+```
+
+****
+
+<br>
+&nbsp;&nbsp;&nbsp;**Spearman correlation**
+
+```{r spearman_3, echo = TRUE}
+with(anscombe_4,
+cor.test(x = x4, y = y4,
+    method = 'spearman'))
+
+```
+
+Linear regression
+=================
+title: none
+
+<p class='vcenter' style='color:#FF0000;font-variant:italic;font-size:150%;'>Linear regression</p>
+
+Linear regression
+=================
+class: vcenter
+
+### Assumptions when performing linear regression
+
+- There is a linear trend between $x$ and $y$.
+
+- The observations in the sample are independent.
+
+- $x$ is measured without error.
+
+- The **residuals** are normally distributed _(more about this later)_.
+
+- The **residuals** have the same variance for all fitted values of $y$  _(homoskedastic, more about this later)_.
+
+
+Linear regression
+=================
+class: vcenter
+
+### Selecting the best-fit straight line
+
+- Unless there is a correlation, regression is meaningless
+
+- Best-fit line is the regression line that **minimizes the total variability** between data points and line
+
+Linear regression...contd
+=========================
+
+### Selecting the best-fit line: the least squares method
+
+Find the line that **minimizes the sum of the squares** of the vertical distances of data points from the line (least squares regression).
+
+```{r least_sqaures, fig.height = 4, fig.width = 4, dev = 'svg'}
+# Get data from set 1 of Anscombe's quartet
+anscombe_1 <- anscombe[, c('x1', 'y1')]
+# Get regression line
+mod_1 <- with(anscombe_1, lm(y1 ~ x1))
+# Add residuals to anscombe_1
+anscombe_1$residuals <- mod_1$residuals
+# Plot
+gg_lsr <- ggplot(anscombe_1) +
+    aes(x = x1, y = y1) +
+    geom_segment(aes(xend = x1, yend = y1 - residuals), color = '#FF0000') +
+    geom_smooth(method = 'lm', se = FALSE, size = 2, colour = '#FFFFFF') +
+    geom_smooth(method = 'lm', se = FALSE, colour = '#000000') +
+    geom_point(size = 4, colour = '#FFFFFF') +
+    geom_point(size = 3) +
+    labs(title = 'Least squares regression',
+         x = 'x values', y = 'y values') +
+    theme(plot.title = element_text(size = 18),
+          axis.title = element_text(size = 16),
+          axis.text = element_text(size = 14),
+          strip.text = element_text(size = 14))
+gg_lsr
+```
+
+Linear regression...contd
+=========================
+class: vcenter
+
+### Variability about the regression line
+
+- **Residual mean square:** The sum of average squared deviation of the data about the line.
+
+- **Standard error of the estimate $(S_{y.x})$:** The square root of the residual mean square. $S_{y.x}$ indicates the accuracy with which the fitted regression function predicts the dependence of Y on X
+
+Linear regression...contd
+=========================
+
+### Regression coefficients
+
+$y = a + bx$
+
+- **$a$: Y-axis intercept of the line:**
+    - Only really of interest if $x = 0$.
+    - **$S_a$:** Standard error of the intercept.
+
+- **$b$: Regression coefficient / slope of the line**
+    - Interpreted as: mean change in the response variable for one unit of change in the predictor variable.
+    - Sign (+ or -) indicates the direction of the relationship.
+    - **$S_b$:** Standard error of the slope.
+
+Linear regression...contd
+=========================
+class: vcenter
+
+### Coefficient of determination $(R^2)$
+
+- Fraction of total variation in the dependent variable that can be _“explained”_ by the regression equation.
+
+- Fraction of variance shared by two variables _(correlation)_
+
+Linear regression...contd
+=========================
+type: tutorial
+class: vcenter
+
+### Performing linear regression in R
+
+```{r lsr, echo = TRUE}
+# Anscombe's quartet
+head(anscombe, 3)
+```
+
+Linear regression...contd
+=========================
+type: tutorial
+class: vcenter
+
+### Performing linear regression in R
+
+    lm(formula, data, ...)
+
+```{r lsr_2, echo = TRUE, eval = FALSE}
+# Set 1 of Anscombe's quartet
+anscombe_1 <- anscombe[ , c('x1','y1')]
+
+# Linear regression
+#
+mod_1 <- lm(y1 ~ x1, data = anscombe_1)
+
+# View model
+summary(mod_1)
+```
+
+Linear regression...contd
+=========================
+type: tutorial
+
+    # View model
+    summary(mod_1)
+
+```{r lsr_3, echo = FALSE}
+options(digits = 3)
+# Linear regression
+mod_1 <- lm(y1 ~ x1, data = anscombe_1)
+
+# View model
+summary(mod_1)
+```
+
+Linear regression and correlation
+================================
+
+### Linear regression / correlation rules
+
+- Always plot data _(scatterplot)_
+
+    - Check for linear relationship
+
+    - Check for outliers/influence point
+
+- Check for non-normality and heteroskedasticity of residuals
+
+- Avoid extrapolation beyond the range of $x$-values measured
+
+- Beware of $x$ on $x$ correlations / regressions
+
+- Only plot a regression line when reporting a correlation if the correlation is significant, and regression makes sense.
+
+Linear regression...contd
+=========================
+
+### Linear regression diagnostics
+
+**Checking to determine whether:**
+
+- There is a linear trend between the $x$ and $y$ variables
+
+- There are outliers or leverage points
+
+- The residuals are normally distributed
+
+- The residuals have the same variance for all fitted values of $y$  _(homoskedastic)_.
+
+Linear regression...contd
+=========================
+type: twocol
+
+### Is there a linear trend between the $x$ and $y$ variables
+
+- Generate a scatterplot and look at the trend
+
+```{r linear_trend, fig.width = 8, fig.height = 4.5, dev = 'svg'}
+# Anscombe plot from earlier
+foo <- c('x1_y1', 'x2_y2')
+gg_linear <- ggplot(data = cux[cux$pairs %in% foo, ],
+                      aes(x = value_x, y = value_y)) +
+    geom_point(size = 4, colour = '#FFFFFF') +
+    geom_point(size = 3) +
+    labs(title = 'Sets from of Anscombe\'s quartet', x = 'x values', y = 'y values') +
+    facet_grid(.~pairs) +
+    theme(plot.title = element_text(size = 18),
+          axis.title = element_text(size = 16),
+          axis.text = element_text(size = 14),
+          strip.text = element_text(size = 14))
+gg_linear
+```
+
+Linear regression...contd
+=========================
+class: vcenter
+
+### Are there outliers or leverage points?
+
+- **Outlier:** extreme / unexpected value for the dependent variable (large residual)
+
+- **Leverage point:** values at the extremes of the independent variable range, and which the regression line passes near to.
+
+- **Influence point:** An extreme value that _'pulls'_ the regression line towards that point.
+
+Linear regression...contd
+=========================
+
+### Are there outliers or leverage points?
+
+```{r outliers, fig.width = 8, fig.height = 4.5, dev = 'svg'}
+# Make a new dataset from x3_y3 of the anscombe dataset created earlier
+foo <- c('x3_y3')
+cux_2 <- cux[cux$pairs %in% foo, ]
+cux_2b <- cux[cux$pairs %in% foo, ]
+cux_2c <- cux[cux$pairs %in% foo, ]
+cux_3 <- cux_2 %>%
+    bind_rows(list(cux_2b, cux_2c)) %>%
+    mutate(type = rep(c('linear', 'low influence', 'high influence'),
+                      each = 11)) %>%
+    select(type, value_x, value_y) %>%
+    arrange(type, value_x)
+# Manipulate points
+cux_3[cux_3$value_x == 13, 3] <- (8.15 + 8.84) / 2
+cux_3[cux_3$type == 'low influence' & cux_3$value_x == 9, 3] <- 12.74
+cux_3[cux_3$type == 'high influence' & cux_3$value_x == 14, 3] <- 12.74
+cux_3[cux_3$type == 'high influence' & cux_3$value_y == 12.74, 2] <- 18
+
+cux_4 <- cux_3 %>%
+    mutate(type = factor(type,
+                         labels = c('linear', 'low influence',
+                                    'high influence'),
+                         levels = c('linear', 'low influence',
+                                    'high influence'),
+                         ordered = TRUE))
+
+gg_linear <- ggplot(data = cux_4,
+                      aes(x = value_x, y = value_y)) +
+    geom_point(size = 4, colour = '#FFFFFF') +
+    geom_point(size = 3) +
+    geom_smooth(method = 'lm', se = FALSE,
+                linetype = 2, size = 0.4, color = '#000000') +
+    labs(title = 'Sets from of Anscombe\'s quartet', x = 'x values', y = 'y values') +
+    facet_grid(.~type) +
+    theme(plot.title = element_text(size = 18),
+          axis.title = element_text(size = 16),
+          axis.text = element_text(size = 14),
+          strip.text = element_text(size = 14))
+gg_linear
+```
+
+Statistical tests for outliers, leverage points, and influence points are available (e.g., Cook's D), but are not covered here.
+
+Linear regression...contd
+=========================
+class: vcenter
+
+### Are the residuals normally distributed?
+
+- Quantile-Quantile plot _(QQ-plot)_
+
+### Do the residuals have the same variance for all fitted values of $y$?
+
+- Fitted vs residuals plot
+
+Linear regression...simple regression
+=====================================
+type: tutorial
+
+```{r diag_demo, echo = TRUE}
+# Make a dataset
+foo <- data_frame(x = rnorm(50), y = x + runif(50))
+# summary of y1 vs x1 regression
+mod <- lm(y ~ x, data = foo)
+summary(mod)
+```
+
+====================================
+type: tutorial
+class: twocol
+
+**Diagnostic plot 1: Homoskedasticity**
+```{r diag_demo_2, echo = TRUE, fig.width = 4, fig.height = 4, dev = 'svg'}
+plot(x = mod$fitted, y = mod$residuals)
+abline(h = 0)
+```
+
+****
+
+**Diagnostic plot 2: Gaussian residual ditribution**
+```{r diag_demo_3, echo = TRUE, fig.width = 4, fig.height = 4, dev = 'svg'}
+qqnorm(mod$residuals)
+qqline(mod$residuals)
+```
+
+====================================
+type: tutorial
+class: twocol
+
+**Diagnostic plot 1: Heteroskedasticity**
+```{r diag_demo_4, fig.width = 6, fig.height = 6, dev = 'svg'}
+set.seed(123)
+x <- rnorm(500, mean = 1, sd = 1)
+a <- 1 # intercept
+b <- 1 # coef
+h <- function(x) 1 + 0.4 * x # heteroscedasticity function
+eps = rnorm(500, mean = 0, sd = h(x))
+y = a + (b * x) + eps
+mod <- lm(y ~ x)
+plot(x = mod$fitted, y = mod$residuals)
+abline(h = 0)
+```
+
+****
+
+**Diagnostic plot 2: Skewed residual distribution**
+```{r diag_demo_5, fig.width = 6, fig.height = 6, dev = 'svg'}
+set.seed(123)
+x <- rnorm(500, mean = 1, sd = 1)
+a <- 1 # intercept
+b <- 1 # coef
+y = a + (b * x)^1.1
+mod <- lm(y ~ x)
+qqnorm(mod$residuals)
+qqline(mod$residuals)
+```
+
+Generalized Linear Models (GLM)
+==============================
+
+Flexible generalization of ordinary linear regression that allows for response variables that have non-Gaussian error distribution.
+
+Generalization of the linear models performed by relating the response variable via a **link function**
+
+### Most common
+
+#### Logistic regression
+- Binary outcome variable (e.g., 'yes' or 'no')
+
+        glm(y ~ x, family = 'logit', data = foo)
+
+Why ANOVA is a linear regression
+================================
+
+```{r reg_anova, echo = TRUE}
+# Plant weight data (A Dobson, 1990)
+control <- c(4.17, 5.58, 5.18, 6.11, 4.50, 4.61, 5.17, 4.53, 5.33, 5.14)
+treatment <- c(4.81, 4.17, 4.41, 3.59, 5.87, 3.83, 6.03, 4.89, 4.32, 4.69)
+
+# Make dataframe
+data <- data_frame(group = factor(rep(c('Control','Treatment'),
+                                      each = 10)),
+                   weight = c(control, treatment))
+head(data, 3)
+
+# Fit ANOVA model
+mod_aov <- aov(weight ~ group, data = data)
+
+# Fit linear regression model
+mod_lm <- lm(weight ~ group, data = data)
+
+```
+
+
+========================================
+class: twocol
+
+&nbsp;&nbsp;&nbsp;**Plot**
+```{r reg_anova_2, fig.width = 3, fig.height = 3, dev = 'svg'}
+par(mar = c(3, 3, 0, 0))
+par(oma = c(0, 0, 0, 0))
+with(data, boxplot(weight ~ group))
+```
+
+
+&nbsp;&nbsp;&nbsp;**ANOVA**
+```{r reg_anova_3}
+summary(mod_aov)
+data %>%
+    group_by(group) %>%
+    summarise(Mean = mean(weight))
+```
+
+****
+
+&nbsp;&nbsp;&nbsp;**Linear regression**
+```{r reg_anova_4}
+summary(mod_lm)
+```
+
+
+Web resources
+=============
+class: vcenter
+
+_**Basics**_
+- Linear regression: [r-statistics.co](http://r-statistics.co/Linear-Regression.html), by Selva Prabhakaran.
+
+- Regression and correlation: [Cookbook for R](http://www.cookbook-r.com/Statistical_analysis/Regression_and_correlation/), by Winston Chang.
+
+
+tl;dr
+=====
+
+<div class="hcenter" style="width:80%;">
+    <p style="font-size:150%;font-style:italic;text-align:center;margin-top:100px;">
+    "The complexities of cause and effect defy analysis."
+    </p>
+    <p style="text-align:center">
+     Urban Chronotis [Reg]<br>
+        <span style="font-style:italic;font-size:80%;">Regius Professor of Chronology<br>In: Douglas Adams' "Dirk Gently's Holistic Detective Agency"</span>
+    </p>
+</div>
