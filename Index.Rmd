@@ -23,6 +23,7 @@ The table below provides a link to the assignments and indicates the due date fo
 | 3          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-3.html) 	| 25 July 2016        	|
 | 4          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-4.html) 	| 29 July 2016        	|
 | 5          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-5.html) 	| 15 August 2016       	|
+| 6          	| [access link](https://dl.dropboxusercontent.com/u/11805474/painblogr/biostats/assignments/assignment-6.html) 	| 29 August 2016       	|
 
 ## Lectures
 
@@ -35,10 +36,7 @@ The table below provides a link to the assignments and indicates the due date fo
 |Lecture 4 |A (very brief) introduction to plotting in R|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_4/biostats_lecture_4.html' target='_blank'>Slideshow</a> |
 |Lecture 5 and 6 |Cookbook of commonly used statistical tests|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_5/biostats_lecture_5.html' target='_blank'>Slideshow</a> |
 |Lecture 7 |Confidence intervals|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_7/biostats_lecture_7.html' target='_blank'>Slideshow</a> |
-|Lecture 8 |Correlation and regression|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_8/biostats_lecture_8.html' target='_blank'>Slideshow</a> |
-
-
-
+|Lecture 8 |Correlation and regression|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/biostats/biostats_lecture_8/biostats_lecture_8.html' target='_blank'>Slideshow</a> |
 
 _**[More to be added as course progresses]**_
 
