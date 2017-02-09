@@ -14,14 +14,16 @@
 <title></title>
 
 <script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jquery-1.11.3/jquery.min.js"></script>
-<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/tabsets.js"></script>
+<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/codefolding.js"></script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
@@ -109,6 +111,7 @@ button.code-folding-btn:focus {
 }
 </style>
 
+
 <style type="text/css">
 /* padding for bootstrap navbar */
 body {
@@ -165,7 +168,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -173,7 +175,9 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script src="https:/dl.dropboxusercontent.com/u/11805474/painblogr/html-head/navigation-1.1/codefolding.js"></script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 <script>
 $(document).ready(function () {
   window.initializeCodeFolding("hide" === "show");
@@ -197,7 +201,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -256,8 +260,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -348,12 +353,11 @@ div.tocify {
 <div id="introduction-to-biostatistics" class="section level1">
 <h1>Introduction to Biostatistics</h1>
 <p>An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language <a href="//www.r-project.org"><em>R</em></a>.</p>
-<p>The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme <a href="//www.r-project.org/"><em>R</em></a> in the <a href="//www.rstudio.com"><em>RStudio</em></a> integrated development environment (IDE), and <a href="//git-scm.com/"><em>git</em></a> (with the <a href="//github.com/"><em>GitHub</em></a> web-based <em>git</em> repository hosting service) for version control. The reason for choosing these apps is that they are free <em>(as in beer and as in speech)</em>, and have well-established and active user and developer communities. You need a basic working knowledge of the <em>command line</em>, <em>R</em> and <em>git</em> to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting (<a href="#free-courses">see examples below</a>).</p>
+<p>The aims of the course are to introduce participants to the basics of data wrangling, plotting, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme <a href="//www.r-project.org/"><em>R</em></a> in the <a href="//www.rstudio.com"><em>RStudio</em></a> integrated development environment (IDE), and <a href="//git-scm.com/"><em>git</em></a> (with the <a href="//github.com/"><em>GitHub</em></a> web-based <em>git</em> repository hosting service) for version control. The reason for choosing these apps is that they are free <em>(as in beer and as in speech)</em>, and have well-established and active user and developer communities. You need a basic working knowledge of the <em>command line</em>, <em>R</em> and <em>git</em> to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting (<a href="#free-courses">see examples below</a>).</p>
 <div id="course-assessment" class="section level2">
 <h2>Course assessment</h2>
-<p>The <em>year mark</em> for the course will constitute 40% of the total course mark, and will be assessed by a series of 7 short assignments, each worth 10 marks. There will be one project that will constitute the <em>year mark</em> for the course. The biostatistics examination will constitute the remaining 60% of the total mark for the course.</p>
-<p>The assignments must be submitted by 23:59 on the due date. No extensions will be granted, and 10% will be deducted from the assignment mark for each day the assignment is late.</p>
-<p>The table below provides a link to the assignments and indicates the due date for each assignment. Currently the first four assignments are posted, the remaining three will be posted later.</p>
+<p>The <em>year mark</em> for the course will constitute 40% of the total course mark, and will be assessed by a series of 6 short assignments, each worth 10 marks. The biostatistics examination will constitute the remaining 60% of the total mark for the course. Assignments must be submitted by 23:59 on the due date. No extensions will be granted, and 10% will be deducted from the assignment mark for each day the assignment is late.</p>
+<p>The table below provides a link to the assignments and indicates the due date for each assignment.</p>
 <table>
 <thead>
 <tr class="header">
@@ -449,11 +453,10 @@ div.tocify {
 </tr>
 </tbody>
 </table>
-<p><em><strong>[More to be added as course progresses]</strong></em></p>
 </div>
-<div id="assignments" class="section level2">
-<h2>Assignments</h2>
-<p>The assignments are your chance to get hands-on experience applying what you learn in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.</p>
+<div id="tutorials" class="section level2">
+<h2>Tutorials</h2>
+<p>These tutorials do not count for course credit, but give you a chance to get hands-on experience applying what you learn in the lectures. The tutorials will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups. You can also work through them tutorials in your own time.</p>
 <table>
 <thead>
 <tr class="header">
@@ -463,24 +466,51 @@ div.tocify {
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">On your marks…Get set…</td>
+<td align="left">Tutorial 1</td>
 <td align="left">Complete the <em>swirl</em> course: <strong>‘R Programming’</strong></td>
 </tr>
 <tr class="even">
-<td align="left">Assignment 1 (lecture 1)</td>
-<td align="left"><a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1">[download]</a> the file, and follow the instructions</td>
+<td align="left">Tutorial 2</td>
+<td align="left">RMarkdown<a href="//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1">[download]</a> the file, and follow the instructions</td>
 </tr>
 <tr class="odd">
-<td align="left">Assignment 2 (lecture 2)</td>
+<td align="left">Tutorial 3</td>
 <td align="left">Complete the <em>swirl</em> course: <strong>‘Getting and Cleaning Data’</strong></td>
 </tr>
 <tr class="even">
-<td align="left">Assignment 3 (lecture 4)</td>
+<td align="left">Tutorial 4</td>
 <td align="left">Complete the <em>swirl</em> course: <strong>‘Exploratory Data Analysis’</strong><br><em>(sections: 5, 7, 8, 9, 10)</em></td>
+</tr>
+<tr class="odd">
+<td align="left">Tutorial 5</td>
+<td align="left">Complete the <em>swirl</em> course: <strong>‘Statistical Inference’</strong></td>
+</tr>
+<tr class="even">
+<td align="left">Tutorial 6</td>
+<td align="left">Complete the <em>swirl</em> course: <strong>‘Regression Models’</strong></td>
 </tr>
 </tbody>
 </table>
-<p><em><strong>[More to be added as course progresses]</strong></em></p>
+<p>The majority of the tutorials are deployed through the <em>R</em> package <a href="//swirlstats.com"><em>swirl</em></a>. The <em>swirl</em> package was developed by the Swirl Development Team, and includes a suite of step-by-step interactive training courses on <em>R</em>, which are aimed primarily at the novice and intermediate <em>R</em> user.</p>
+<p>Follow the instructions below to access <em>swirl</em> courses:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
+<span class="co"># If you haven&#39;t already installed swirl</span>
+<span class="kw">install.packages</span>(<span class="st">&#39;swirl&#39;</span>)
+
+<span class="co"># Load the &#39;swirl&#39; package</span>
+<span class="kw">library</span>(swirl)
+
+<span class="co"># Launch a &#39;swirl&#39; session and follow the prompts</span>
+<span class="kw">swirl</span>()</code></pre>
+<p>To install <em>swirl</em> courses:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
+<span class="kw">library</span>(swirl)
+
+<span class="co"># Download a course from the &#39;swirl&#39; github repository</span>
+<span class="kw">install_from_swirl</span>(<span class="st">&#39;Course Name Here&#39;</span>)
+
+<span class="co"># Luanch a &#39;swirl&#39; session</span>
+<span class="kw">swirl</span>()</code></pre>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
@@ -589,12 +619,10 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 </ul>
 <p>Once you have downloaded and installed <em>R</em> and <em>RStudio</em>, I recommend that you install the following <em>R</em> packages (you may need others during the course, but these will get you going):</p>
 <ul>
-<li><em>knitr</em>, <em>rmarkdown</em>, <em>dplyr</em>, <em>tidyr</em>, <em>lubridate</em>, <em>readr</em>, <em>ggplot2</em>, <em>swirl</em></li>
+<li><em>knitr</em>, <em>rmarkdown</em>, <em>tidyverse</em>, and <em>swirl</em></li>
 </ul>
 <p>You can install the packages directly from the <em>R</em> console:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;dplyr&#39;</span>,
-                   <span class="st">&#39;tidyr&#39;</span>, <span class="st">&#39;lubridate&#39;</span>, <span class="st">&#39;readr&#39;</span>,
-                   <span class="st">&#39;ggplot2&#39;</span>, <span class="st">&#39;swirl&#39;</span>))</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="kw">c</span>(<span class="st">&#39;knitr&#39;</span>, <span class="st">&#39;rmarkdown&#39;</span>, <span class="st">&#39;tidyverse&#39;</span>, <span class="st">&#39;swirl&#39;</span>))</code></pre>
 <p style="text-align:center">
 <img src="images/install-packages-1.gif" style="max-width:100%;height:auto;">
 </p>
@@ -613,36 +641,6 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 <li><a href="//www.datacamp.com/courses/free-introduction-to-r">Introduction to <em>R</em></a> by datacamp.com</li>
 <li><a href="//www.codeschool.com/courses/try-r"><em>R</em> Programming</a> by codeschool.com<br /></li>
 <li><a href="//r4ds.had.co.nz"><em>R</em> for Data Science</a> by Garrett Grolemund and Hadley Wickham</li>
-</ul>
-</div>
-<div id="learning-r-with-swirl" class="section level5">
-<h5>Learning <em>R</em> with <em>swirl</em></h5>
-<p>The <a href="//swirlstats.com"><em>swirl</em></a> package by the Swirl Development Team includes a suite of step-by-step interactive training courses on <em>R</em>, which are aimed primarily at the novice <em>R</em> user.</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Script to install and use &#39;swirl&#39;</span>
-<span class="co"># If you haven&#39;t already installed swirl</span>
-<span class="kw">install.packages</span>(<span class="st">&#39;swirl&#39;</span>)
-
-<span class="co"># Load the &#39;swirl&#39; package</span>
-<span class="kw">library</span>(swirl)
-
-<span class="co"># Launch a &#39;swirl&#39; session and follow the prompts</span>
-<span class="kw">swirl</span>()</code></pre>
-<p>To install <em>swirl</em> courses:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load the &#39;swirl&#39; package</span>
-<span class="kw">library</span>(swirl)
-
-<span class="co"># Download a course from the &#39;swirl&#39; github repository</span>
-<span class="kw">install_from_swirl</span>(<span class="st">&#39;Course Name Here&#39;</span>)
-
-<span class="co"># Luanch a &#39;swirl&#39; session</span>
-<span class="kw">swirl</span>()</code></pre>
-<p>Courses include (but are not limited to):</p>
-<ul>
-<li>‘R Programming’</li>
-<li>‘Getting and Cleaning Data’</li>
-<li>‘Exploratory Data Analysis’</li>
-<li>‘Data Analysis’</li>
-<li>‘Regression Models’</li>
 </ul>
 </div>
 <div id="git-online" class="section level5">
@@ -749,9 +747,13 @@ echo https_proxy_user=ask) &gt; .Renviron</code></pre>
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
+
 
 </script>
 

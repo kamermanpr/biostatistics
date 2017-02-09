@@ -6,15 +6,13 @@ output: html_document
 # Introduction to Biostatistics
 An introductory course on data handling and biostatistics for students studying towards a Bachelor of Health Sciences (BHSc) Honours in Physiology at the University of the Witwatersrand, South Africa. The course is based around the statistical programming language [_R_](//www.r-project.org).
 
-The aims of the course are to introduce you to the basics of data wrangling, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_RStudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](//git-scm.com/) (with the [_GitHub_](//github.com/) web-based _git_ repository hosting service) for version control. The reason for choosing these apps is that they are free _(as in beer and as in speech)_, and have well-established and active user and developer communities. You need a basic working knowledge of the _command line_, _R_ and _git_ to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting ([see examples below](#free-courses)).
+The aims of the course are to introduce participants to the basics of data wrangling, plotting, and reproducible data analysis and reporting. These aims are explored using the statistical computing programme [_R_](//www.r-project.org/) in the [_RStudio_](//www.rstudio.com) integrated development environment (IDE), and [_git_](//git-scm.com/) (with the [_GitHub_](//github.com/) web-based _git_ repository hosting service) for version control. The reason for choosing these apps is that they are free _(as in beer and as in speech)_, and have well-established and active user and developer communities. You need a basic working knowledge of the _command line_, _R_ and _git_ to complete the course. So if you are not familiar with these apps, I suggest that you complete some free online courses before starting ([see examples below](#free-courses)).
 
 ## Course assessment
 
-The _year mark_ for the course will constitute 40% of the total course mark, and will be assessed by a series of 7 short assignments, each worth 10 marks. There will be one project that will constitute the _year mark_ for the course. The biostatistics examination will constitute the remaining 60% of the total mark for the course.
+The _year mark_ for the course will constitute 40% of the total course mark, and will be assessed by a series of 6 short assignments, each worth 10 marks. The biostatistics examination will constitute the remaining 60% of the total mark for the course. Assignments must be submitted by 23:59 on the due date. No extensions will be granted, and 10% will be deducted from the assignment mark for each day the assignment is late. 
 
-The assignments must be submitted by 23:59 on the due date. No extensions will be granted, and 10% will be deducted from the assignment mark for each day the assignment is late. 
-
-The table below provides a link to the assignments and indicates the due date for each assignment. Currently the first four assignments are posted, the remaining three will be posted later. 
+The table below provides a link to the assignments and indicates the due date for each assignment. 
 
 | Assignment 	| Link            	| Submission deadline 	|
 |------------	|-----------------	|---------------------	|
@@ -38,20 +36,46 @@ The table below provides a link to the assignments and indicates the due date fo
 |Lecture 7 |Confidence intervals|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/stats_slides/biostats_lecture_7/biostats_lecture_7.html' target='_blank'>Slideshow</a> |
 |Lecture 8 |Correlation and regression|<a href='//dl.dropboxusercontent.com/u/11805474/painblogr/biostats/biostats_lecture_8/biostats_lecture_8.html' target='_blank'>Slideshow</a> |
 
-_**[More to be added as course progresses]**_
+## Tutorials
 
-## Assignments
-
-The assignments are your chance to get hands-on experience applying what you learn in the lectures. The assignments will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups.
+These tutorials do not count for course credit, but give you a chance to get hands-on experience applying what you learn in the lectures. The tutorials will take place with the course instructor in the computer laboratory immediately after the relevant lecture has finished. You may work alone or in groups. You can also work through them tutorials in your own time. 
 
 |Tutorial                   |files                                |
 |:--------------------------|:------------------------------------|
-|On your marks...Get set... |Complete the _swirl_ course: **'R Programming'** |
-|Assignment 1 (lecture 1)   |[[download]](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1) the file, and follow the instructions |
-|Assignment 2 (lecture 2)   |Complete the _swirl_ course: **'Getting and Cleaning Data'** |
-|Assignment 3 (lecture 4)   |Complete the _swirl_ course: **'Exploratory Data Analysis'**<br>_(sections: 5, 7, 8, 9, 10)_ |
+|Tutorial 1 |Complete the _swirl_ course: **'R Programming'** |
+|Tutorial 2 | RMarkdown[[download]](//dl.dropboxusercontent.com/u/11805474/PHSL4005-biostats/assignments/assignment-1.md?dl=1) the file, and follow the instructions |
+|Tutorial 3 |Complete the _swirl_ course: **'Getting and Cleaning Data'** |
+|Tutorial 4 |Complete the _swirl_ course: **'Exploratory Data Analysis'**<br>_(sections: 5, 7, 8, 9, 10)_ |
+|Tutorial 5 | Complete the _swirl_ course: **'Statistical Inference'** |
+|Tutorial 6 | Complete the _swirl_ course: **'Regression Models'** |
 
-_**[More to be added as course progresses]**_
+The majority of the tutorials are deployed through the _R_ package [_swirl_](//swirlstats.com). The _swirl_ package was developed by the Swirl Development Team, and includes a suite of step-by-step interactive training courses on _R_, which are aimed primarily at the novice and intermediate _R_ user.
+
+Follow the instructions below to access _swirl_ courses:
+
+```{r swirl, eval=FALSE}
+# Script to install and use 'swirl'
+# If you haven't already installed swirl
+install.packages('swirl')
+
+# Load the 'swirl' package
+library(swirl)
+
+# Launch a 'swirl' session and follow the prompts
+swirl()
+```
+
+To install _swirl_ courses:
+```{r swirl_courses, eval=FALSE}
+# Load the 'swirl' package
+library(swirl)
+
+# Download a course from the 'swirl' github repository
+install_from_swirl('Course Name Here')
+
+# Luanch a 'swirl' session
+swirl()
+```
 
 ## Resources
 
@@ -200,14 +224,12 @@ In addition to adding the _.Renviron_ file, you also need to change some setting
 
 Once you have downloaded and installed _R_ and _RStudio_, I recommend that you install the following _R_ packages (you may need others during the course, but these will get you going):
 
-* _knitr_, _rmarkdown_, _dplyr_, _tidyr_, _lubridate_, _readr_, _ggplot2_, _swirl_
+* _knitr_, _rmarkdown_, _tidyverse_, and _swirl_
 
 You can install the packages directly from the _R_ console:
 
 ```{r eval=FALSE}
-install.packages(c('knitr', 'rmarkdown', 'dplyr',
-                   'tidyr', 'lubridate', 'readr',
-                   'ggplot2', 'swirl'))
+install.packages(c('knitr', 'rmarkdown', 'tidyverse', 'swirl'))
 ```
 
 <p style="text-align:center">
@@ -230,41 +252,6 @@ install.packages(c('knitr', 'rmarkdown', 'dplyr',
 * [Introduction to _R_](//www.datacamp.com/courses/free-introduction-to-r) by datacamp.com
 * [_R_ Programming](//www.codeschool.com/courses/try-r) by codeschool.com  
 * [_R_ for Data Science](//r4ds.had.co.nz) by Garrett Grolemund and Hadley Wickham
-
-##### Learning _R_ with _swirl_
-The [_swirl_](//swirlstats.com) package by the Swirl Development Team includes a suite of step-by-step interactive training courses on _R_, which are aimed primarily at the novice _R_ user.
-
-```{r swirl, eval=FALSE}
-# Script to install and use 'swirl'
-# If you haven't already installed swirl
-install.packages('swirl')
-
-# Load the 'swirl' package
-library(swirl)
-
-# Launch a 'swirl' session and follow the prompts
-swirl()
-```
-
-To install _swirl_ courses:
-```{r swirl_courses, eval=FALSE}
-# Load the 'swirl' package
-library(swirl)
-
-# Download a course from the 'swirl' github repository
-install_from_swirl('Course Name Here')
-
-# Luanch a 'swirl' session
-swirl()
-```
-
-Courses include (but are not limited to):
-
-* 'R Programming'
-* 'Getting and Cleaning Data'
-* 'Exploratory Data Analysis'
-* 'Data Analysis'
-* 'Regression Models'
 
 ##### _git_ online
 * [Try _git_](//www.codeschool.com/courses/try-git) by codeschool.com 
